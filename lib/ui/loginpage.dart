@@ -6,6 +6,7 @@ import 'components/square_title.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({Key? key});
+  static const String routeName = 'login';
 
   // text editing controllers
   final usernameController = TextEditingController();

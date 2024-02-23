@@ -6,6 +6,8 @@ import 'modechart.dart';
 
 class modetracker extends StatefulWidget {
   const modetracker({super.key});
+  static const String routeName = 'modetracker';
+
 
   @override
   State<modetracker> createState() => _modetrackerState();

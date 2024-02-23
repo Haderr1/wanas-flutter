@@ -7,7 +7,7 @@ import 'greencard.dart';
 
 class talktome extends StatelessWidget {
   const talktome({super.key});
-  static const String routeName = 'modetracker';
+  static const String routeName = 'talketome';
 
   @override
   Widget build(BuildContext context) {

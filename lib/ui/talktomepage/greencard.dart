@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:waanaass/ui/modetracker/modetrackerscreen.dart';
 
 class greencard extends StatelessWidget {
   const greencard({super.key});
@@ -33,8 +34,10 @@ class greencard extends StatelessWidget {
                 SizedBox(height: 16),
                 ElevatedButton(
                   onPressed: () {
-                    // Add functionality for the button click here
-                  },
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => modetracker()),
+                    );                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFF00966A),
                     foregroundColor: Colors.white,

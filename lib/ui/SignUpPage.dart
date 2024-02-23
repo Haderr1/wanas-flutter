@@ -9,6 +9,8 @@ class SignUpPage extends StatelessWidget {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
+  static const String routeName = 'signup';
+
 
   @override
   Widget build(BuildContext context) {

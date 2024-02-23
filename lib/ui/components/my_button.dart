@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../talktomepage/talktomescreen.dart';
+
 class MyButton extends StatelessWidget {
   final Function()? onTap;
 
@@ -8,7 +10,12 @@ class MyButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => talktome()),
+        );
+      },
       child: Container(
         padding: const EdgeInsets.all(15),
         margin: const EdgeInsets.symmetric(horizontal: 25),

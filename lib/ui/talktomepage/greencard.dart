@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:waanaass/ui/chatpage/chatscreen.dart';
 import 'package:waanaass/ui/modetracker/modetrackerscreen.dart';
 
 class greencard extends StatelessWidget {
@@ -36,7 +37,7 @@ class greencard extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => modetracker()),
+                      MaterialPageRoute(builder: (context) => ChatPage()),
                     );                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Color(0xFF00966A),

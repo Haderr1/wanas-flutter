@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:waanaass/ui/SignUpPage.dart';
+import 'package:waanaass/ui/chatpage/chatscreen.dart';
 import 'package:waanaass/ui/loginpage.dart';
 import 'package:waanaass/ui/modetracker/modetrackerscreen.dart';
 import 'package:waanaass/ui/talktomepage/talktomescreen.dart';
@@ -42,7 +43,8 @@ class MyApp extends StatelessWidget {
         talktome.routeName : (_)=> talktome(),
         modetracker.routeName : (_)=> modetracker(),
         LoginPage.routeName : (_)=> LoginPage(),
-        SignUpPage.routeName : (_)=> SignUpPage()
+        SignUpPage.routeName : (_)=> SignUpPage(),
+        ChatPage.routeName : (_)=> ChatPage()
       },
       initialRoute: LoginPage.routeName ,
     );

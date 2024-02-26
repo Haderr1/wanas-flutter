@@ -27,10 +27,9 @@ class _SignUpPageState extends State<SignUpPage> {
     final String email = emailController.text;
     final String phoneNumber = phoneNumberController.text;
     final String password = passwordController.text;
-    final String id = "1";
-    final String time = "444";
 
-    var url = Uri.http('192.168.1.10:3000','/register');
+
+    var url = Uri.http('192.168.1.5:3000','/account');
     var response = await http.post(url,
         body:
         jsonEncode ({
@@ -40,6 +39,7 @@ class _SignUpPageState extends State<SignUpPage> {
         'password': password,
       }),
     );
+    print(response.body);
 
     if (response.statusCode == 200) {
       // Successfully signed up

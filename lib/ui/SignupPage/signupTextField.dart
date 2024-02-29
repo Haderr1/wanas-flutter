@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Stext extends StatelessWidget {
+class signupTextField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final bool obscureText;
 
-  const Stext({
+  const signupTextField({
     Key? key,
     required this.controller,
     required this.hintText,

@@ -1,20 +1,20 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../MoodTracker/mood_tracker_screen.dart';
+import '../MoodTracker/moodTrackerScreen.dart';
 
-class personlist extends StatelessWidget {
+class personsCard extends StatelessWidget {
   String name;
   String img;
-   personlist({required this.name,required this.img,super.key});
+  personsCard({required this.name, required this.img, super.key});
 
   @override
   Widget build(BuildContext context) {
-    return  InkWell(
+    return InkWell(
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => modetracker()),
+          MaterialPageRoute(builder: (context) => moodTrackerScreen()),
         );
       },
       child: Column(
@@ -36,6 +36,5 @@ class personlist extends StatelessWidget {
         ],
       ),
     );
-
   }
 }

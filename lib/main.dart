@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:waanaass/ui/SignUpPage.dart';
-import 'package:waanaass/ui/chatpage/chatscreen.dart';
-import 'package:waanaass/ui/loginpage.dart';
-import 'package:waanaass/ui/modetracker/modetrackerscreen.dart';
-import 'package:waanaass/ui/talktomepage/talktomescreen.dart';
+import 'package:waanaass/ui/ChatPage/chatScreen.dart';
+import 'package:waanaass/ui/LoginPage/loginScreen.dart';
+import 'package:waanaass/ui/MoodTracker/moodTrackerScreen.dart';
+import 'package:waanaass/ui/SignupPage/signupScreen.dart';
+import 'package:waanaass/ui/TalkToMePage/talkToMeScreen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -40,13 +40,13 @@ class MyApp extends StatelessWidget {
 
       ),
       routes:{
-        talktome.routeName : (_)=> talktome(),
-        modetracker.routeName : (_)=> modetracker(),
-        LoginPage.routeName : (_)=> LoginPage(),
-        SignUpPage.routeName : (_)=> SignUpPage(),
-        ChatPage.routeName : (_)=> ChatPage()
+        talkToMeScreen.routeName : (_)=> talkToMeScreen(),
+        moodTrackerScreen.routeName : (_)=> moodTrackerScreen(),
+        loginScreen.routeName : (_)=> loginScreen(),
+        signupScreen.routeName : (_)=> signupScreen(),
+        chatScreen.routeName : (_)=> chatScreen()
       },
-      initialRoute: LoginPage.routeName ,
+      initialRoute: loginScreen.routeName ,
     );
   }
 }

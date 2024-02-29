@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
-import '../talktomepage/talkToMeScreen.dart';
-
-class LoginButton extends StatelessWidget {
+import '../TalkToMePage/talkToMeScreen.dart';
+class loginButton extends StatelessWidget {
   Function()? onTap;
   String ButtonText = "ButtonText";
 
-  LoginButton({Key? key, required this.onTap, required this.ButtonText});
+  loginButton({Key? key, required this.onTap, required this.ButtonText});
 
   @override
   Widget build(BuildContext context) {
@@ -13,7 +12,7 @@ class LoginButton extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => talktome()),
+          MaterialPageRoute(builder: (context) => talkToMeScreen()),
         );
       },
       child: Container(

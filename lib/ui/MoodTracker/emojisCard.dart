@@ -22,6 +22,7 @@ class _emjscardState extends State<emjscard> {
                   border: Border.all(
                     color: Color(0xFF66C0A6),
                     width: 1.0,
+
                   ),
                   borderRadius: BorderRadius.circular(14)),
               padding: EdgeInsets.all(16.0),
@@ -48,7 +49,6 @@ class _emjscardState extends State<emjscard> {
                         handleImageClick(
                             'Glad to know things are going smoothly.');
                       }),
-
                       ClickableImage('assets/images/happy.png', 'happy', () {
                         handleImageClick(
                             'Im thrilled to hear that youre feeling happy! Your positive energy is contagious.');

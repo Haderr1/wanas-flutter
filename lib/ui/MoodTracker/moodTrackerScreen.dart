@@ -1,36 +1,35 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:waanaass/ui/MoodTracker/moodChart.dart';
 import 'calendar.dart';
-import 'emojis_card.dart';
-import 'mood_chart.dart';
+import 'emojisCard.dart';
 
-class modetracker extends StatefulWidget {
-  const modetracker({super.key});
-  static const String routeName = 'modetracker';
-
+class moodTrackerScreen extends StatefulWidget {
+  const moodTrackerScreen({super.key});
+  static const String routeName = 'moodTrackerScreen';
 
   @override
-  State<modetracker> createState() => _modetrackerState();
+  State<moodTrackerScreen> createState() => _moodTrackerScreenState();
 }
 
-class _modetrackerState extends State<modetracker> {
+class _moodTrackerScreenState extends State<moodTrackerScreen> {
   @override
-
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Mode Tracker'),
-        centerTitle: true,
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
+        appBar: AppBar(
+          title: Text('Mode Tracker'),
+          centerTitle: true,
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: SingleChildScrollView(
+            child:
+                Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               calendar(),
               emjscard(),
-              SizedBox(height: 16,),
+              SizedBox(
+                height: 16,
+              ),
               Text(
                 'Mode Chart',
                 style: TextStyle(
@@ -55,18 +54,15 @@ class _modetrackerState extends State<modetracker> {
                   buildSquareWithText('Happy', Color(0xFFFBADEE)),
                 ],
               ),
-              modechart(),
-
-
-            ]
+              moodChart(),
+            ]),
           ),
-        ),
-      )
-    );
+        ));
   }
+
   Widget buildSquareWithText(String text, Color color) {
     return Padding(
-      padding: const EdgeInsets.only(top: 8.0,right: 8),
+      padding: const EdgeInsets.only(top: 8.0, right: 8),
       child: Row(
         children: [
           Container(
@@ -75,15 +71,15 @@ class _modetrackerState extends State<modetracker> {
             color: color,
           ),
           SizedBox(width: 5),
-          Text(text,
-          style: TextStyle(
-            color: Color(0xFFB6B6BE),
-            fontSize: 10,
-            fontWeight: FontWeight.w500
-          ),),
+          Text(
+            text,
+            style: TextStyle(
+                color: Color(0xFFB6B6BE),
+                fontSize: 10,
+                fontWeight: FontWeight.w500),
+          ),
         ],
       ),
     );
   }
-
 }

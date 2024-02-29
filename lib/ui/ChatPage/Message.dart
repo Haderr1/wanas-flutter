@@ -24,19 +24,21 @@ class Message extends StatelessWidget {
             backgroundImage: AssetImage(imagePath),
             radius: 20,
           ),
-          const SizedBox(width: 10,),
+          const SizedBox(
+            width: 10,
+          ),
           Expanded(
             child: Container(
               alignment: Alignment.center,
               padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
               decoration: BoxDecoration(
-                color: Color(0xFFE0F8E9), // Set the background color to #E0F8E9
+                color: Color(0xFFE0F8E9),
                 borderRadius: BorderRadius.all(Radius.circular(16)),
               ),
               child: Text(
                 text,
                 style: TextStyle(
-                  color: Colors.black, // Set text color to black for better contrast
+                  color: Colors.black,
                   fontSize: 14,
                 ),
               ),

@@ -1,50 +1,24 @@
-import 'dart:convert';
-import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:waanaass/ui/LoginPage/loginScreen.dart';
 import 'package:waanaass/ui/SignupPage/signupButton.dart';
+import 'package:waanaass/ui/SignupPage/signupServer.dart';
 import 'package:waanaass/ui/SignupPage/signupTextField.dart';
+
 import '../LoginPage/socialMediaCard.dart';
 
-class SignUpPage extends StatefulWidget {
+class signupScreen extends StatefulWidget {
   static const String routeName = 'signup';
 
   @override
-  State<SignUpPage> createState() => _SignUpPageState();
+  State<signupScreen> createState() => _signupScreenState();
 }
 
-class _SignUpPageState extends State<SignUpPage> {
+class _signupScreenState extends State<signupScreen> {
   final TextEditingController fullNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController phoneNumberController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-
-  Future<void> signUp() async {
-    final String username = fullNameController.text;
-    final String email = emailController.text;
-    final String phoneNumber = phoneNumberController.text;
-    final String password = passwordController.text;
-
-    var url = Uri.http('192.168.1.5:3000', '/account');
-    var response = await http.post(
-      url,
-      body: jsonEncode({
-        'PhoneNumber': phoneNumber,
-        'username': username,
-        'email': email,
-        'password': password,
-      }),
-    );
-    print(response.body);
-
-    if (response.statusCode == 200) {
-      // Successfully signed up
-      print('Signed up successfully');
-    } else {
-      // Handle error
-      print('Error signing up: ${response.reasonPhrase}');
-    }
-  }
+  final SignupFunction SignUp = SignupFunction();
 
   @override
   Widget build(BuildContext context) {
@@ -68,7 +42,6 @@ class _SignUpPageState extends State<SignUpPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              // logo at the top
               Align(
                 alignment: Alignment.topCenter,
                 child: FractionallySizedBox(
@@ -80,7 +53,6 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
               ),
               const SizedBox(height: 15),
-              // welcome back, you've been missed!
               Text(
                 'Welcome back you\'ve been missed!',
                 style: TextStyle(
@@ -89,16 +61,14 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
               ),
               const SizedBox(height: 25),
-              // name textfield
-              Stext(
+              signupTextField(
                 controller: fullNameController,
                 hintText: 'Full Name',
                 obscureText: false,
               ),
               const SizedBox(height: 10),
 
-              // email textfield
-              Stext(
+              signupTextField(
                 controller: emailController,
                 hintText: 'Email',
                 obscureText: false,
@@ -106,20 +76,19 @@ class _SignUpPageState extends State<SignUpPage> {
 
               const SizedBox(height: 10),
 
-              Stext(
+              signupTextField(
                 controller: phoneNumberController,
                 hintText: 'Phone Number',
                 obscureText: false,
               ),
               const SizedBox(height: 10),
 
-              Stext(
+              signupTextField(
                 controller: passwordController,
                 hintText: 'Password',
                 obscureText: true,
               ),
               const SizedBox(height: 10),
-              // forgot password?
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: Row(
@@ -129,12 +98,10 @@ class _SignUpPageState extends State<SignUpPage> {
 
               const SizedBox(height: 20),
 
-              SignUpButton(onTap: signUp, ButtonText: "Sign Up"),
+              SignupButton(onTap: SignUp.signUp, ButtonText: "Sign Up"),
               SizedBox(height: 10),
 
               SizedBox(height: 15),
-              // sign in button
-
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: Row(
@@ -162,22 +129,20 @@ class _SignUpPageState extends State<SignUpPage> {
                 ),
               ),
               const SizedBox(height: 20),
-              // google + apple +  facebook sign in buttons
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: const [
                   // google button
-                  SocialMediaCard(imagePath: 'assets/images/Google.png'),
+                  socialMediaCard(imagePath: 'assets/images/Google.png'),
                   SizedBox(width: 25),
                   // apple button
-                  SocialMediaCard(imagePath: 'assets/images/Vector.png'),
+                  socialMediaCard(imagePath: 'assets/images/Vector.png'),
                   SizedBox(width: 25),
                   // apple button
-                  SocialMediaCard(imagePath: 'assets/images/Facebook.png'),
+                  socialMediaCard(imagePath: 'assets/images/Facebook.png'),
                 ],
               ),
               const SizedBox(height: 20),
-              // not a member? register now text
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -190,7 +155,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => LoginPage()),
+                        MaterialPageRoute(builder: (context) => loginScreen()),
                       );
                     },
                     child: Text(

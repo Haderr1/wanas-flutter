@@ -4,7 +4,7 @@ import '../SignupPage/signupScreen.dart';
 import 'package:waanaass/ui/LoginPage/loginButton.dart';
 import 'package:waanaass/ui/LoginPage/loginTextField.dart';
 
-class LoginPage extends StatelessWidget {
+class loginScreen extends StatelessWidget {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   static const String routeName = 'login';
@@ -35,13 +35,13 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 25),
-                LoginTextField(
+                loginTextField(
                   controller: emailController,
                   hintText: 'Email',
                   obscureText: false,
                 ),
                 const SizedBox(height: 10),
-                LoginTextField(
+                loginTextField(
                   controller: passwordController,
                   hintText: 'Password',
                   obscureText: true,
@@ -62,7 +62,7 @@ class LoginPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 25),
                 // sign in button
-                LoginButton(
+                loginButton(
                   onTap: () {},
                   ButtonText: "Log In",
                 ),
@@ -99,13 +99,13 @@ class LoginPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
                     // google button
-                    SocialMediaCard(imagePath: 'assets/images/Google.png'),
+                    socialMediaCard(imagePath: 'assets/images/Google.png'),
                     SizedBox(width: 25),
                     // apple button
-                    SocialMediaCard(imagePath: 'assets/images/Vector.png'),
+                    socialMediaCard(imagePath: 'assets/images/Vector.png'),
                     SizedBox(width: 25),
                     // apple button
-                    SocialMediaCard(imagePath: 'assets/images/Facebook.png'),
+                    socialMediaCard(imagePath: 'assets/images/Facebook.png'),
                   ],
                 ),
                 const SizedBox(height: 20),
@@ -122,7 +122,7 @@ class LoginPage extends StatelessWidget {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => SignUpPage()),
+                          MaterialPageRoute(builder: (context) => signupScreen()),
                         );
                       },
                       child: Text(

@@ -1,12 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:waanaass/ui/talktomepage/persons_card.dart';
-import 'package:waanaass/ui/talktomepage/previous_conversations_details_card.dart';
+import 'package:waanaass/ui/TalkToMePage/personsCard.dart';
+import 'package:waanaass/ui/TalkToMePage/previousConversationsDetailsCard.dart';
+import 'startCard.dart';
 
-import 'start_card.dart';
-
-class talktome extends StatelessWidget {
-  const talktome({super.key});
+class talkToMeScreen extends StatelessWidget {
+  const talkToMeScreen({super.key});
   static const String routeName = 'talketome';
 
   @override
@@ -24,7 +23,7 @@ class talktome extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            greencard(),
+            startCard(),
             SizedBox(
               height: 24,
             ),
@@ -41,19 +40,19 @@ class talktome extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                personlist(
+                personsCard(
                   name: 'Mona',
                   img: 'assets/images/person1.png',
                 ),
-                personlist(
+                personsCard(
                   name: 'Mariam',
                   img: 'assets/images/person2.png',
                 ),
-                personlist(
+                personsCard(
                   name: 'Ahmed',
                   img: 'assets/images/person3.png',
                 ),
-                personlist(
+                personsCard(
                   name: 'Wanas',
                   img: 'assets/images/person4.png',
                 ),
@@ -69,9 +68,9 @@ class talktome extends StatelessWidget {
                 fontWeight: FontWeight.w500,
               ),
             ),
-            previouscarddd(
+            previousConversationsDetailsCard(
                 namedata: 'Wanas', timedata: '44:00m', datedata: '15-6-2023'),
-            previouscarddd(
+            previousConversationsDetailsCard(
                 namedata: 'Mona', timedata: '55:00m', datedata: '9-6-2023'),
           ],
         ),

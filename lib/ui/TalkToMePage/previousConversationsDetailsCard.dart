@@ -1,12 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class previouscarddd extends StatelessWidget {
+class previousConversationsDetailsCard extends StatelessWidget {
   String namedata;
   String timedata;
   String datedata;
 
-  previouscarddd({required this.namedata,required this.timedata,required this.datedata,super.key});
+  previousConversationsDetailsCard(
+      {required this.namedata,
+      required this.timedata,
+      required this.datedata,
+      super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,13 +38,14 @@ class previouscarddd extends StatelessWidget {
                       .w500, // Set text color for the first row to white
                 ),
               ),
-              SizedBox(height: 4,),
+              SizedBox(
+                height: 4,
+              ),
               Text(namedata,
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
                   )),
-
             ],
           ),
           Column(
@@ -54,7 +59,9 @@ class previouscarddd extends StatelessWidget {
                       .w500, // Set text color for the first row to white
                 ),
               ),
-              SizedBox(height: 4,),
+              SizedBox(
+                height: 4,
+              ),
               Text(timedata,
                   style: TextStyle(
                     fontSize: 14,
@@ -73,19 +80,18 @@ class previouscarddd extends StatelessWidget {
                       .w500, // Set text color for the first row to white
                 ),
               ),
-              SizedBox(height: 4,),
+              SizedBox(
+                height: 4,
+              ),
               Text(datedata,
                   style: TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
                   )),
-
             ],
           ),
-
         ],
       ),
     );
-
   }
 }

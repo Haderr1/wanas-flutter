@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:waanaass/ui/modetracker/calendar.dart';
-import 'package:waanaass/ui/modetracker/emjscard.dart';
-import 'modechart.dart';
+import 'calendar.dart';
+import 'emojis_card.dart';
+import 'mood_chart.dart';
 
 class modetracker extends StatefulWidget {
   const modetracker({super.key});

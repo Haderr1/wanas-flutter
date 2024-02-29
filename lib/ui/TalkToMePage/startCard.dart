@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:waanaass/ui/chatpage/chatscreen.dart';
-import 'package:waanaass/ui/modetracker/modetrackerscreen.dart';
 
 class greencard extends StatelessWidget {
   const greencard({super.key});

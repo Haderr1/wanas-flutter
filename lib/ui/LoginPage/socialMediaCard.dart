@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-class SquareTile extends StatelessWidget {
+class SocialMediaCard extends StatelessWidget {
   final String imagePath;
-  const SquareTile({
+  const SocialMediaCard({
     super.key,
     required this.imagePath,
   });

@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:waanaass/ui/talktomepage/personscard.dart';
-import 'package:waanaass/ui/talktomepage/previouscard.dart';
+import 'package:waanaass/ui/talktomepage/persons_card.dart';
+import 'package:waanaass/ui/talktomepage/previous_conversations_details_card.dart';
 
-import 'greencard.dart';
+import 'start_card.dart';
 
 class talktome extends StatelessWidget {
   const talktome({super.key});

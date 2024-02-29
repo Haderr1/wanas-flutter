@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:waanaass/ui/modetracker/modetrackerscreen.dart';
+
+import '../MoodTracker/mood_tracker_screen.dart';
 
 class personlist extends StatelessWidget {
   String name;

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class MyTextField extends StatelessWidget {
+class LoginTextField extends StatelessWidget {
   final controller;
   final String hintText;
   final bool obscureText;
 
-  const MyTextField({
+  const LoginTextField({
     super.key,
     required this.controller,
     required this.hintText,
@@ -18,7 +18,7 @@ class MyTextField extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 25.0),
       child: Container(
         height: 55.0,
-        width: double.infinity, // Set width to match the parent width
+        width: double.infinity,
         child: TextField(
           controller: controller,
           obscureText: obscureText,

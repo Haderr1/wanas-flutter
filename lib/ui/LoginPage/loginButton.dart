@@ -1,14 +1,11 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
+import '../talktomepage/talkToMeScreen.dart';
 
-import '../talktomepage/talktomescreen.dart';
+class LoginButton extends StatelessWidget {
+  Function()? onTap;
+  String ButtonText = "ButtonText";
 
-class MyButton extends StatelessWidget {
-  final Function()? onTap;
-
-  const MyButton({Key? key, required this.onTap});
+  LoginButton({Key? key, required this.onTap, required this.ButtonText});
 
   @override
   Widget build(BuildContext context) {
@@ -19,17 +16,16 @@ class MyButton extends StatelessWidget {
           MaterialPageRoute(builder: (context) => talktome()),
         );
       },
-
       child: Container(
-        padding: const EdgeInsets.all(15),
-        margin: const EdgeInsets.symmetric(horizontal: 25),
+        padding: EdgeInsets.all(15),
+        margin: EdgeInsets.symmetric(horizontal: 25),
         decoration: BoxDecoration(
-          color: Color(0xFF00966A), // Set the color to hexadecimal value #00966A
+          color: Color(0xFF00966A),
           borderRadius: BorderRadius.circular(80),
         ),
-        child: const Center(
+        child: Center(
           child: Text(
-            "Sign In",
+            ButtonText,
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,

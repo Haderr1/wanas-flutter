@@ -1,28 +1,13 @@
 import 'package:flutter/material.dart';
-import 'SignUpPage.dart';
-import 'components/my_button.dart';
-import 'components/my_textfield.dart';
-import 'components/square_title.dart';
+import 'package:waanaass/ui/LoginPage/socialMediaCard.dart';
+import '../SignupPage/signupScreen.dart';
+import 'package:waanaass/ui/LoginPage/loginButton.dart';
+import 'package:waanaass/ui/LoginPage/loginTextField.dart';
 
 class LoginPage extends StatelessWidget {
-  LoginPage({Key? key});
-  static const String routeName = 'login';
-
-  // text editing controllers
-  final usernameController = TextEditingController();
+  final emailController = TextEditingController();
   final passwordController = TextEditingController();
-
-  // sign user in method
-  void signUserIn() {}
-
-  // navigate to SignUpPage
-  void navigateToSignUpPage(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (context) => SignUpPage(),
-      ),
-    );
-  }
+  static const String routeName = 'login';
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +27,6 @@ class LoginPage extends StatelessWidget {
                   height: 200,
                 ),
                 const SizedBox(height: 40),
-                // welcome back, you've been missed!
                 Text(
                   'Welcome back you\'ve been missed!',
                   style: TextStyle(
@@ -51,15 +35,13 @@ class LoginPage extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(height: 25),
-                // username textfield
-                MyTextField(
-                  controller: usernameController,
+                LoginTextField(
+                  controller: emailController,
                   hintText: 'Email',
                   obscureText: false,
                 ),
                 const SizedBox(height: 10),
-                // password textfield
-                MyTextField(
+                LoginTextField(
                   controller: passwordController,
                   hintText: 'Password',
                   obscureText: true,
@@ -80,11 +62,11 @@ class LoginPage extends StatelessWidget {
                 ),
                 const SizedBox(height: 25),
                 // sign in button
-                MyButton(
-                  onTap: signUserIn,
+                LoginButton(
+                  onTap: () {},
+                  ButtonText: "Log In",
                 ),
                 const SizedBox(height: 50),
-                // or continue with
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Row(
@@ -117,13 +99,13 @@ class LoginPage extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
                     // google button
-                    SquareTile(imagePath: 'assets/images/Google.png'),
+                    SocialMediaCard(imagePath: 'assets/images/Google.png'),
                     SizedBox(width: 25),
                     // apple button
-                    SquareTile(imagePath: 'assets/images/Vector.png'),
+                    SocialMediaCard(imagePath: 'assets/images/Vector.png'),
                     SizedBox(width: 25),
                     // apple button
-                    SquareTile(imagePath: 'assets/images/Facebook.png'),
+                    SocialMediaCard(imagePath: 'assets/images/Facebook.png'),
                   ],
                 ),
                 const SizedBox(height: 20),
@@ -137,7 +119,12 @@ class LoginPage extends StatelessWidget {
                     ),
                     const SizedBox(width: 4),
                     InkWell(
-                      onTap: () => navigateToSignUpPage(context),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => SignUpPage()),
+                        );
+                      },
                       child: Text(
                         'Sign Up',
                         style: TextStyle(

@@ -8,6 +8,12 @@
 .buildlog/
 .history
 .svn/
+
+#added by me
+/android-sdk/
+$HOME*
+.jukit*
+
 migrate_working_dir/
 
 # IntelliJ related

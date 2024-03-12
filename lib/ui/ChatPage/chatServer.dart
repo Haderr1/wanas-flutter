@@ -19,7 +19,7 @@ class chatServer {
       final response = await http.post(
         url,
         headers: {
-          'Authorization': 'Bearer $userToken',
+          'Authorization': 'Bearer $token',
         },
         body: {'message': message},
       );

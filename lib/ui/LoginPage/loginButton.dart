@@ -9,12 +9,7 @@ class loginButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => talkToMeScreen()),
-        );
-      },
+      onTap: onTap,
       child: Container(
         padding: EdgeInsets.all(15),
         margin: EdgeInsets.symmetric(horizontal: 25),

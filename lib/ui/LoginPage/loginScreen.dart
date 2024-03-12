@@ -3,6 +3,7 @@ import 'package:waanaass/ui/LoginPage/socialMediaCard.dart';
 import '../SignupPage/signupScreen.dart';
 import 'package:waanaass/ui/LoginPage/loginButton.dart';
 import 'package:waanaass/ui/LoginPage/loginTextField.dart';
+import 'package:waanaass/ui/LoginPage/loginServer.dart';
 
 class loginScreen extends StatelessWidget {
   final emailController = TextEditingController();
@@ -63,7 +64,11 @@ class loginScreen extends StatelessWidget {
                 const SizedBox(height: 25),
                 // sign in button
                 loginButton(
-                  onTap: () {},
+                  onTap: () {
+                    loginServer loginserver = loginServer(
+                        context, emailController, passwordController);
+                    loginserver.login();
+                  },
                   ButtonText: "Log In",
                 ),
                 const SizedBox(height: 50),
@@ -122,7 +127,8 @@ class loginScreen extends StatelessWidget {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => signupScreen()),
+                          MaterialPageRoute(
+                              builder: (context) => signupScreen()),
                         );
                       },
                       child: Text(

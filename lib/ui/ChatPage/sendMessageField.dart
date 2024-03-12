@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'chatScreen.dart';
 
-class sendMessageField extends StatelessWidget {
-  sendMessageField({super.key});
-  TextEditingController _controller = TextEditingController();
+class SendMessageField extends StatelessWidget {
+  final TextEditingController _controller = TextEditingController();
+
+  SendMessageField({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +57,10 @@ class sendMessageField extends StatelessWidget {
             child: IconButton(
               icon: Icon(Icons.send_rounded, color: Color(0xff00966A)),
               onPressed: () {
-                // Handle send icon press
+                if (_controller.text.isNotEmpty) {
+                  chatScreen.of(context).sendMessage(_controller.text);
+                  _controller.clear();
+                }
               },
             ),
           ),

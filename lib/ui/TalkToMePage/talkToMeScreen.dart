@@ -20,59 +20,61 @@ class talkToMeScreen extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            startCard(),
-            SizedBox(
-              height: 24,
-            ),
-            Text(
-              'Talk To Some One',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w500,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              startCard(),
+              SizedBox(
+                height: 24,
               ),
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                personsCard(
-                  name: 'Mona',
-                  img: 'assets/images/person1.png',
+              Text(
+                'Talk To Some One',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
                 ),
-                personsCard(
-                  name: 'Mariam',
-                  img: 'assets/images/person2.png',
-                ),
-                personsCard(
-                  name: 'Ahmed',
-                  img: 'assets/images/person3.png',
-                ),
-                personsCard(
-                  name: 'Wanas',
-                  img: 'assets/images/person4.png',
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 24,
-            ),
-            Text(
-              'Previous conversations',
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w500,
               ),
-            ),
-            previousConversationsDetailsCard(
-                namedata: 'Wanas', timedata: '44:00m', datedata: '15-6-2023'),
-            previousConversationsDetailsCard(
-                namedata: 'Mona', timedata: '55:00m', datedata: '9-6-2023'),
-          ],
+              SizedBox(
+                height: 16,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  personsCard(
+                    name: 'Mona',
+                    img: 'assets/images/person1.png',
+                  ),
+                  personsCard(
+                    name: 'Mariam',
+                    img: 'assets/images/person2.png',
+                  ),
+                  personsCard(
+                    name: 'Ahmed',
+                    img: 'assets/images/person3.png',
+                  ),
+                  personsCard(
+                    name: 'Wanas',
+                    img: 'assets/images/person4.png',
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 24,
+              ),
+              Text(
+                'Previous conversations',
+                style: TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                ),
+              ),
+              previousConversationsDetailsCard(
+                  namedata: 'Wanas', timedata: '44:00m', datedata: '15-6-2023'),
+              previousConversationsDetailsCard(
+                  namedata: 'Mona', timedata: '55:00m', datedata: '9-6-2023'),
+            ],
+          ),
         ),
       ),
     );

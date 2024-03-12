@@ -33,8 +33,10 @@ dependencies:
   fl_animated_linechart: ^1.1.9
   table_calendar: ^3.0.9
   http: ^0.13.3
+  flutter_secure_storage: ^4.2.0
   flutter:
     sdk: flutter
+
 
 
 

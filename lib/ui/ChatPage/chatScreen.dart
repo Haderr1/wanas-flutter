@@ -1,15 +1,41 @@
 import 'package:flutter/material.dart';
 import 'package:waanaass/ui/ChatPage/sendMessageField.dart';
 import 'Message.dart';
+import 'chatServer.dart';
+
 
 class chatScreen extends StatefulWidget {
   @override
-  static const String routeName = 'chatScreen';
-
   _chatScreenState createState() => _chatScreenState();
+  static const String routeName = 'chatscreen';
+
+  static _chatScreenState of(BuildContext context) {
+    final _chatScreenState? result =
+    context.findAncestorStateOfType<_chatScreenState>();
+    assert(result != null, 'No ChatScreen found in context');
+    return result!;
+  }
 }
 
 class _chatScreenState extends State<chatScreen> {
+  List<MessageModel> messages = [];
+  final chatServer _chatServer = chatServer();
+
+  void sendMessage(String message) {
+    _addMessage(message, true); // true means it's a user message
+    _chatServer.sendMessage("userToken", message,context
+    ).then((response) {
+      _addMessage(response, false);
+    }).catchError((error) {
+      _addMessage("Error: $error", false);
+    });
+  }
+
+  void _addMessage(String message, bool isUserMessage) {
+    setState(() {
+      messages.add(MessageModel(text: message, isUserMessage: isUserMessage));
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -31,14 +57,30 @@ class _chatScreenState extends State<chatScreen> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Message(
-            imagePath: 'assets/images/logochat.png',
-            text:
-                'Lorem ipsum dolor sit amet consec. Lobortis magna viverra viverra vitae tort?',
+          Expanded(
+            child: ListView.builder(
+              itemCount: messages.length,
+              itemBuilder: (context, index) {
+                final message = messages[index];
+                return Message(
+                  imagePathAi: 'assets/images/logochat.png',
+                  imagePathUser: 'assets/images/happy.png',
+                  text: message.text,
+                  isUserMessage: message.isUserMessage,
+                );
+              },
+            ),
           ),
-          sendMessageField()
+          SendMessageField(),
         ],
       ),
     );
   }
+}
+
+class MessageModel {
+  final String text;
+  final bool isUserMessage;
+
+  MessageModel({required this.text, required this.isUserMessage});
 }

@@ -1,49 +1,69 @@
 import 'package:flutter/material.dart';
 
 class Message extends StatelessWidget {
-  final String imagePath;
+  final String imagePathAi;
+  final String imagePathUser;
+
   final String text;
+  final bool isUserMessage; // to determine if the message is sent by the user
 
   Message({
-    super.key,
-    required this.imagePath,
+    Key? key,
+    required this.imagePathAi,
+    required this.imagePathUser,
     required this.text,
-    this.textDirection,
-  });
-
-  TextDirection? textDirection;
+    required this.isUserMessage,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(20),
+      padding: const EdgeInsets.all(16),
       child: Row(
-        textDirection: textDirection,
+        mainAxisAlignment:
+        isUserMessage ? MainAxisAlignment.end : MainAxisAlignment.start,
         children: [
-          CircleAvatar(
-            backgroundImage: AssetImage(imagePath),
-            radius: 20,
-          ),
+          if (!isUserMessage)
+            CircleAvatar(
+              backgroundImage: AssetImage(imagePathAi),
+              radius: 20,
+
+            ),
           const SizedBox(
-            width: 10,
+            width: 16,
           ),
           Expanded(
             child: Container(
               alignment: Alignment.center,
-              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+              padding:
+              const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
               decoration: BoxDecoration(
-                color: Color(0xFFE0F8E9),
-                borderRadius: BorderRadius.all(Radius.circular(16)),
+                color: isUserMessage ? Color(0xFFE0F8E9) : Colors.grey[300],
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(isUserMessage ? 16 : 0),
+                  topRight: Radius.circular(isUserMessage ? 0 : 16),
+                  bottomLeft: Radius.circular(16),
+                  bottomRight: Radius.circular(16),
+                ),
               ),
               child: Text(
                 text,
                 style: TextStyle(
-                  color: Colors.black,
+                  color: isUserMessage ? Colors.black : Colors.black,
                   fontSize: 14,
                 ),
               ),
             ),
-          )
+          ),
+          const SizedBox(
+            width: 16,
+          ),
+          if (isUserMessage)
+            CircleAvatar(
+              backgroundImage: AssetImage(imagePathUser),
+              radius: 20,
+            ),
+
         ],
       ),
     );

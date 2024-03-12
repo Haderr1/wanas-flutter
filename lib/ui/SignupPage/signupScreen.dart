@@ -18,7 +18,6 @@ class _signupScreenState extends State<signupScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController phoneNumberController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-  final SignupFunction SignUp = SignupFunction();
 
   @override
   Widget build(BuildContext context) {
@@ -67,22 +66,18 @@ class _signupScreenState extends State<signupScreen> {
                 obscureText: false,
               ),
               const SizedBox(height: 10),
-
               signupTextField(
                 controller: emailController,
                 hintText: 'Email',
                 obscureText: false,
               ),
-
               const SizedBox(height: 10),
-
               signupTextField(
                 controller: phoneNumberController,
                 hintText: 'Phone Number',
                 obscureText: false,
               ),
               const SizedBox(height: 10),
-
               signupTextField(
                 controller: passwordController,
                 hintText: 'Password',
@@ -95,12 +90,20 @@ class _signupScreenState extends State<signupScreen> {
                   mainAxisAlignment: MainAxisAlignment.end,
                 ),
               ),
-
               const SizedBox(height: 20),
-
-              SignupButton(onTap: SignUp.signUp, ButtonText: "Sign Up"),
+              SignupButton(
+                  onTap: () {
+                    // Instantiate SignUpFunction and call its signUp method
+                    SignupFunction signupFunction = SignupFunction(
+                        context,
+                        fullNameController,
+                        emailController,
+                        phoneNumberController,
+                        passwordController);
+                    signupFunction.signUp();
+                  },
+                  ButtonText: "Sign Up"),
               SizedBox(height: 10),
-
               SizedBox(height: 15),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),

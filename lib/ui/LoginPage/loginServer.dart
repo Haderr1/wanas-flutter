@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:waanaass/ui/Constants/appConstants.dart';
 import '../Storage/storage.dart';
 import '../TalkToMePage/talkToMeScreen.dart';
 
@@ -10,6 +11,7 @@ class loginServer {
   TextEditingController passwordController = TextEditingController();
   final BuildContext context;
   final TokenStorage tokenStorage;
+  String local_host = appConstants.LOCAL_HOST;
 
 
   loginServer(this.context,this.emailController,this.passwordController): tokenStorage = TokenStorage();
@@ -18,7 +20,7 @@ class loginServer {
 
     final String email = emailController.text;
     final String password = passwordController.text;
-    var url = Uri.http('192.168.56.1:3000', '/account');
+    var url = Uri.http('$local_host:3000', '/account');
 
     try{
     var response = await http.post(

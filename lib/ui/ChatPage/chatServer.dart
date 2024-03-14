@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:waanaass/ui/Constants/appConstants.dart';
 import 'dart:convert';
 import 'package:waanaass/ui/LoginPage/loginServer.dart';
 import 'package:waanaass/ui/Storage/storage.dart';
@@ -9,10 +10,12 @@ import 'package:waanaass/ui/Storage/storage.dart';
 
 
 class chatServer {
-  var url = Uri.http('192.168.1.5:3000', '/account');
   TokenStorage tokenStorage= TokenStorage();
+  String local_host = appConstants.LOCAL_HOST;
 
   Future<String> sendMessage(String userToken, String message, BuildContext context) async {
+    var url = Uri.http('$local_host:3000', '/account');
+
     try {
       String? token = await tokenStorage.getToken();
 
@@ -54,6 +57,7 @@ class chatServer {
   }
 
 }
+
 
 
 //

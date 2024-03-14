@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:waanaass/ui/Constants/appConstants.dart';
 import 'package:waanaass/ui/TalkToMePage/talkToMeScreen.dart';
 
 class SignupFunction {
@@ -9,7 +10,8 @@ class SignupFunction {
    TextEditingController emailController = TextEditingController();
    TextEditingController phoneNumberController = TextEditingController();
    TextEditingController passwordController = TextEditingController();
-  final BuildContext context;
+   String local_host = appConstants.LOCAL_HOST;
+   final BuildContext context;
 
   SignupFunction(this.context,this.fullNameController,this.emailController,this.phoneNumberController,this.passwordController);
   Future<void> signUp() async {
@@ -20,7 +22,7 @@ class SignupFunction {
     final String phoneNumber = phoneNumberController.text;
     final String password = passwordController.text;
 
-    var url = Uri.http('192.168.56.1:3000', '/account');
+    var url = Uri.http('$local_host:3000', '/account');
     var response = await http.post(
       url,
       body: jsonEncode({

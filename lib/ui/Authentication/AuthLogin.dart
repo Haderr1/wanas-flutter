@@ -8,12 +8,14 @@ import '../Storage/storage.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({Key? key}) : super(key: key);
+  static const String routeName = 'auth';
 
   @override
   _AuthPageState createState() => _AuthPageState();
 }
 
 class _AuthPageState extends State<AuthPage> {
+
   String? token;
 
   @override

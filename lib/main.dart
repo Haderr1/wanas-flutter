@@ -43,11 +43,11 @@ class MyApp extends StatelessWidget {
       routes:{
         talkToMeScreen.routeName : (_)=> talkToMeScreen(),
         moodTrackerScreen.routeName : (_)=> moodTrackerScreen(),
-        loginScreen.routeName : (_)=> AuthPage(),
+        loginScreen.routeName : (_)=> loginScreen(),
         signupScreen.routeName : (_)=> signupScreen(),
         chatScreen.routeName : (_)=> chatScreen()
       },
-      initialRoute: loginScreen.routeName ,
+      initialRoute: AuthPage.routeName ,
     );
   }
 }

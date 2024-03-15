@@ -41,8 +41,7 @@ class _signupScreenState extends State<signupScreen> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              Align(
-                alignment: Alignment.topCenter,
+              Align(                alignment: Alignment.topCenter,
                 child: FractionallySizedBox(
                   widthFactor: 0.4, // Adjust the width as needed
                   child: Image.asset(

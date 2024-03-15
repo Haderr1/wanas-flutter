@@ -4,44 +4,103 @@ import 'package:waanaass/ui/LoginPage/loginScreen.dart';
 import 'package:waanaass/ui/TalkToMePage/talkToMeScreen.dart';
 
 import '../Storage/storage.dart';
-class authPage extends StatefulWidget {
-  const authPage({Key? key}) : super(key: key);
+
+
+class AuthPage extends StatefulWidget {
+  const AuthPage({Key? key}) : super(key: key);
 
   @override
-  _authPageState createState() => _authPageState();
+  _AuthPageState createState() => _AuthPageState();
 }
 
-class _authPageState extends State<authPage> {
-  late Future<String?> _tokenFuture;
+class _AuthPageState extends State<AuthPage> {
+  String? token;
 
   @override
   void initState() {
     super.initState();
-    _tokenFuture = TokenStorage().getToken();
+    getToken();
+  }
+
+  Future<void> getToken() async {
+    TokenStorage tokenStorage = TokenStorage();
+    token = await tokenStorage.getToken();
+    setState(() {});
   }
 
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<String?>(
-      future: _tokenFuture,
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return Center(
-            child: CircularProgressIndicator(),
-          );
-        } else if (snapshot.hasError) {
-          return Center(
-            child: Text('Error: ${snapshot.error}'),
-          );
-        } else {
-          String? token = snapshot.data;
-          if (token != null) {
-            return talkToMeScreen();
-          } else {
-            return loginScreen();
-          }
-        }
-      },
-    );
+    if (token != null) {
+      return talkToMeScreen();
+    } else {
+      return loginScreen();
+    }
   }
 }
+
+
+
+
+/*class AuthPage extends StatefulWidget {
+  const AuthPage({Key? key}) : super(key: key);
+
+  @override
+  _AuthPageState createState() => _AuthPageState();
+}
+
+class _AuthPageState extends State<AuthPage> {
+  String? token;
+  bool isLoading = true;
+
+
+  @override
+  void initState() {
+    super.initState();
+    getToken();
+  }
+
+  Future<void> getToken() async {
+    setState(() {
+      isLoading = true;
+    });
+    TokenStorage tokenStorage = TokenStorage();
+    token = await tokenStorage.getToken();
+    setState(() {
+      isLoading = false;
+    });
+  }
+  @override
+  Widget build(BuildContext context) {
+    if (isLoading) {
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    } else if (token != null) {
+      return talkToMeScreen();
+    } else {
+      return loginScreen();
+    }
+  }
+}*/
+
+
+
+
+
+// class authPage extends StatelessWidget {
+//   const authPage({super.key});
+//
+//   @override
+//   Widget build(BuildContext context) {
+//
+//     //TokenStorage tokenStorage= TokenStorage();
+//
+//     //    String? token = await tokenStorage.getToken();
+//
+//     if(true){
+//       return talkToMeScreen();
+//     }else{
+//       return loginScreen();
+//     }
+//   }
+// }

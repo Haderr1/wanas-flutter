@@ -58,7 +58,7 @@ class SendMessageField extends StatelessWidget {
               icon: Icon(Icons.send_rounded, color: Color(0xff00966A)),
               onPressed: () {
                 if (_controller.text.isNotEmpty) {
-                  chatScreen.of(context).sendMessage(_controller.text);
+                  chatScreen.of(context).sendMessagee(_controller.text);
                   _controller.clear();
                 }
               },

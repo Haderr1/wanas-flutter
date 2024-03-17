@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:waanaass/ui/ChatPage/sendMessageField.dart';
 import 'Message.dart';
-import 'chatServer.dart';
+import 'package:waanaass/ui/Api/Api.dart';
 
 
 class chatScreen extends StatefulWidget {
@@ -19,12 +19,10 @@ class chatScreen extends StatefulWidget {
 
 class _chatScreenState extends State<chatScreen> {
   List<MessageModel> messages = [];
-  final chatServer _chatServer = chatServer();
 
-  void sendMessage(String message) {
+  void sendMessagee(String message) {
     _addMessage(message, true); // true means it's a user message
-    _chatServer.sendMessage("userToken", message,context
-    ).then((response) {
+    sendMessage( message,context).then((response) {
       _addMessage(response, false);
     }).catchError((error) {
       _addMessage("Error: $error", false);

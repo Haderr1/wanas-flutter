@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:waanaass/ui/Api/Api.dart';
+import 'package:waanaass/ui/Buttons/PrimaryButton.dart';
 import 'package:waanaass/ui/LoginPage/loginScreen.dart';
-import 'package:waanaass/ui/SignupPage/signupButton.dart';
-import 'package:waanaass/ui/SignupPage/signupServer.dart';
 import 'package:waanaass/ui/SignupPage/signupTextField.dart';
 
 import '../LoginPage/socialMediaCard.dart';
@@ -90,16 +90,10 @@ class _signupScreenState extends State<signupScreen> {
                 ),
               ),
               const SizedBox(height: 20),
-              SignupButton(
+              PrimaryButton(
                   onTap: () {
                     // Instantiate SignUpFunction and call its signUp method
-                    SignupFunction signupFunction = SignupFunction(
-                        context,
-                        fullNameController,
-                        emailController,
-                        phoneNumberController,
-                        passwordController);
-                    signupFunction.signUp();
+                    signUpApi(fullNameController, emailController, phoneNumberController, passwordController, context);
                   },
                   ButtonText: "Sign Up"),
               SizedBox(height: 10),

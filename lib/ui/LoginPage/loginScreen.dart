@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:waanaass/ui/Api/Api.dart';
 import 'package:waanaass/ui/LoginPage/socialMediaCard.dart';
+import '../Buttons/PrimaryButton.dart';
 import '../SignupPage/signupScreen.dart';
-import 'package:waanaass/ui/LoginPage/loginButton.dart';
 import 'package:waanaass/ui/LoginPage/loginTextField.dart';
-import 'package:waanaass/ui/LoginPage/loginServer.dart';
 
 class loginScreen extends StatelessWidget {
   final emailController = TextEditingController();
@@ -63,11 +63,10 @@ class loginScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 25),
                 // sign in button
-                loginButton(
+                PrimaryButton(
                   onTap: () {
-                    loginServer loginserver = loginServer(
-                        context, emailController, passwordController);
-                    loginserver.login();
+                    loginApi(emailController , passwordController, context);
+
                   },
                   ButtonText: "Log In",
                 ),

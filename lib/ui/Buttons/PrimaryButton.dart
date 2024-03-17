@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import '../TalkToMePage/talkToMeScreen.dart';
-class loginButton extends StatelessWidget {
+class PrimaryButton extends StatelessWidget {
   Function()? onTap;
   String ButtonText = "ButtonText";
 
-  loginButton({Key? key, required this.onTap, required this.ButtonText});
+  PrimaryButton({Key? key, required this.onTap, required this.ButtonText});
 
   @override
   Widget build(BuildContext context) {

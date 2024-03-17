@@ -1,12 +1,22 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:waanaass/ui/Api/Api.dart';
+import 'package:waanaass/ui/Buttons/SmallButton.dart';
 import 'package:waanaass/ui/TalkToMePage/personsCard.dart';
 import 'package:waanaass/ui/TalkToMePage/previousConversationsDetailsCard.dart';
 import 'startCard.dart';
 
-class talkToMeScreen extends StatelessWidget {
+class talkToMeScreen extends StatefulWidget {
   const talkToMeScreen({super.key});
   static const String routeName = 'talketome';
+
+  @override
+  State<talkToMeScreen> createState() => _talkToMeScreenState();
+}
+
+class _talkToMeScreenState extends State<talkToMeScreen> {
+  late String name;
+  late Future<List<PersonaCard>> _futurePersonaCards = fetchPersonaCards();
 
   @override
   Widget build(BuildContext context) {
@@ -25,44 +35,48 @@ class talkToMeScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               startCard(),
-              SizedBox(
-                height: 24,
-              ),
-              Text(
-                'Talk To Some One',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-              SizedBox(
-                height: 16,
-              ),
+              SizedBox(height: 24),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  personsCard(
-                    name: 'Mona',
-                    img: 'assets/images/person1.png',
+                  const Text(
+                    'Talk To Someone',
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
-                  personsCard(
-                    name: 'Mariam',
-                    img: 'assets/images/person2.png',
-                  ),
-                  personsCard(
-                    name: 'Ahmed',
-                    img: 'assets/images/person3.png',
-                  ),
-                  personsCard(
-                    name: 'Wanas',
-                    img: 'assets/images/person4.png',
-                  ),
+                  SmallButton(
+                      onPressed: () {
+                        createPersona(context);
+                      },
+                      ButtonText: "Add Persona"),
                 ],
               ),
-              SizedBox(
-                height: 24,
+              const SizedBox(height: 16),
+
+              // Inserted FutureBuilder here
+              FutureBuilder<List<PersonaCard>>(
+                future: _futurePersonaCards,
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(child: CircularProgressIndicator());
+                  } else if (snapshot.hasError) {
+                    return Center(child: Text('Error: ${snapshot.error}'));
+                  } else {
+                    return ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: snapshot.data!.length,
+                      itemBuilder: (context, index) {
+                        return personsCard(personaCard: snapshot.data![index]);
+                      },
+                    );
+                  }
+                },
               ),
-              Text(
+
+              const SizedBox(height: 24),
+              const Text(
                 'Previous conversations',
                 style: TextStyle(
                   fontSize: 20,

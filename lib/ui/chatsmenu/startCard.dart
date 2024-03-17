@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:waanaass/ui/Buttons/SmallButton.dart';
 import 'package:waanaass/ui/ChatPage/chatScreen.dart';
 
 class startCard extends StatelessWidget {
@@ -31,12 +30,27 @@ class startCard extends StatelessWidget {
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
                 ),
                 SizedBox(height: 16),
-                SmallButton(onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => chatScreen()),
-                  );
-                }, ButtonText: "Start")
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => chatScreen()),
+                    );
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Color(0xFF00966A),
+                    foregroundColor: Colors.white,
+                    textStyle: TextStyle(
+                      fontSize: 20, // Change the font size
+                    ),
+                    padding: EdgeInsets.symmetric(horizontal: 40, vertical: 7),
+                    shape: RoundedRectangleBorder(
+                      borderRadius:
+                          BorderRadius.circular(12), // Change the border radius
+                    ),
+                  ),
+                  child: Text('Start'),
+                ),
               ],
             ),
             SizedBox(width: 24),

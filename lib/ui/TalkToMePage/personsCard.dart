@@ -2,11 +2,30 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../MoodTracker/moodTrackerScreen.dart';
+import '../chatsmenu/chatsMain.dart';
+
+
+class PersonaCard {
+  final String name;
+  final String userID;
+
+  PersonaCard({required this.name, required this.userID});
+
+  factory PersonaCard.fromJson(Map<String, dynamic> json) {
+    return PersonaCard(
+      name: json['name'],
+      userID: json['userID'],
+    );
+  }
+}
 
 class personsCard extends StatelessWidget {
-  String name;
-  String img;
-  personsCard({required this.name, required this.img, super.key});
+  //String name;
+  final PersonaCard personaCard;
+
+  personsCard({required this.personaCard,  super.key});
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -14,7 +33,7 @@ class personsCard extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => moodTrackerScreen()),
+          MaterialPageRoute(builder: (context) => chatsMain(personaid: 1)),
         );
       },
       child: Column(
@@ -29,10 +48,10 @@ class personsCard extends StatelessWidget {
               ),
               borderRadius: BorderRadius.circular(8),
             ),
-            child: Image.asset(img),
+            child: Text(personaCard.name),
           ),
           SizedBox(width: 4),
-          Text(name),
+          Text(personaCard.name),
         ],
       ),
     );

@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
         signupScreen.routeName : (_)=> signupScreen(),
         chatScreen.routeName : (_)=> chatScreen()
       },
-      initialRoute: talkToMeScreen.routeName ,
+      initialRoute: loginScreen.routeName ,
     );
   }
 }

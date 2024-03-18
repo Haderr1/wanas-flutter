@@ -56,7 +56,8 @@ authentresp(http.Response response) async {
 
 Future<String> loginApi(
     final email, final password, BuildContext context) async {
-  var url = Uri.http('$local_host:3000', '/login');
+  var url = Uri.http('localhost:3000', '/login');
+  print(email);
 
   var response = await http.post(
     url,
@@ -68,7 +69,6 @@ Future<String> loginApi(
       'password': password,
     }),
   );
-
   if (response.statusCode == 200) {
     Navigator.push(
       context,
@@ -79,6 +79,8 @@ Future<String> loginApi(
     final Map<String, dynamic> responseData = jsonDecode(response.body);
     String token = responseData['token'];
     await tokenStorage.saveToken(token);
+    print(token);
+
     return token;
   } else {
     // If the server did not return a 200 OK response, throw an exception
@@ -86,11 +88,14 @@ Future<String> loginApi(
   }
 }
 
-Future<void> signUpApi(final username, final email, final phoneNumber,
-    final password, BuildContext context) async {
-  var url = Uri.http('$local_host:3000', '/register');
+Future<String> signUpApi(String username, String email, String phoneNumber,
+    String password, BuildContext context) async {
+  var url = Uri.http('localhost:3000', '/register');
   var response = await http.post(
     url,
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
     body: jsonEncode({
       'name': username,
       'phone': phoneNumber,
@@ -101,15 +106,20 @@ Future<void> signUpApi(final username, final email, final phoneNumber,
   print(response.body);
 
   if (response.statusCode == 200) {
-    print('Signed up successfully');
-
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => talkToMeScreen()),
     );
+    print('Signed up successfully');
+    final Map<String, dynamic> responseData = jsonDecode(response.body);
+    String token = responseData['token'];
+    await tokenStorage.saveToken(token);
+    return token;
+
   } else {
 // Handle error
-    print('Error signing up: ${response.reasonPhrase}');
+    throw Exception('Failed to signup');
+
   }
 }
 
@@ -173,6 +183,27 @@ Future<List<Chat>> getChatsOfPersonaId(int personaid) async {
   }
 }
 
+
+// class signup {
+//   final int chatid;
+//
+//   const Chat({
+//     required this.chatid,
+//   });
+//
+//   factory Chat.fromJson(Map<String, dynamic> json) {
+//     return switch (json) {
+//       {
+//       'id': int chatid,
+//       } =>
+//           Chat(
+//             chatid: chatid,
+//           ),
+//       _ => throw const FormatException('failed to parse chats'),
+//     };
+//   }
+// }
+
 class Chat {
   final int chatid;
 
@@ -229,7 +260,7 @@ Future<void> createPersona( BuildContext context) async {
   );
 
   if (name != null) {
-    var url = Uri.http('$local_host:3000', '/persoona');
+    var url = Uri.http('localhost:3000', '/persoona');
     //var getPersonasUrl = Uri.http('$local_host:3000', '/getpersonas');
     try {
       // Send a POST request to create a persona

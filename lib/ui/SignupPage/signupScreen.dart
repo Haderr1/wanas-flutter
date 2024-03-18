@@ -5,6 +5,7 @@ import 'package:waanaass/ui/LoginPage/loginScreen.dart';
 import 'package:waanaass/ui/SignupPage/signupTextField.dart';
 
 import '../LoginPage/socialMediaCard.dart';
+import '../TalkToMePage/talkToMeScreen.dart';
 
 class signupScreen extends StatefulWidget {
   static const String routeName = 'signup';
@@ -93,7 +94,11 @@ class _signupScreenState extends State<signupScreen> {
               PrimaryButton(
                   onTap: () {
                     // Instantiate SignUpFunction and call its signUp method
-                    signUpApi(fullNameController, emailController, phoneNumberController, passwordController, context);
+                      signUpApi(fullNameController.text, emailController.text,
+                          phoneNumberController.text, passwordController.text,
+                          context);
+
+
                   },
                   ButtonText: "Sign Up"),
               SizedBox(height: 10),

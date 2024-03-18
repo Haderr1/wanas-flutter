@@ -65,7 +65,7 @@ class loginScreen extends StatelessWidget {
                 // sign in button
                 PrimaryButton(
                   onTap: () {
-                    loginApi(emailController , passwordController, context);
+                    loginApi(emailController.text , passwordController.text, context);
 
                   },
                   ButtonText: "Log In",

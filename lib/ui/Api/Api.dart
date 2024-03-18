@@ -9,13 +9,13 @@ import 'package:waanaass/ui/TalkToMePage/personsCard.dart';
 import '../Storage/storage.dart';
 import '../TalkToMePage/talkToMeScreen.dart';
 
-String local_host = appConstants.LOCAL_HOST;
-late final TokenStorage tokenStorage;
+//String local_host = appConstants.LOCAL_HOST;
+TokenStorage tokenStorage = TokenStorage();
+
 String? token;
 
 Future<Map<String, String>> makeHeader() async {
   try {
-    TokenStorage tokenStorage = TokenStorage();
     String eltoken = await tokenStorage.getToken();
 
     Map<String, String> elheader = new Map();
@@ -55,9 +55,9 @@ authentresp(http.Response response) async {
 //String? token = await tokenStorage.getToken();
 
 Future<String> loginApi(
-    final email, final password, BuildContext context) async {
+    String email, String password, BuildContext context) async {
   var url = Uri.http('localhost:3000', '/login');
-  print(email);
+
 
   var response = await http.post(
     url,
@@ -124,7 +124,7 @@ Future<String> signUpApi(String username, String email, String phoneNumber,
 }
 
 Future<String> sendMessage(String message, BuildContext context) async {
-  var url = Uri.http('$local_host:3000', '/account');
+  var url = Uri.http('localhost:3000', '/account');
 
   try {
     final response = await http.post(

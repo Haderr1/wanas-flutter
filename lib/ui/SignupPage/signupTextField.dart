@@ -5,12 +5,13 @@ class signupTextField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final bool obscureText;
+  final GlobalKey<FormState> formKey;
 
   const signupTextField({
     Key? key,
     required this.controller,
     required this.hintText,
-    required this.obscureText,
+    required this.obscureText,  required this.formKey,
   }) : super(key: key);
 
   @override
@@ -36,24 +37,38 @@ class signupTextField extends StatelessWidget {
       child: Container(
         height: 52.0,
         width: double.infinity,
-        child: TextField(
-          controller: controller,
-          obscureText: obscureText,
-          decoration: InputDecoration(
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(9.0),
-              borderSide: BorderSide(color: Colors.grey),
+        child: TextFormField(
+            controller: controller,
+            obscureText: obscureText,
+            decoration: InputDecoration(
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(9.0),
+                borderSide: BorderSide(color: Colors.grey),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(9.0),
+                borderSide: BorderSide(color: Colors.grey.shade400),
+              ),
+              fillColor: Colors.white,
+              filled: true,
+              hintText: hintText,
+              hintStyle: TextStyle(color: Colors.grey[500]),
+              prefixIcon: prefixIcon,
             ),
-            focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(9.0),
-              borderSide: BorderSide(color: Colors.grey.shade400),
-            ),
-            fillColor: Colors.white,
-            filled: true,
-            hintText: hintText,
-            hintStyle: TextStyle(color: Colors.grey[500]),
-            prefixIcon: prefixIcon,
-          ),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return 'Please enter a value';
+              }
+              if (hintText == 'Email') {
+                // Regular expression for validating email
+                // You can adjust this pattern as per your requirements
+                final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+                if (!emailRegex.hasMatch(value)) {
+                  return 'Please enter a valid email';
+                }
+              }
+              return null;
+            }
         ),
       ),
     );

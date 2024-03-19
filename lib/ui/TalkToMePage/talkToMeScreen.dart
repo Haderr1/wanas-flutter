@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:waanaass/ui/Buttons/AddPersonaButton.dart';
 import 'package:waanaass/ui/Buttons/SmallButton.dart';
 import 'package:waanaass/ui/TalkToMePage/personsCard.dart';
 import 'package:waanaass/ui/TalkToMePage/previousConversationsDetailsCard.dart';
@@ -16,7 +17,12 @@ class talkToMeScreen extends StatefulWidget {
 
 class _talkToMeScreenState extends State<talkToMeScreen> {
    Future<List<PersonaCard>> _futurePersonaCards = fetchPersonaCards();
-
+   void _createAndFetchPersona(BuildContext context) async {
+     await createPersona(context);
+     setState(() {
+       _futurePersonaCards = fetchPersonaCards();
+     });
+   }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,42 +39,58 @@ class _talkToMeScreenState extends State<talkToMeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              startCard(),
-              SizedBox(height: 24),
-              Row(
+              const startCard(),
+              const SizedBox(height: 24),
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  const Text(
+                  Text(
                     'Talk To Someone',
                     style: TextStyle(
                       fontSize: 20,
                       fontWeight: FontWeight.w500,
                     ),
                   ),
-                  SmallButton(
-                      onPressed: () {
-                        createPersona(context);
-                      },
-                      ButtonText: "Add Persona"),
                 ],
               ),
               const SizedBox(height: 16),
 
-              // Inserted FutureBuilder here
+
               FutureBuilder<List<PersonaCard>>(
                 future: _futurePersonaCards,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const Center(child: CircularProgressIndicator());
                   } else if (snapshot.hasError) {
+                    if (snapshot.data == null){
+                      return AddPersonaButton(onTap:  () {
+                        _createAndFetchPersona(context);
+                      });
+                    }
                     return Center(child: Text('Error: ${snapshot.error}'));
                   } else {
-                    return ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: snapshot.data!.length,
-                      itemBuilder: (BuildContext context, int index) {
-                        return personsCard(personaCard: snapshot.data![index]);
-                      },
+                    return SizedBox(
+                      height: 90,
+                      child: ListView.separated(
+
+                        scrollDirection: Axis.horizontal,
+                        shrinkWrap: true,
+                        itemCount: snapshot.data!.length+1,
+                        itemBuilder: (BuildContext context, int index) {
+                          if (index == snapshot.data!.length) {
+                            return     AddPersonaButton(onTap:  () {
+                              _createAndFetchPersona(context);
+                            });
+                          } else {
+                            return personsCard(personaCard: snapshot.data![index]);
+                          }                        },
+                        separatorBuilder: (context, index) {
+                          return const SizedBox(width:8 );
+                        },
+
+
+
+                      ),
                     );
                   }
                 },

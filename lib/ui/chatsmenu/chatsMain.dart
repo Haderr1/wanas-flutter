@@ -40,8 +40,8 @@ class _ChatsMainState extends State<chatsMain> {
                     case ConnectionState.waiting:
                       return Text('Loading....');
                     default:
-                      if (snapshot.hasError)
-                        return Text('Error: ${snapshot.error}');
+                      if (snapshot.hasError){
+                        return Text('Error: ${snapshot.error}');}
                       else {
                         if (snapshot.hasData) {
                           return ListView.separated(

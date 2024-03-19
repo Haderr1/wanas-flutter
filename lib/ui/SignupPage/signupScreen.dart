@@ -20,6 +20,14 @@ class _signupScreenState extends State<signupScreen> {
   final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
+    void signUserUp() {
+      if (formKey.currentState!.validate()) {
+        signUpApi(fullNameController.text, emailController.text,
+            phoneNumberController.text, passwordController.text,
+            context);
+
+      }
+    }
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -36,142 +44,140 @@ class _signupScreenState extends State<signupScreen> {
         iconTheme: IconThemeData(color: Colors.black),
       ),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Align(                alignment: Alignment.topCenter,
-                child: FractionallySizedBox(
-                  widthFactor: 0.4, // Adjust the width as needed
-                  child: Image.asset(
-                    'assets/images/logo.png',
-                    width: double.infinity,
+        child: Form(
+          key: formKey,
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Align(                alignment: Alignment.topCenter,
+                  child: FractionallySizedBox(
+                    widthFactor: 0.4, // Adjust the width as needed
+                    child: Image.asset(
+                      'assets/images/logo.png',
+                      width: double.infinity,
+                    ),
                   ),
                 ),
-              ),
-              const SizedBox(height: 15),
-              Text(
-                'Welcome back you\'ve been missed!',
-                style: TextStyle(
-                  color: Colors.grey[700],
-                  fontSize: 16,
+                const SizedBox(height: 15),
+                Text(
+                  'Welcome back you\'ve been missed!',
+                  style: TextStyle(
+                    color: Colors.grey[700],
+                    fontSize: 16,
+                  ),
                 ),
-              ),
-              const SizedBox(height: 25),
-              signupTextField(
-                controller: fullNameController,
-                hintText: 'Full Name',
-                obscureText: false,
-                formKey: formKey,
-              ),
-              const SizedBox(height: 10),
-              signupTextField(
-                controller: emailController,
-                hintText: 'Email',
-                obscureText: false,
-                formKey: formKey,
-              ),
-              const SizedBox(height: 10),
-              signupTextField(
-                controller: phoneNumberController,
-                hintText: 'Phone Number',
-                obscureText: false,
-                formKey: formKey,
-              ),
-              const SizedBox(height: 10),
-              signupTextField(
-                controller: passwordController,
-                hintText: 'Password',
-                obscureText: false,
-                formKey: formKey,
-              ),
-              const SizedBox(height: 10),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                const SizedBox(height: 25),
+                signupTextField(
+                  controller: fullNameController,
+                  hintText: 'Full Name',
+                  obscureText: false,
+                  formKey: formKey,
                 ),
-              ),
-              const SizedBox(height: 20),
-              PrimaryButton(
-                  onTap: () {
-                    // Instantiate SignUpFunction and call its signUp method
-                      signUpApi(fullNameController.text, emailController.text,
-                          phoneNumberController.text, passwordController.text,
-                          context);
-
-
-                  },
-                  ButtonText: "Sign Up"),
-              SizedBox(height: 10),
-              SizedBox(height: 15),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: Row(
+                const SizedBox(height: 10),
+                signupTextField(
+                  controller: emailController,
+                  hintText: 'Email',
+                  obscureText: false,
+                  formKey: formKey,
+                ),
+                const SizedBox(height: 10),
+                signupTextField(
+                  controller: phoneNumberController,
+                  hintText: 'Phone Number',
+                  obscureText: false,
+                  formKey: formKey,
+                ),
+                const SizedBox(height: 10),
+                signupTextField(
+                  controller: passwordController,
+                  hintText: 'Password',
+                  obscureText: false,
+                  formKey: formKey,
+                ),
+                const SizedBox(height: 10),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                  ),
+                ),
+                const SizedBox(height: 20),
+                PrimaryButton(
+                    onTap: () {
+                      signUserUp();
+                    },
+                    ButtonText: "Sign Up"),
+                SizedBox(height: 10),
+                SizedBox(height: 15),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Divider(
+                          thickness: 2,
+                          color: Colors.grey[400],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                        child: Text(
+                          'Or continue with',
+                          style: TextStyle(color: Colors.grey[700]),
+                        ),
+                      ),
+                      Expanded(
+                        child: Divider(
+                          thickness: 2,
+                          color: Colors.grey[400],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    // google button
+                    socialMediaCard(imagePath: 'assets/images/Google.png'),
+                    SizedBox(width: 25),
+                    // apple button
+                    socialMediaCard(imagePath: 'assets/images/Vector.png'),
+                    SizedBox(width: 25),
+                    // apple button
+                    socialMediaCard(imagePath: 'assets/images/Facebook.png'),
+                  ],
+                ),
+                const SizedBox(height: 20),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Expanded(
-                      child: Divider(
-                        thickness: 2,
-                        color: Colors.grey[400],
-                      ),
+                    Text(
+                      'Already have an Account?',
+                      style: TextStyle(color: Colors.black),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                    const SizedBox(width: 4),
+                    InkWell(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => loginScreen()),
+                        );
+                      },
                       child: Text(
-                        'Or continue with',
-                        style: TextStyle(color: Colors.grey[700]),
-                      ),
-                    ),
-                    Expanded(
-                      child: Divider(
-                        thickness: 2,
-                        color: Colors.grey[400],
+                        'Login in',
+                        style: TextStyle(
+                          color: Color(0xFF00966A),
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ],
                 ),
-              ),
-              const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: const [
-                  // google button
-                  socialMediaCard(imagePath: 'assets/images/Google.png'),
-                  SizedBox(width: 25),
-                  // apple button
-                  socialMediaCard(imagePath: 'assets/images/Vector.png'),
-                  SizedBox(width: 25),
-                  // apple button
-                  socialMediaCard(imagePath: 'assets/images/Facebook.png'),
-                ],
-              ),
-              const SizedBox(height: 20),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    'Already have an Account?',
-                    style: TextStyle(color: Colors.black),
-                  ),
-                  const SizedBox(width: 4),
-                  InkWell(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => loginScreen()),
-                      );
-                    },
-                    child: Text(
-                      'Login in',
-                      style: TextStyle(
-                        color: Color(0xFF00966A),
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

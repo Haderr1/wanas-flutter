@@ -17,7 +17,7 @@ class _signupScreenState extends State<signupScreen> {
   final TextEditingController emailController = TextEditingController();
   final TextEditingController phoneNumberController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
-
+  final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,24 +62,28 @@ class _signupScreenState extends State<signupScreen> {
                 controller: fullNameController,
                 hintText: 'Full Name',
                 obscureText: false,
+                formKey: formKey,
               ),
               const SizedBox(height: 10),
               signupTextField(
                 controller: emailController,
                 hintText: 'Email',
                 obscureText: false,
+                formKey: formKey,
               ),
               const SizedBox(height: 10),
               signupTextField(
                 controller: phoneNumberController,
                 hintText: 'Phone Number',
                 obscureText: false,
+                formKey: formKey,
               ),
               const SizedBox(height: 10),
               signupTextField(
                 controller: passwordController,
                 hintText: 'Password',
-                obscureText: true,
+                obscureText: false,
+                formKey: formKey,
               ),
               const SizedBox(height: 10),
               Padding(
@@ -174,3 +178,6 @@ class _signupScreenState extends State<signupScreen> {
     );
   }
 }
+
+
+

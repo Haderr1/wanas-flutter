@@ -9,6 +9,7 @@ class loginScreen extends StatelessWidget {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   static const String routeName = 'login';
+  final formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -40,12 +41,14 @@ class loginScreen extends StatelessWidget {
                   controller: emailController,
                   hintText: 'Email',
                   obscureText: false,
+                  formKey: formKey,
                 ),
                 const SizedBox(height: 10),
                 loginTextField(
                   controller: passwordController,
                   hintText: 'Password',
-                  obscureText: true,
+                  obscureText: false,
+                  formKey: formKey,
                 ),
                 const SizedBox(height: 10),
                 // forgot password?

@@ -7,7 +7,7 @@ appConstants appConstant = appConstants();
 
 Future<Map<String, String>> makeHeader() async {
   try {
-    String eltoken =  appConstant.tokenStorage.getToken() as String;
+    String eltoken =  await appConstant.tokenStorage.getToken() ;
     Map<String, String> elheader = new Map();
     elheader['Content-Type'] = 'application/json; charset=UTF-8';
     elheader['x-jwt-token'] = eltoken;

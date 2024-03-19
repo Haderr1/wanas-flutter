@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:waanaass/ui/ChatPage/chatScreen.dart';
-import '../Api/Api.dart';
+import '../Api/ChatsApi.dart';
 
 class ChatsCard extends StatelessWidget {
   Chat elchat;

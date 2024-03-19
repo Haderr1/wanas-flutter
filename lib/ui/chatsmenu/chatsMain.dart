@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:waanaass/ui/chatsmenu/chatCard.dart';
-import '../Api/Api.dart';
+import '../Api/ChatsApi.dart';
 import 'menuScaf.dart';
 
 class chatsMain extends StatefulWidget {

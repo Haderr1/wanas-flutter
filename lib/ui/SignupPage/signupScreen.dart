@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:waanaass/ui/Api/Api.dart';
 import 'package:waanaass/ui/Buttons/PrimaryButton.dart';
 import 'package:waanaass/ui/LoginPage/loginScreen.dart';
 import 'package:waanaass/ui/SignupPage/signupTextField.dart';
-
+import '../Api/RegisterApi.dart';
 import '../LoginPage/socialMediaCard.dart';
-import '../TalkToMePage/talkToMeScreen.dart';
 
 class signupScreen extends StatefulWidget {
   static const String routeName = 'signup';

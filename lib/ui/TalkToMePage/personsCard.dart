@@ -6,15 +6,16 @@ import '../chatsmenu/chatsMain.dart';
 
 
 class PersonaCard {
+  final int id;
   final String name;
-  final String userID;
 
-  PersonaCard({required this.name, required this.userID});
+
+  PersonaCard({required this.name, required this.id});
 
   factory PersonaCard.fromJson(Map<String, dynamic> json) {
     return PersonaCard(
+      id: json['id'],
       name: json['name'],
-      userID: json['userID'],
     );
   }
 }
@@ -48,7 +49,7 @@ class personsCard extends StatelessWidget {
               ),
               borderRadius: BorderRadius.circular(8),
             ),
-            child: Text(personaCard.name),
+            child: Text(personaCard.id.toString()),
           ),
           SizedBox(width: 4),
           Text(personaCard.name),

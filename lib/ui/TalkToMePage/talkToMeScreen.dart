@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:waanaass/ui/Api/Api.dart';
 import 'package:waanaass/ui/Buttons/SmallButton.dart';
 import 'package:waanaass/ui/TalkToMePage/personsCard.dart';
 import 'package:waanaass/ui/TalkToMePage/previousConversationsDetailsCard.dart';
+import '../Api/PersonaApi.dart';
 import 'startCard.dart';
 
 class talkToMeScreen extends StatefulWidget {
@@ -15,8 +15,7 @@ class talkToMeScreen extends StatefulWidget {
 }
 
 class _talkToMeScreenState extends State<talkToMeScreen> {
-  late String name;
-  late Future<List<PersonaCard>> _futurePersonaCards = fetchPersonaCards();
+   Future<List<PersonaCard>> _futurePersonaCards = fetchPersonaCards();
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +66,7 @@ class _talkToMeScreenState extends State<talkToMeScreen> {
                     return ListView.builder(
                       shrinkWrap: true,
                       itemCount: snapshot.data!.length,
-                      itemBuilder: (context, index) {
+                      itemBuilder: (BuildContext context, int index) {
                         return personsCard(personaCard: snapshot.data![index]);
                       },
                     );

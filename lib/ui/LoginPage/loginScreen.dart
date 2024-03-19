@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:waanaass/ui/Api/Api.dart';
 import 'package:waanaass/ui/LoginPage/socialMediaCard.dart';
+import '../Api/LoginApi.dart';
 import '../Buttons/PrimaryButton.dart';
 import '../SignupPage/signupScreen.dart';
 import 'package:waanaass/ui/LoginPage/loginTextField.dart';

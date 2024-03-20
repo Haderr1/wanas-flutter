@@ -16,17 +16,11 @@ class ChatsCard extends StatelessWidget {
           MaterialPageRoute(builder: (context) => chatScreen()),
         );
       },
-      style: ElevatedButton.styleFrom(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        foregroundColor: Colors.black,
-        textStyle: const TextStyle(
-          fontSize: 20, // Change the font size
-        ),
-        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 20),
-        shape: ContinuousRectangleBorder(
-          borderRadius: BorderRadius.circular(12), // Change the border radius
-        ),
+      style: const ButtonStyle(
+        backgroundColor: MaterialStatePropertyAll(Color(0xFF00966A)),
+        foregroundColor: MaterialStatePropertyAll(Color(0xffffffff)),
+        textStyle: MaterialStatePropertyAll(TextStyle(fontSize: 25)),
+        padding: MaterialStatePropertyAll(EdgeInsets.all(15)),
       ),
       child: Text("chat " + elchat.chatid.toString()),
     );
@@ -43,21 +37,14 @@ class AddChatButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
+    return IconButton(
       onPressed: () {
         addNewChat(personaid);
         addtolist();
       },
-      child: Column(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
-              color: Color(0xFF00966A),
-            ),
-            child: Icon(Icons.add, color: Colors.white, size: 24),
-          ),
-        ],
+      icon: Icon(Icons.add, color: Colors.white, size: 33),
+      style: ButtonStyle(
+        backgroundColor: MaterialStatePropertyAll(Color(0xFF00966A)),
       ),
     );
   }

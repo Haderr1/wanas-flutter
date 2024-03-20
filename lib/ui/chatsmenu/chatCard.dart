@@ -4,7 +4,7 @@ import 'package:waanaass/ui/ChatPage/chatScreen.dart';
 import '../Api/ChatsApi.dart';
 
 class ChatsCard extends StatelessWidget {
-  Chat elchat;
+  final Chat elchat;
   ChatsCard({required this.elchat, super.key});
 
   @override
@@ -29,6 +29,36 @@ class ChatsCard extends StatelessWidget {
         ),
       ),
       child: Text("chat " + elchat.chatid.toString()),
+    );
+  }
+}
+
+class AddChatButton extends StatelessWidget {
+  final int personaid;
+  final Function addtolist;
+  AddChatButton({
+    required this.personaid,
+    required this.addtolist,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: () {
+        addNewChat(personaid);
+        addtolist();
+      },
+      child: Column(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8),
+              color: Color(0xFF00966A),
+            ),
+            child: Icon(Icons.add, color: Colors.white, size: 24),
+          ),
+        ],
+      ),
     );
   }
 }

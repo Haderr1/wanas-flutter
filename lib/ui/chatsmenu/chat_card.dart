@@ -15,34 +15,29 @@ class ChatsCard extends StatelessWidget {
           MaterialPageRoute(builder: (context) => chatScreen()),
         );
       },
-      style: const ButtonStyle(
-        backgroundColor: MaterialStatePropertyAll(Color(0xFF00966A)),
-        foregroundColor: MaterialStatePropertyAll(Color(0xffffffff)),
-        textStyle: MaterialStatePropertyAll(TextStyle(fontSize: 25)),
-        padding: MaterialStatePropertyAll(EdgeInsets.all(15)),
-      ),
+      style: greenButtonStyle,
       child: Text("chat ${elchat.chatid.toString()}"),
     );
   }
 }
 
 class AddChatButton extends StatelessWidget {
-  final int personaid;
-  final Function addtolist;
-  const AddChatButton(
-      {required this.personaid, required this.addtolist, super.key});
-
+  final Function onpressed;
+  const AddChatButton({required this.onpressed, super.key});
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      onPressed: () {
-        addNewChat(personaid);
-        addtolist();
-      },
-      icon: const Icon(Icons.add, color: Colors.white, size: 33),
-      style: const ButtonStyle(
-        backgroundColor: MaterialStatePropertyAll(Color(0xFF00966A)),
-      ),
-    );
+        onPressed: () {
+          onpressed();
+        },
+        icon: const Icon(Icons.add, color: Colors.white, size: 33),
+        style: greenButtonStyle);
   }
 }
+
+ButtonStyle greenButtonStyle = const ButtonStyle(
+  backgroundColor: MaterialStatePropertyAll(Color(0xFF00966A)),
+  foregroundColor: MaterialStatePropertyAll(Color(0xffffffff)),
+  textStyle: MaterialStatePropertyAll(TextStyle(fontSize: 25)),
+  padding: MaterialStatePropertyAll(EdgeInsets.all(15)),
+);

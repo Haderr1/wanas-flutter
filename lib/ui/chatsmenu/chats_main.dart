@@ -5,7 +5,7 @@ import 'menu_scaf.dart';
 
 class ChatsMain extends StatefulWidget {
   final int personaid;
-  const ChatsMain({required this.personaid, super.key});
+  ChatsMain({required this.personaid, super.key});
   static const String routeName = 'ChatsMenu';
   @override
   State<ChatsMain> createState() => _ChatsMainState();
@@ -13,15 +13,15 @@ class ChatsMain extends StatefulWidget {
 
 class _ChatsMainState extends State<ChatsMain> {
   _ChatsMainState();
-
   late int personaid;
   late Future<List<Chat>> futurechatlist;
   late List<Chat> chatslist;
   @override
   void initState() {
     super.initState();
-    futurechatlist = getChatsOfPersonaId(personaid);
     personaid = widget.personaid;
+    print("personaid: $personaid");
+    futurechatlist = getChatsOfPersonaId(personaid);
   }
 
   @override
@@ -54,7 +54,7 @@ class ListMaker extends StatefulWidget {
   final List<Chat> chatslist;
   final int personaid;
 
-  const ListMaker(this.chatslist, this.personaid, {super.key});
+  const ListMaker(this.chatslist, this.personaid);
 
   @override
   State<ListMaker> createState() => _Chatsliststate();
@@ -62,11 +62,14 @@ class ListMaker extends StatefulWidget {
 
 class _Chatsliststate extends State<ListMaker> {
   late List<Chat> chatslist;
+  late final int personaid;
 
   @override
   void initState() {
     super.initState();
     chatslist = widget.chatslist;
+    personaid = widget.personaid;
+    print("eelpersonaaid: $personaid");
   }
 
   @override
@@ -75,10 +78,10 @@ class _Chatsliststate extends State<ListMaker> {
       itemCount: chatslist.length + 1,
       itemBuilder: (BuildContext context, int index) {
         if (index == chatslist.length) {
-          return AddChatButton(
-            personaid: widget.personaid,
-            addtolist: addtochatlist,
-          );
+          return AddChatButton(onpressed: () {
+            addNewChat(personaid);
+            addtochatlist();
+          });
         }
         return ChatsCard(elchat: chatslist[index]);
       },
@@ -97,7 +100,7 @@ class _Chatsliststate extends State<ListMaker> {
   void addtochatlist() {
     Chat c = Chat(chatid: chatslist.length + 1);
     setState(() {
-      chatslist.add(c);
+      widget.chatslist.add(c);
     });
   }
 }

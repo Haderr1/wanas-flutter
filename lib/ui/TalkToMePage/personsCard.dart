@@ -30,7 +30,8 @@ class personsCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => const ChatsMain(personaid: 1)),
+              builder: (context) =>
+                  ChatsMain(personaid: personaCard.id, key: super.key)),
         );
       },
       child: Column(
@@ -48,7 +49,7 @@ class personsCard extends StatelessWidget {
             ),
             child: Center(
               child: Text(
-                personaCard.name.trim(),
+                "id:${personaCard.id} name: ${personaCard.name.trim()}",
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: Color(0xFF00966A),

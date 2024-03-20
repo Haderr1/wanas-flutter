@@ -15,13 +15,14 @@ class talkToMeScreen extends StatefulWidget {
 }
 
 class _talkToMeScreenState extends State<talkToMeScreen> {
-   Future<List<PersonaCard>> _futurePersonaCards = fetchPersonaCards();
-   void _createAndFetchPersona(BuildContext context) async {
-     await createPersona(context);
-     setState(() {
-       _futurePersonaCards = fetchPersonaCards();
-     });
-   }
+  Future<List<PersonaCard>> _futurePersonaCards = fetchPersonaCards();
+  void _createAndFetchPersona(BuildContext context) async {
+    await createPersona(context);
+    setState(() {
+      _futurePersonaCards = fetchPersonaCards();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -53,16 +54,14 @@ class _talkToMeScreenState extends State<talkToMeScreen> {
                 ],
               ),
               const SizedBox(height: 16),
-
-
               FutureBuilder<List<PersonaCard>>(
                 future: _futurePersonaCards,
                 builder: (context, snapshot) {
                   if (snapshot.connectionState == ConnectionState.waiting) {
                     return const Center(child: CircularProgressIndicator());
                   } else if (snapshot.hasError) {
-                    if (snapshot.data == null){
-                      return AddPersonaButton(onTap:  () {
+                    if (snapshot.data == null) {
+                      return AddPersonaButton(onTap: () {
                         _createAndFetchPersona(context);
                       });
                     }
@@ -71,30 +70,27 @@ class _talkToMeScreenState extends State<talkToMeScreen> {
                     return SizedBox(
                       height: 90,
                       child: ListView.separated(
-
                         scrollDirection: Axis.horizontal,
                         shrinkWrap: true,
-                        itemCount: snapshot.data!.length+1,
+                        itemCount: snapshot.data!.length + 1,
                         itemBuilder: (BuildContext context, int index) {
                           if (index == snapshot.data!.length) {
-                            return     AddPersonaButton(onTap:  () {
+                            return AddPersonaButton(onTap: () {
                               _createAndFetchPersona(context);
                             });
                           } else {
-                            return personsCard(personaCard: snapshot.data![index]);
-                          }                        },
-                        separatorBuilder: (context, index) {
-                          return const SizedBox(width:8 );
+                            return personsCard(
+                                personaCard: snapshot.data![index]);
+                          }
                         },
-
-
-
+                        separatorBuilder: (context, index) {
+                          return const SizedBox(width: 8);
+                        },
                       ),
                     );
                   }
                 },
               ),
-
               const SizedBox(height: 24),
               const Text(
                 'Previous conversations',

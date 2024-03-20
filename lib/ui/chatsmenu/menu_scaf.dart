@@ -14,11 +14,11 @@ class MenuScaf extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: hasDrawer ? Drawer() : null,
+      drawer: hasDrawer ? const Drawer() : null,
       appBar: AppBar(
-        actions: [
-          const Icon(Icons.search),
-          const SizedBox(
+        actions: const [
+          Icon(Icons.search),
+          SizedBox(
             width: 10,
           )
         ],
@@ -31,9 +31,9 @@ class MenuScaf extends StatelessWidget {
             fontSize: 25,
           ),
         ),
-        backgroundColor: Color(0xff00966A),
+        backgroundColor: const Color(0xff00966A),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
+          icon: const Icon(Icons.arrow_back_ios),
           color: Colors.black,
           onPressed: () {
             Navigator.of(context).pop();

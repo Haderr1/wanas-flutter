@@ -1,35 +1,29 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:waanaass/ui/chatsmenu/chatCard.dart';
+import 'package:waanaass/ui/chatsmenu/chat_card.dart';
 import '../Api/ChatsApi.dart';
-import 'menuScaf.dart';
+import 'menu_scaf.dart';
 
-class chatsMain extends StatefulWidget {
+class ChatsMain extends StatefulWidget {
   final int personaid;
-  const chatsMain({required this.personaid, super.key});
+  const ChatsMain({required this.personaid, super.key});
   static const String routeName = 'ChatsMenu';
   @override
-  State<chatsMain> createState() => _ChatsMainState(personaid);
+  State<ChatsMain> createState() => _ChatsMainState();
 }
 
-class _ChatsMainState extends State<chatsMain> {
-  final int personaid;
-  _ChatsMainState(this.personaid);
+class _ChatsMainState extends State<ChatsMain> {
+  _ChatsMainState();
 
+  late int personaid;
   late Future<List<Chat>> futurechatlist;
   late List<Chat> chatslist;
   @override
   void initState() {
     super.initState();
     futurechatlist = getChatsOfPersonaId(personaid);
+    personaid = widget.personaid;
   }
 
-  // @override
-  // void didChangeDependencies() {
-  //     // TODO: implement didChangeDependencies
-  //     super.didChangeDependencies();
-  //
-  //   }
   @override
   Widget build(BuildContext context) {
     return MenuScaf(
@@ -39,7 +33,7 @@ class _ChatsMainState extends State<chatsMain> {
             builder: (context, snapshot) {
               switch (snapshot.connectionState) {
                 case ConnectionState.waiting:
-                  return Text('Loading....');
+                  return const Text('Loading....');
                 default:
                   if (snapshot.hasError) {
                     return Text('Error: ${snapshot.error}');
@@ -48,7 +42,7 @@ class _ChatsMainState extends State<chatsMain> {
                       chatslist = snapshot.data!;
                       return ListMaker(chatslist, personaid);
                     } else {
-                      return Text('empty');
+                      return const Text('empty');
                     }
                   }
               }
@@ -60,11 +54,13 @@ class ListMaker extends StatefulWidget {
   final List<Chat> chatslist;
   final int personaid;
 
-  ListMaker(this.chatslist, this.personaid);
-  _chatsliststate createState() => _chatsliststate();
+  const ListMaker(this.chatslist, this.personaid, {super.key});
+
+  @override
+  State<ListMaker> createState() => _Chatsliststate();
 }
 
-class _chatsliststate extends State<ListMaker> {
+class _Chatsliststate extends State<ListMaker> {
   late List<Chat> chatslist;
 
   @override

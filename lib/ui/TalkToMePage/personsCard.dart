@@ -1,8 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../MoodTracker/moodTrackerScreen.dart';
-import '../chatsmenu/chatsMain.dart';
+import '../chatsmenu/chats_main.dart';
 
 class PersonaCard {
   final int id;
@@ -30,7 +29,8 @@ class personsCard extends StatelessWidget {
       onTap: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const chatsMain(personaid: 1)),
+          MaterialPageRoute(
+              builder: (context) => const ChatsMain(personaid: 1)),
         );
       },
       child: Column(
@@ -51,7 +51,8 @@ class personsCard extends StatelessWidget {
                 personaCard.name.trim(),
                 textAlign: TextAlign.center,
                 style: const TextStyle(
-                     color: Color(0xFF00966A), ),
+                  color: Color(0xFF00966A),
+                ),
               ),
             ),
           ),

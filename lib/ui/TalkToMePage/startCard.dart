@@ -7,10 +7,8 @@ import 'package:waanaass/ui/TalkToMePage/personsCard.dart';
 import '../Api/ChatsApi.dart';
 
 class startCard extends StatelessWidget {
-  final int chatid;
-  final int personaid;
 
-  const startCard({required this.chatid,required this.personaid,super.key});
+  const startCard({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -38,10 +36,10 @@ class startCard extends StatelessWidget {
                 ),
                 SizedBox(height: 16),
                 SmallButton(onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) =>  chatScreen(personaid:personaid,chatid: chatid,key: super.key,)),
-                  );
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) =>  chatScreen(personaid:personaid,chatid: chatid,key: super.key,)),
+                  // );
                 }, ButtonText: "Start")
               ],
             ),

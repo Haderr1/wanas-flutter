@@ -8,10 +8,8 @@ import '../Api/PersonaApi.dart';
 import 'startCard.dart';
 
 class talkToMeScreen extends StatefulWidget {
-  final Chat elchat;
-  final PersonaCard personaCarddd;
 
-  const talkToMeScreen({required this.personaCarddd, required this.elchat, Key?key}): super(key: key);
+  const talkToMeScreen({ super.key});
   static const String routeName = 'talketome';
 
   @override
@@ -19,9 +17,6 @@ class talkToMeScreen extends StatefulWidget {
 }
 
 class _talkToMeScreenState extends State<talkToMeScreen> {
-  late Chat elchat;
-  late  PersonaCard personaCarddd;
-
 
 
   Future<List<PersonaCard>> _futurePersonaCards = fetchPersonaCards();
@@ -31,13 +26,7 @@ class _talkToMeScreenState extends State<talkToMeScreen> {
       _futurePersonaCards = fetchPersonaCards();
     });
   }
-  @override
-  void initState() {
-    super.initState();
-    elchat = widget.elchat;
-    personaCarddd = widget.personaCarddd;
-    // print("eelpersonaaid: $personaCard");
-  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,7 +43,7 @@ class _talkToMeScreenState extends State<talkToMeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-               startCard(chatid: elchat.chatid,personaid: personaCarddd.id,key: widget.key,),
+               startCard(),
               const SizedBox(height: 24),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

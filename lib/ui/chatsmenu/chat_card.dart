@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:waanaass/ui/ChatPage/chatScreen.dart';
+import 'package:waanaass/ui/TalkToMePage/personsCard.dart';
 import '../Api/ChatsApi.dart';
 
 class ChatsCard extends StatelessWidget {
   final Chat elchat;
-  const ChatsCard({required this.elchat, super.key});
+  final int personaid;
+
+  const ChatsCard({required this.elchat, required this.personaid, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +15,7 @@ class ChatsCard extends StatelessWidget {
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => chatScreen()),
+          MaterialPageRoute(builder: (context) => chatScreen(personaid: personaid,chatid:elchat.chatid ,key: super.key ,)),
         );
       },
       style: greenButtonStyle,

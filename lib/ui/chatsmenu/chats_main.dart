@@ -40,7 +40,7 @@ class _ChatsMainState extends State<ChatsMain> {
                   } else {
                     if (snapshot.hasData) {
                       chatslist = snapshot.data!;
-                      return ListMaker(chatslist, personaid);
+                      return ListMaker(chatslist, personaid,widget.key);
                     } else {
                       return const Text('empty');
                     }
@@ -54,7 +54,7 @@ class ListMaker extends StatefulWidget {
   final List<Chat> chatslist;
   final int personaid;
 
-  const ListMaker(this.chatslist, this.personaid);
+  const ListMaker( this.chatslist,  this.personaid, Key?key): super(key: key);
 
   @override
   State<ListMaker> createState() => _Chatsliststate();
@@ -63,6 +63,7 @@ class ListMaker extends StatefulWidget {
 class _Chatsliststate extends State<ListMaker> {
   late List<Chat> chatslist;
   late final int personaid;
+
 
   @override
   void initState() {
@@ -83,7 +84,7 @@ class _Chatsliststate extends State<ListMaker> {
             addtochatlist();
           });
         }
-        return ChatsCard(elchat: chatslist[index]);
+        return ChatsCard(elchat: chatslist[index],personaid: personaid,key: widget.key,);
       },
       separatorBuilder: (context, index) {
         return const Divider(

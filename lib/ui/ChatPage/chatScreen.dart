@@ -5,6 +5,11 @@ import 'Message.dart';
 
 
 class chatScreen extends StatefulWidget {
+  final int personaid;
+  final int chatid;
+
+  chatScreen({required this.personaid,required this.chatid, super.key});
+
   @override
   _chatScreenState createState() => _chatScreenState();
   static const String routeName = 'chatscreen';
@@ -19,10 +24,20 @@ class chatScreen extends StatefulWidget {
 
 class _chatScreenState extends State<chatScreen> {
   List<MessageModel> messages = [];
+  late int personaid;
+  late int chatid;
+  void initState() {
+    super.initState();
+    personaid = widget.personaid;
+    chatid = widget.chatid;
+    print("personaid: $personaid");
+    print("personaid: $chatid");
+
+  }
 
   void sendMessagee(String message) {
     _addMessage(message, true); // true means it's a user message
-    sendMessage( message,context).then((response) {
+    sendMessage( message,personaid,chatid,context).then((response) {
       _addMessage(response, false);
     }).catchError((error) {
       _addMessage("Error: $error", false);

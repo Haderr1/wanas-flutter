@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:waanaass/ui/ChatPage/sendMessageField.dart';
 import '../Api/ChatApi.dart';
+import 'DBHelper.dart';
 import 'Message.dart';
 
 
@@ -8,7 +9,7 @@ class chatScreen extends StatefulWidget {
   final int personaid;
   final int chatid;
 
-  chatScreen({required this.personaid,required this.chatid, super.key});
+  chatScreen({required this.personaid, required this.chatid, Key? key}) : super(key: key);
 
   @override
   _chatScreenState createState() => _chatScreenState();
@@ -26,19 +27,43 @@ class _chatScreenState extends State<chatScreen> {
   List<MessageModel> messages = [];
   late int personaid;
   late int chatid;
+  late DatabaseHelper _databaseHelper;
+
+  @override
   void initState() {
     super.initState();
     personaid = widget.personaid;
     chatid = widget.chatid;
-    print("personaid: $personaid");
-    print("personaid: $chatid");
-
+    _databaseHelper = DatabaseHelper();
+    _loadMessages();
+  }
+  void clearMessages() async {
+    await _databaseHelper.clearTable();
+    _loadMessages(); // Reload messages after clearing the table
+  }
+  Future<void> _loadMessages() async {
+    final messagesFromDb = await _databaseHelper.getMessages();
+    setState(() {
+      messages = messagesFromDb
+          .map((messageMap) => MessageModel(
+        text: messageMap['text'] as String,
+        isUserMessage: messageMap['isUserMessage'] == 1,
+      ))
+          .toList();
+    });
   }
 
   void sendMessagee(String message) {
     _addMessage(message, true); // true means it's a user message
-    sendMessage( message,personaid,chatid,context).then((response) {
+    _databaseHelper.insertMessage(
+        message, true); // Store user message in the database
+    // Call function to send message to API
+    // For now, let's simulate a response from the API
+    sendMessage(message, personaid, chatid, context).then((response) {
       _addMessage(response, false);
+      _databaseHelper.insertMessage(
+          response, false); // Store AI response in the database
+
     }).catchError((error) {
       _addMessage("Error: $error", false);
     });
@@ -60,10 +85,7 @@ class _chatScreenState extends State<chatScreen> {
           IconButton(
             icon: Icon(Icons.delete),
             color: Colors.black,
-            onPressed: () {
-              // Call function to handle deletion
-              //_deletechatScreen(context);
-            },
+            onPressed: clearMessages
           ),
         ],
       ),

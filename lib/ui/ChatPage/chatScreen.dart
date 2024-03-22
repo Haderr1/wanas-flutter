@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:waanaass/ui/ChatPage/sendMessageField.dart';
 import '../Api/ChatApi.dart';
-import 'DBHelper.dart';
+import '../LocalDB/DBHelper.dart';
 import 'Message.dart';
 
 
@@ -42,7 +42,7 @@ class _chatScreenState extends State<chatScreen> {
     _loadMessages(); // Reload messages after clearing the table
   }
   Future<void> _loadMessages() async {
-    final messagesFromDb = await _databaseHelper.getMessages();
+    final messagesFromDb = await _databaseHelper.getMessages(chatid, personaid);
     setState(() {
       messages = messagesFromDb
           .map((messageMap) => MessageModel(
@@ -54,16 +54,11 @@ class _chatScreenState extends State<chatScreen> {
   }
 
   void sendMessagee(String message) {
-    _addMessage(message, true); // true means it's a user message
-    _databaseHelper.insertMessage(
-        message, true); // Store user message in the database
-    // Call function to send message to API
-    // For now, let's simulate a response from the API
+    _addMessage(message, true);
+    _databaseHelper.insertMessage(message, true, chatid, personaid);
     sendMessage(message, personaid, chatid, context).then((response) {
       _addMessage(response, false);
-      _databaseHelper.insertMessage(
-          response, false); // Store AI response in the database
-
+      _databaseHelper.insertMessage(response, false, chatid, personaid);
     }).catchError((error) {
       _addMessage("Error: $error", false);
     });

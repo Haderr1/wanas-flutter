@@ -25,7 +25,7 @@ class DatabaseHelper {
 
     return await openDatabase(
       path,
-      version: 1,
+      version: 2, // Updated version number
       onCreate: (db, version) async {
         await db.execute('''
           CREATE TABLE messages (
@@ -35,21 +35,27 @@ class DatabaseHelper {
           )
         ''');
       },
+      onUpgrade: (db, oldVersion, newVersion) async {
+        if (oldVersion < 2) {
+          // Perform the migration to add new columns
+          await db.execute('ALTER TABLE messages ADD COLUMN chatid INTEGER;');
+          await db.execute('ALTER TABLE messages ADD COLUMN personaid INTEGER;');
+        }
+      },
     );
   }
 
-  Future<int> insertMessage(String text, bool isUserMessage) async {
+  Future<int> insertMessage(String text, bool isUserMessage, int chatid, int personaid) async {
     final Database db = await database;
     return await db.insert(
       'messages',
-      {'text': text, 'isUserMessage': isUserMessage ? 1 : 0},
-      conflictAlgorithm: ConflictAlgorithm.replace,
+      {'text': text, 'isUserMessage': isUserMessage ? 1 : 0, 'chatid': chatid, 'personaid': personaid},
     );
   }
 
-  Future<List<Map<String, dynamic>>> getMessages() async {
+  Future<List<Map<String, dynamic>>> getMessages(int chatid, int personaid) async {
     final Database db = await database;
-    return await db.query('messages');
+    return await db.query('messages', where: 'chatid = ? AND personaid = ?', whereArgs: [chatid, personaid]);
   }
 
   Future<void> clearTable() async {

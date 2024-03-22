@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:waanaass/ui/Buttons/AddPersonaButton.dart';
 import 'package:waanaass/ui/TalkToMePage/personsCard.dart';
 import 'package:waanaass/ui/TalkToMePage/previousConversationsDetailsCard.dart';
+import '../Api/ChatsApi.dart';
 import '../Api/PersonaApi.dart';
 import 'startCard.dart';
 
 class talkToMeScreen extends StatefulWidget {
-  const talkToMeScreen({super.key});
+
+  const talkToMeScreen({ super.key});
   static const String routeName = 'talketome';
 
   @override
@@ -15,6 +17,8 @@ class talkToMeScreen extends StatefulWidget {
 }
 
 class _talkToMeScreenState extends State<talkToMeScreen> {
+
+
   Future<List<PersonaCard>> _futurePersonaCards = fetchPersonaCards();
   void _createAndFetchPersona(BuildContext context) async {
     await createPersona(context);
@@ -39,7 +43,7 @@ class _talkToMeScreenState extends State<talkToMeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const startCard(),
+               startCard(),
               const SizedBox(height: 24),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,

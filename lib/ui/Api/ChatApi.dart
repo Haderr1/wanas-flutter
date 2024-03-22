@@ -7,18 +7,18 @@ import 'Api.dart';
 
 
 
-Future<String> sendMessage(String message, BuildContext context) async {
-  var url = Uri.http(appConstants.LOCAL_HOST, '/account');
+Future<String> sendMessage(String message,int personaid,int chatid, BuildContext context) async {
+  var url = Uri.http(appConstants.LOCAL_HOST, '/persona/$personaid/chat/$chatid');
 
   try {
     final response = await http.post(
       url,
-      headers: authenttoken(),
-      body: {'message': message},
+      headers: await makeHeader(),
+      body:jsonEncode({'message': message})
     );
     if (response.statusCode == 200) {
       final jsonResponse = json.decode(response.body);
-      final aiMessage = jsonResponse['ai_message'];
+      final aiMessage = jsonResponse['message'];
       return aiMessage;
     } else {
       throw Exception('Failed to send message');

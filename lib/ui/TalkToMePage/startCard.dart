@@ -2,8 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:waanaass/ui/Buttons/SmallButton.dart';
 import 'package:waanaass/ui/ChatPage/chatScreen.dart';
+import 'package:waanaass/ui/TalkToMePage/personsCard.dart';
+
+import '../Api/ChatsApi.dart';
 
 class startCard extends StatelessWidget {
+
   const startCard({super.key});
 
   @override
@@ -32,10 +36,10 @@ class startCard extends StatelessWidget {
                 ),
                 SizedBox(height: 16),
                 SmallButton(onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => chatScreen()),
-                  );
+                  // Navigator.push(
+                  //   context,
+                  //   MaterialPageRoute(builder: (context) =>  chatScreen(personaid:personaid,chatid: chatid,key: super.key,)),
+                  // );
                 }, ButtonText: "Start")
               ],
             ),

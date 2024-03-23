@@ -31,7 +31,7 @@ class personsCard extends StatelessWidget {
           context,
           MaterialPageRoute(
               builder: (context) =>
-                  ChatsMain(personaid: personaCard.id, key: super.key)),
+                  ChatsMain(personaId: personaCard.id, key: super.key)),
         );
       },
       child: Column(

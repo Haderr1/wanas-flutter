@@ -3,10 +3,10 @@ import 'package:waanaass/ui/ChatPage/chat_screen.dart';
 import '../Api/chats_api.dart';
 
 class ChatsCard extends StatelessWidget {
-  final Chat elchat;
-  final int personaid;
+  final Chat chat;
+  final int personaId;
 
-  const ChatsCard({required this.elchat, required this.personaid, super.key});
+  const ChatsCard({required this.chat, required this.personaId, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,26 +16,26 @@ class ChatsCard extends StatelessWidget {
           context,
           MaterialPageRoute(
               builder: (context) => ChatScreen(
-                    personaId: personaid,
-                    chatId: elchat.chatId,
+                    personaId: personaId,
+                    chatId: chat.chatId,
                     key: super.key,
                   )),
         );
       },
       style: greenButtonStyle,
-      child: Text("chat ${elchat.chatId.toString()}",),
+      child: Text("chat ${chat.chatId.toString()}",),
     );
   }
 }
 
 class AddChatButton extends StatelessWidget {
-  final Function onpressed;
-  const AddChatButton({required this.onpressed, super.key});
+  final Function onPressed;
+  const AddChatButton({required this.onPressed, super.key});
   @override
   Widget build(BuildContext context) {
     return IconButton(
         onPressed: () {
-          onpressed();
+          onPressed();
         },
         icon: const Icon(Icons.add, color: Color(0xFF00966A), size: 32),
         style: greenButtonStyle);

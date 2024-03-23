@@ -5,7 +5,7 @@ import '../Buttons/primary_button.dart';
 import '../SignupPage/signup_screen.dart';
 import 'package:waanaass/ui/LoginPage/login_text_field.dart';
 
-import '../TalkToMePage/talkToMeScreen.dart';
+import '../TalkToMePage/talk_to_me_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   final emailController = TextEditingController();

@@ -1,11 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:waanaass/ui/Buttons/add_persona_button.dart';
-import 'package:waanaass/ui/TalkToMePage/personsCard.dart';
-import 'package:waanaass/ui/TalkToMePage/previousConversationsDetailsCard.dart';
+import 'package:waanaass/ui/TalkToMePage/persons_card.dart';
+import 'package:waanaass/ui/TalkToMePage/previous_conversations_details_card.dart';
 import '../Api/chats_api.dart';
 import '../Api/persona_api.dart';
-import 'startCard.dart';
+import 'start_card.dart';
 
 class talkToMeScreen extends StatefulWidget {
 
@@ -65,7 +65,7 @@ class _talkToMeScreenState extends State<talkToMeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-               const startCard(),
+               const StartCard(),
               const SizedBox(height: 24),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -105,7 +105,7 @@ class _talkToMeScreenState extends State<talkToMeScreen> {
                               _createAndFetchPersona(context);
                             });
                           } else {
-                            return personsCard(
+                            return PersonsCard(
                                 personaCard: snapshot.data![index]);
                           }
                         },
@@ -125,9 +125,9 @@ class _talkToMeScreenState extends State<talkToMeScreen> {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              previousConversationsDetailsCard(
+              PreviousConversationsDetailsCard(
                   namedata: 'Wanas', timedata: '44:00m', datedata: '15-6-2023'),
-              previousConversationsDetailsCard(
+              PreviousConversationsDetailsCard(
                   namedata: 'Mona', timedata: '55:00m', datedata: '9-6-2023'),
             ],
           ),

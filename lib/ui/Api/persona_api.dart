@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:waanaass/ui/Constants/app_constants.dart';
-import 'package:waanaass/ui/TalkToMePage/personsCard.dart';
+import 'package:waanaass/ui/TalkToMePage/persons_card.dart';
 import 'Api.dart';
 
 

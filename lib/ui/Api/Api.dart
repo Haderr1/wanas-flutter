@@ -33,7 +33,7 @@ authenticationToken() async {
 authenticationResponse(http.Response response) async {
   TokenStorage ts = TokenStorage();
   if (response.statusCode == 403) {
-    ts.deletetoken();
+    ts.deleteToken();
     throw Exception("invalid token");
   }
 }

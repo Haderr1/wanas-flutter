@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:waanaass/ui/LoginPage/login_screen.dart';
-import 'package:waanaass/ui/TalkToMePage/talkToMeScreen.dart';
+import 'package:waanaass/ui/TalkToMePage/talk_to_me_screen.dart';
 import '../Api/Api.dart';
 import '../Storage/storage.dart';
 

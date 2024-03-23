@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../chatsmenu/chats_main.dart';
 
 class PersonaCard {
@@ -17,11 +15,10 @@ class PersonaCard {
   }
 }
 
-class personsCard extends StatelessWidget {
-  //String name;
+class PersonsCard extends StatelessWidget {
   final PersonaCard personaCard;
 
-  const personsCard({required this.personaCard, super.key});
+  const PersonsCard({required this.personaCard, super.key});
 
   @override
   Widget build(BuildContext context) {

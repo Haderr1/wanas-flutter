@@ -1,16 +1,4 @@
-// import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-//
-// class TokenStorage {
-//   static const FlutterSecureStorage storage = FlutterSecureStorage();
-//
-//   Future<void> saveToken(String token) async {
-//     await storage.write(key: 'token', value: token);
-//   }
-//
-//   Future<String?> getToken() async {
-//     return await storage.read(key: 'token');
-//   }
-// }
+import 'package:flutter/foundation.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class TokenStorage {
@@ -18,15 +6,19 @@ class TokenStorage {
   static const eltoken = 'token';
 
   saveToken(String token) async {
-    print("set eltoken: $token");
+    if (kDebugMode) {
+      print("set eltoken: $token");
+    }
     try {
       await storage.write(key: eltoken, value: token);
     } catch (e) {
-      print("set eltoken Error: $e");
+      if (kDebugMode) {
+        print("set eltoken Error: $e");
+      }
     }
   }
 
-  deletetoken() async {
+  deleteToken() async {
     storage.delete(key: eltoken);
   }
 

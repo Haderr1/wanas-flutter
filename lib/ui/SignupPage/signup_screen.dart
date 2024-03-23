@@ -4,7 +4,7 @@ import 'package:waanaass/ui/LoginPage/login_screen.dart';
 import 'package:waanaass/ui/SignupPage/signup_text_field.dart';
 import '../Api/register_api.dart';
 import '../LoginPage/social_media_card.dart';
-import '../TalkToMePage/talkToMeScreen.dart';
+import '../TalkToMePage/talk_to_me_screen.dart';
 
 class SignupScreen extends StatefulWidget {
   static const String routeName = 'signup';

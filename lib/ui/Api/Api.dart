@@ -1,8 +1,8 @@
 import 'package:http/http.dart' as http;
-import 'package:waanaass/ui/Constants/appConstants.dart';
+import 'package:waanaass/ui/Constants/app_constants.dart';
 import '../Storage/storage.dart';
 
-appConstants appConstant = appConstants();
+AppConstants appConstant = AppConstants();
 
 
 Future<Map<String, String>> makeHeader() async {
@@ -18,7 +18,7 @@ Future<Map<String, String>> makeHeader() async {
 }
 
 authenticationToken() async {
-  var url = Uri.http(appConstants.LOCAL_HOST, '/user');
+  var url = Uri.http(AppConstants.localHost, '/user');
   try {
     var response = await http.get(
       url,

@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:waanaass/ui/Constants/appConstants.dart';
+import 'package:waanaass/ui/Constants/app_constants.dart';
 import 'Api.dart';
 
 Future<List<Chat>> getChatsOfPersonaId(int personaId) async {
-  var url = Uri.http(appConstants.LOCAL_HOST, '/persona/$personaId');
+  var url = Uri.http(AppConstants.localHost, '/persona/$personaId');
   try {
     var response = await http.get(
       url,
@@ -21,7 +21,7 @@ Future<List<Chat>> getChatsOfPersonaId(int personaId) async {
 }
 
 addNewChat(int personaId) async {
-  var url = Uri.http(appConstants.LOCAL_HOST, '/persona/$personaId');
+  var url = Uri.http(AppConstants.localHost, '/persona/$personaId');
   try {
     var response = await http.put(
       url,

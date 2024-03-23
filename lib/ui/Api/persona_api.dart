@@ -1,6 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:waanaass/ui/Constants/appConstants.dart';
+import 'package:waanaass/ui/Constants/app_constants.dart';
 import 'package:waanaass/ui/TalkToMePage/personsCard.dart';
 import 'Api.dart';
 
@@ -8,7 +8,7 @@ import 'Api.dart';
 
 Future<void> createPersona( String name) async {
 
-    var url = Uri.http(appConstants.LOCAL_HOST, '/persona');
+    var url = Uri.http(AppConstants.localHost, '/persona');
     try {
       var response = await http.post(
         url,
@@ -42,7 +42,7 @@ Future<List<PersonaCard>> makePersonaList(String body) async {
 
 
 Future<List<PersonaCard>> fetchPersonaCards() async {
-  var url = Uri.http(appConstants.LOCAL_HOST, '/persona');
+  var url = Uri.http(AppConstants.localHost, '/persona');
 
   try {
     var response = await http.get(

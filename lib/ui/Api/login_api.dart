@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:waanaass/ui/Constants/appConstants.dart';
+import 'package:waanaass/ui/Constants/app_constants.dart';
 
-appConstants appConstant = appConstants();
+AppConstants appConstant = AppConstants();
 
 Future<String> loginApi(
     String email, String password) async {
-  var url = Uri.http(appConstants.LOCAL_HOST, '/login');
+  var url = Uri.http(AppConstants.localHost, '/login');
 
 
   var response = await http.post(

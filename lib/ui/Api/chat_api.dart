@@ -1,12 +1,12 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
-import 'package:waanaass/ui/Constants/appConstants.dart';
+import 'package:waanaass/ui/Constants/app_constants.dart';
 import 'Api.dart';
 
 
 
 Future<String> sendMessage(String message,int personaId,int chatId, ) async {
-  var url = Uri.http(appConstants.LOCAL_HOST, '/persona/$personaId/chat/$chatId');
+  var url = Uri.http(AppConstants.localHost, '/persona/$personaId/chat/$chatId');
 
   try {
     final response = await http.post(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:waanaass/ui/ChatPage/send_message_field.dart';
 import '../Api/chat_api.dart';
-import '../LocalDB/DBHelper.dart';
+import '../LocalDB/db_helper.dart';
 import 'message.dart';
 
 

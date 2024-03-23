@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:waanaass/ui/LoginPage/loginScreen.dart';
+import 'package:waanaass/ui/LoginPage/login_screen.dart';
 import 'package:waanaass/ui/TalkToMePage/talkToMeScreen.dart';
 import '../Api/Api.dart';
 import '../Storage/storage.dart';
@@ -41,7 +41,7 @@ class AuthPageState extends State<AuthPage> {
     if (token != null) {
       return const talkToMeScreen();
     } else {
-      return loginScreen();
+      return LoginScreen();
     }
   }
 }

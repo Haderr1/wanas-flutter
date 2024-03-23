@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:waanaass/ui/Buttons/primary_button.dart';
-import 'package:waanaass/ui/LoginPage/loginScreen.dart';
+import 'package:waanaass/ui/LoginPage/login_screen.dart';
 import 'package:waanaass/ui/SignupPage/signupTextField.dart';
 import '../Api/register_api.dart';
-import '../LoginPage/socialMediaCard.dart';
+import '../LoginPage/social_media_card.dart';
 import '../TalkToMePage/talkToMeScreen.dart';
 
 class signupScreen extends StatefulWidget {
@@ -147,13 +147,13 @@ class _signupScreenState extends State<signupScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: const [
                     // google button
-                    socialMediaCard(imagePath: 'assets/images/Google.png'),
+                    SocialMediaCard(imagePath: 'assets/images/Google.png'),
                     SizedBox(width: 25),
                     // apple button
-                    socialMediaCard(imagePath: 'assets/images/Vector.png'),
+                    SocialMediaCard(imagePath: 'assets/images/Vector.png'),
                     SizedBox(width: 25),
                     // apple button
-                    socialMediaCard(imagePath: 'assets/images/Facebook.png'),
+                    SocialMediaCard(imagePath: 'assets/images/Facebook.png'),
                   ],
                 ),
                 const SizedBox(height: 20),
@@ -169,7 +169,7 @@ class _signupScreenState extends State<signupScreen> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => loginScreen()),
+                          MaterialPageRoute(builder: (context) => LoginScreen()),
                         );
                       },
                       child: Text(

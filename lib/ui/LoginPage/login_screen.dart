@@ -1,17 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:waanaass/ui/LoginPage/socialMediaCard.dart';
+import 'package:waanaass/ui/LoginPage/social_media_card.dart';
 import '../Api/login_api.dart';
 import '../Buttons/primary_button.dart';
 import '../SignupPage/signupScreen.dart';
-import 'package:waanaass/ui/LoginPage/loginTextField.dart';
+import 'package:waanaass/ui/LoginPage/login_text_field.dart';
 
 import '../TalkToMePage/talkToMeScreen.dart';
 
-class loginScreen extends StatelessWidget {
+class LoginScreen extends StatelessWidget {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   static const String routeName = 'login';
   final formKey = GlobalKey<FormState>();
+
+  LoginScreen({super.key});
 
 
 
@@ -23,7 +25,7 @@ class loginScreen extends StatelessWidget {
       if(token !=""){
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => talkToMeScreen()),
+          MaterialPageRoute(builder: (context) => const talkToMeScreen()),
         );
       }
     }
@@ -54,14 +56,14 @@ class loginScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 25),
-                  loginTextField(
+                  LoginTextField(
                     controller: emailController,
                     hintText: 'Email',
                     obscureText: false,
                     formKey: formKey,
                   ),
                   const SizedBox(height: 10),
-                  loginTextField(
+                  LoginTextField(
                     controller: passwordController,
                     hintText: 'Password',
                     obscureText: false,
@@ -69,8 +71,8 @@ class loginScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
                   // forgot password?
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 25.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
@@ -118,17 +120,17 @@ class loginScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 30),
                   // google + apple +  facebook sign in buttons
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       // google button
-                      socialMediaCard(imagePath: 'assets/images/Google.png'),
+                      SocialMediaCard(imagePath: 'assets/images/Google.png'),
                       SizedBox(width: 25),
                       // apple button
-                      socialMediaCard(imagePath: 'assets/images/Vector.png'),
+                      SocialMediaCard(imagePath: 'assets/images/Vector.png'),
                       SizedBox(width: 25),
                       // apple button
-                      socialMediaCard(imagePath: 'assets/images/Facebook.png'),
+                      SocialMediaCard(imagePath: 'assets/images/Facebook.png'),
                     ],
                   ),
                   const SizedBox(height: 20),
@@ -136,7 +138,7 @@ class loginScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
+                      const Text(
                         'Don\'t have an Account?',
                         style: TextStyle(color: Colors.black),
                       ),
@@ -149,7 +151,7 @@ class loginScreen extends StatelessWidget {
                                 builder: (context) => signupScreen()),
                           );
                         },
-                        child: Text(
+                        child: const Text(
                           'Sign Up',
                           style: TextStyle(
                             color: Color(0xFF00966A),

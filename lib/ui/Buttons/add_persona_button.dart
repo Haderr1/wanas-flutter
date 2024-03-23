@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class AddPersonaButton extends StatelessWidget {
 
   Function()? onTap;
-   AddPersonaButton({ required this.onTap, });
+   AddPersonaButton({super.key,  required this.onTap, });
 
 
   @override
@@ -20,10 +19,10 @@ class AddPersonaButton extends StatelessWidget {
             decoration: BoxDecoration(
 
               borderRadius: BorderRadius.circular(8),
-              color: Color(0xFF00966A),
+              color: const Color(0xFF00966A),
 
             ),
-            child:Icon(Icons.add, color: Colors.white, size: 24) ,
+            child:const Icon(Icons.add, color: Colors.white, size: 24) ,
           ),
         ],
       ),

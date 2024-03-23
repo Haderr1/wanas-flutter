@@ -1,27 +1,27 @@
 import 'package:flutter/material.dart';
 class SmallButton extends StatelessWidget {
   Function()? onPressed;
-  String ButtonText = "ButtonText";
+  String buttonText = "ButtonText";
 
-  SmallButton({Key? key, required this.onPressed, required this.ButtonText});
+  SmallButton({super.key, required this.onPressed, required this.buttonText});
 
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
-        backgroundColor: Color(0xFF00966A),
+        backgroundColor: const Color(0xFF00966A),
         foregroundColor: Colors.white,
-        textStyle: TextStyle(
-          fontSize: 20, // Change the font size
+        textStyle: const TextStyle(
+          fontSize: 20,
         ),
-        padding: EdgeInsets.symmetric(horizontal: 40, vertical: 7),
+        padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 7),
         shape: RoundedRectangleBorder(
           borderRadius:
-          BorderRadius.circular(12), // Change the border radius
+          BorderRadius.circular(12),
         ),
       ),
-      child: Text(ButtonText),
+      child: Text(buttonText),
     );
   }
 }

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:waanaass/ui/Buttons/SmallButton.dart';
+import 'package:waanaass/ui/Buttons/small_button.dart';
 import 'package:waanaass/ui/ChatPage/chatScreen.dart';
 import 'package:waanaass/ui/TalkToMePage/personsCard.dart';
 
@@ -40,7 +40,7 @@ class startCard extends StatelessWidget {
                   //   context,
                   //   MaterialPageRoute(builder: (context) =>  chatScreen(personaid:personaid,chatid: chatid,key: super.key,)),
                   // );
-                }, ButtonText: "Start")
+                }, buttonText: "Start")
               ],
             ),
             SizedBox(width: 24),

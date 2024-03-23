@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:waanaass/ui/LoginPage/socialMediaCard.dart';
 import '../Api/login_api.dart';
-import '../Buttons/PrimaryButton.dart';
+import '../Buttons/primary_button.dart';
 import '../SignupPage/signupScreen.dart';
 import 'package:waanaass/ui/LoginPage/loginTextField.dart';
 
@@ -87,7 +87,7 @@ class loginScreen extends StatelessWidget {
                     onTap: () {
                       signUserIn();
                     },
-                    ButtonText: "Log In",
+                    buttonText: "Log In",
                   ),
                   const SizedBox(height: 50),
                   Padding(

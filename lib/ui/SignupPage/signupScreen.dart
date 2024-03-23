@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:waanaass/ui/Buttons/PrimaryButton.dart';
+import 'package:waanaass/ui/Buttons/primary_button.dart';
 import 'package:waanaass/ui/LoginPage/loginScreen.dart';
 import 'package:waanaass/ui/SignupPage/signupTextField.dart';
 import '../Api/register_api.dart';
@@ -113,7 +113,7 @@ class _signupScreenState extends State<signupScreen> {
                     onTap: () {
                       signUserUp();
                     },
-                    ButtonText: "Sign Up"),
+                    buttonText: "Sign Up"),
                 SizedBox(height: 10),
                 SizedBox(height: 15),
                 Padding(

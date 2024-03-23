@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:waanaass/ui/Buttons/AddPersonaButton.dart';
+import 'package:waanaass/ui/Buttons/add_persona_button.dart';
 import 'package:waanaass/ui/TalkToMePage/personsCard.dart';
 import 'package:waanaass/ui/TalkToMePage/previousConversationsDetailsCard.dart';
 import '../Api/chats_api.dart';
@@ -65,7 +65,7 @@ class _talkToMeScreenState extends State<talkToMeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-               startCard(),
+               const startCard(),
               const SizedBox(height: 24),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -101,7 +101,7 @@ class _talkToMeScreenState extends State<talkToMeScreen> {
                         itemCount: snapshot.data!.length + 1,
                         itemBuilder: (BuildContext context, int index) {
                           if (index == snapshot.data!.length) {
-                            return AddPersonaButton(onTap: () {
+                            return  AddPersonaButton(onTap: () {
                               _createAndFetchPersona(context);
                             });
                           } else {

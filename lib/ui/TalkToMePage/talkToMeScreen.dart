@@ -21,12 +21,34 @@ class _talkToMeScreenState extends State<talkToMeScreen> {
 
   Future<List<PersonaCard>> _futurePersonaCards = fetchPersonaCards();
   void _createAndFetchPersona(BuildContext context) async {
-    await createPersona(context);
-    setState(() {
-      _futurePersonaCards = fetchPersonaCards();
-    });
-  }
+    String? name;
+    name = await showDialog<String>(
+      context: context,
+      builder: (context) =>
+          AlertDialog(
+            title: Text('Enter Name'),
+            content: TextField(
+              onChanged: (value) => name = value,
+              decoration: InputDecoration(hintText: 'Name'),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop(name);
+                },
+                child: Text('OK'),
+              ),
+            ],
+          ),
+    );
 
+    if (name != null) {
+      await createPersona(name!);
+      setState(() {
+        _futurePersonaCards = fetchPersonaCards();
+      });
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

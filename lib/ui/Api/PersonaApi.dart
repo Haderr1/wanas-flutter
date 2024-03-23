@@ -8,28 +8,8 @@ import 'Api.dart';
 
 
 
-Future<void> createPersona( BuildContext context) async {
-  String? name;
-  name = await showDialog<String>(
-    context: context,
-    builder: (context) => AlertDialog(
-      title: Text('Enter Name'),
-      content: TextField(
-        onChanged: (value) => name = value,
-        decoration: InputDecoration(hintText: 'Name'),
-      ),
-      actions: [
-        TextButton(
-          onPressed: () {
-            Navigator.of(context).pop(name);
-          },
-          child: Text('OK'),
-        ),
-      ],
-    ),
-  );
+Future<void> createPersona( String name) async {
 
-  if (name != null) {
     var url = Uri.http(appConstants.LOCAL_HOST, '/persona');
     //var getPersonasUrl = Uri.http('$local_host:3000', '/getpersonas');
     try {
@@ -48,7 +28,7 @@ Future<void> createPersona( BuildContext context) async {
     } catch (e) {
       print('Error: $e');
     }
-  }
+
 }
 
 Future<List<PersonaCard>> makePersonaList(String elbody) async {

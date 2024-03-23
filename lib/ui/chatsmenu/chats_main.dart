@@ -75,26 +75,22 @@ class _Chatsliststate extends State<ListMaker> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      itemCount: chatslist.length + 1,
-      itemBuilder: (BuildContext context, int index) {
-        if (index == chatslist.length) {
-          return AddChatButton(onpressed: () {
-            addNewChat(personaid);
-            addtochatlist();
-          });
-        }
-        return ChatsCard(elchat: chatslist[index],personaid: personaid,key: widget.key,);
-      },
-      separatorBuilder: (context, index) {
-        return const Divider(
-          height: 2,
-          thickness: 2,
-          indent: 0,
-          endIndent: 0,
-          color: Color(0xffB6B6BE),
-        );
-      },
+    return Padding(
+      padding: EdgeInsets.only(left: 24, right: 24,top: 24), // Add padding here
+      child: ListView.separated(
+        itemCount: chatslist.length + 1,
+        itemBuilder: (BuildContext context, int index) {
+          if (index == chatslist.length) {
+            return AddChatButton(onpressed: () {
+              addNewChat(personaid);
+              addtochatlist();
+            });
+          }
+          return ChatsCard(elchat: chatslist[index],personaid: personaid,key: widget.key,);
+        }, separatorBuilder: (BuildContext context, int index) { return SizedBox(height: 16,) ; },
+
+
+      ),
     );
   }
 

@@ -49,7 +49,7 @@ class personsCard extends StatelessWidget {
             ),
             child: Center(
               child: Text(
-                "id:${personaCard.id} name: ${personaCard.name.trim()}",
+                personaCard.name.trim(),
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: Color(0xFF00966A),

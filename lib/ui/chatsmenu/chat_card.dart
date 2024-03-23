@@ -33,14 +33,25 @@ class AddChatButton extends StatelessWidget {
         onPressed: () {
           onpressed();
         },
-        icon: const Icon(Icons.add, color: Colors.white, size: 33),
+        icon: const Icon(Icons.add, color: Color(0xFF00966A), size: 32),
         style: greenButtonStyle);
   }
 }
 
-ButtonStyle greenButtonStyle = const ButtonStyle(
-  backgroundColor: MaterialStatePropertyAll(Color(0xFF00966A)),
-  foregroundColor: MaterialStatePropertyAll(Color(0xffffffff)),
-  textStyle: MaterialStatePropertyAll(TextStyle(fontSize: 25)),
-  padding: MaterialStatePropertyAll(EdgeInsets.all(15)),
+
+ButtonStyle greenButtonStyle =  ButtonStyle(
+  backgroundColor: const MaterialStatePropertyAll(Colors.white),
+  foregroundColor: const MaterialStatePropertyAll(Color(0xFF00966A)),
+  textStyle: const MaterialStatePropertyAll(TextStyle(fontSize: 25,color: Colors.white)),
+  padding: const MaterialStatePropertyAll(EdgeInsets.all(16)),
+  shape: MaterialStateProperty.all<OutlinedBorder>(
+    RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(8),
+      side: const BorderSide(
+        color: Color(0xFF00966A),
+        width: 2,
+      ),
+    ),
+  ),
+
 );

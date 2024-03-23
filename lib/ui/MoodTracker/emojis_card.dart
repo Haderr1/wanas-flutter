@@ -1,11 +1,14 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
-class emjscard extends StatefulWidget {
+class EmojisCard extends StatefulWidget {
+  const EmojisCard({super.key});
+
   @override
-  _emjscardState createState() => _emjscardState();
+  EmojisCardState createState() => EmojisCardState();
 }
 
-class _emjscardState extends State<emjscard> {
+class EmojisCardState extends State<EmojisCard> {
   bool cardVisible = true;
   String specificText = '';
 
@@ -20,15 +23,15 @@ class _emjscardState extends State<emjscard> {
             child: Container(
               decoration: BoxDecoration(
                   border: Border.all(
-                    color: Color(0xFF66C0A6),
+                    color: const Color(0xFF66C0A6),
                     width: 1.0,
 
                   ),
                   borderRadius: BorderRadius.circular(14)),
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: [
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
@@ -41,7 +44,7 @@ class _emjscardState extends State<emjscard> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 10.0),
+                  const SizedBox(height: 10.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -76,14 +79,14 @@ class _emjscardState extends State<emjscard> {
             child: Container(
               decoration: BoxDecoration(
                   border: Border.all(
-                    color: Color(0xFF66C0A6),
+                    color: const Color(0xFF66C0A6),
                     width: 1.0,
                   ),
                   borderRadius: BorderRadius.circular(14)),
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: Text(
                 specificText,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.black,
                   fontSize: 14.0,
                   fontWeight: FontWeight.w500,
@@ -102,7 +105,9 @@ class _emjscardState extends State<emjscard> {
     setState(() {
       cardVisible = false;
       specificText = message;
-      print(message);
+      if (kDebugMode) {
+        print(message);
+      }
     });
   }
 }
@@ -112,7 +117,7 @@ class ClickableImage extends StatelessWidget {
   final String grayText;
   final VoidCallback onTap;
 
-  ClickableImage(this.imagePath, this.grayText, this.onTap);
+  const ClickableImage(this.imagePath, this.grayText, this.onTap, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -121,10 +126,10 @@ class ClickableImage extends StatelessWidget {
       child: Column(
         children: [
           Image.asset(imagePath, width: 50.0, height: 50.0),
-          SizedBox(height: 5.0),
+          const SizedBox(height: 5.0),
           Text(
             grayText,
-            style: TextStyle(
+            style: const TextStyle(
               color: Colors.grey,
               fontSize: 12.0,
             ),

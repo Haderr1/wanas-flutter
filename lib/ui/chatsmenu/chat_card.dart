@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:waanaass/ui/ChatPage/chatScreen.dart';
-import 'package:waanaass/ui/TalkToMePage/personsCard.dart';
 import '../Api/ChatsApi.dart';
 
 class ChatsCard extends StatelessWidget {
@@ -15,11 +14,16 @@ class ChatsCard extends StatelessWidget {
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => chatScreen(personaid: personaid,chatid:elchat.chatid ,key: super.key ,)),
+          MaterialPageRoute(
+              builder: (context) => chatScreen(
+                    personaid: personaid,
+                    chatid: elchat.chatid,
+                    key: super.key,
+                  )),
         );
       },
       style: greenButtonStyle,
-      child: Text("chat ${elchat.chatid.toString()}"),
+      child: Text("chat ${elchat.chatid.toString()}",),
     );
   }
 }
@@ -38,20 +42,19 @@ class AddChatButton extends StatelessWidget {
   }
 }
 
-
-ButtonStyle greenButtonStyle =  ButtonStyle(
+ButtonStyle greenButtonStyle = ButtonStyle(
   backgroundColor: const MaterialStatePropertyAll(Colors.white),
   foregroundColor: const MaterialStatePropertyAll(Color(0xFF00966A)),
-  textStyle: const MaterialStatePropertyAll(TextStyle(fontSize: 25,color: Colors.white)),
+  textStyle: const MaterialStatePropertyAll(
+      TextStyle(fontSize: 25, color: Colors.white)),
   padding: const MaterialStatePropertyAll(EdgeInsets.all(16)),
   shape: MaterialStateProperty.all<OutlinedBorder>(
     RoundedRectangleBorder(
-      borderRadius: BorderRadius.circular(8),
+      borderRadius: BorderRadius.circular(16),
       side: const BorderSide(
         color: Color(0xFF00966A),
         width: 2,
       ),
     ),
   ),
-
 );

@@ -37,10 +37,12 @@ class _chatScreenState extends State<chatScreen> {
     _databaseHelper = DatabaseHelper();
     _loadMessages();
   }
+
   void clearMessages() async {
-    await _databaseHelper.clearTable();
+    await _databaseHelper.clearMessages(chatid,personaid);
     _loadMessages(); // Reload messages after clearing the table
   }
+
   Future<void> _loadMessages() async {
     final messagesFromDb = await _databaseHelper.getMessages(chatid, personaid);
     setState(() {

@@ -58,8 +58,12 @@ class DatabaseHelper {
     return await db.query('messages', where: 'chatid = ? AND personaid = ?', whereArgs: [chatid, personaid]);
   }
 
-  Future<void> clearTable() async {
+  Future<void> clearMessages(int chatid, int personaid) async {
     final Database db = await database;
-    await db.delete('messages');
+    await db.delete(
+      'messages',
+      where: 'chatid = ? AND personaid = ?',
+      whereArgs: [chatid, personaid],
+    );
   }
 }

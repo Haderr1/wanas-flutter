@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:waanaass/ui/ChatPage/chatScreen.dart';
-import '../Api/ChatsApi.dart';
+import '../Api/chats_api.dart';
 
 class ChatsCard extends StatelessWidget {
   final Chat elchat;
@@ -17,13 +17,13 @@ class ChatsCard extends StatelessWidget {
           MaterialPageRoute(
               builder: (context) => chatScreen(
                     personaid: personaid,
-                    chatid: elchat.chatid,
+                    chatid: elchat.chatId,
                     key: super.key,
                   )),
         );
       },
       style: greenButtonStyle,
-      child: Text("chat ${elchat.chatid.toString()}",),
+      child: Text("chat ${elchat.chatId.toString()}",),
     );
   }
 }

@@ -27,7 +27,7 @@ class _AuthPageState extends State<AuthPage> {
     try {
       TokenStorage tokenStorage = TokenStorage();
       token = await tokenStorage.getToken();
-      authenttoken();
+      authenticationToken();
     } catch (e) {
       rethrow;
     }

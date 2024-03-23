@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:waanaass/ui/Buttons/AddPersonaButton.dart';
 import 'package:waanaass/ui/TalkToMePage/personsCard.dart';
 import 'package:waanaass/ui/TalkToMePage/previousConversationsDetailsCard.dart';
-import '../Api/ChatsApi.dart';
-import '../Api/PersonaApi.dart';
+import '../Api/chats_api.dart';
+import '../Api/persona_api.dart';
 import 'startCard.dart';
 
 class talkToMeScreen extends StatefulWidget {

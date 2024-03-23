@@ -1,6 +1,4 @@
 import 'dart:convert';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:waanaass/ui/Constants/appConstants.dart';
 import 'package:waanaass/ui/TalkToMePage/personsCard.dart';
@@ -11,9 +9,7 @@ import 'Api.dart';
 Future<void> createPersona( String name) async {
 
     var url = Uri.http(appConstants.LOCAL_HOST, '/persona');
-    //var getPersonasUrl = Uri.http('$local_host:3000', '/getpersonas');
     try {
-      // Send a POST request to create a persona
       var response = await http.post(
         url,
         headers: await makeHeader(),
@@ -22,6 +18,7 @@ Future<void> createPersona( String name) async {
 
       if (response.statusCode == 200) {
         print('Persona created successfully');
+
       } else {
         print('Failed to create persona: ${response.statusCode}');
       }
@@ -31,13 +28,13 @@ Future<void> createPersona( String name) async {
 
 }
 
-Future<List<PersonaCard>> makePersonaList(String elbody) async {
+Future<List<PersonaCard>> makePersonaList(String body) async {
   try {
-    List<PersonaCard> PersonaList;
-    PersonaList =
-        (json.decode(elbody) as List).map((i) => PersonaCard.fromJson(i)).toList();
-    print(PersonaList[0]);
-    return PersonaList;
+    List<PersonaCard> personaList;
+    personaList =
+        (json.decode(body) as List).map((i) => PersonaCard.fromJson(i)).toList();
+    print(personaList[0]);
+    return personaList;
   } catch (e) {
     throw Exception("Error parsing list $e");
   }
@@ -46,8 +43,6 @@ Future<List<PersonaCard>> makePersonaList(String elbody) async {
 
 Future<List<PersonaCard>> fetchPersonaCards() async {
   var url = Uri.http(appConstants.LOCAL_HOST, '/persona');
-
-  // var url = Uri.parse('http://your-go-server-ip:port/getpersonacards'); // Adjust the URL
 
   try {
     var response = await http.get(

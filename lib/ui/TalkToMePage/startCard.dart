@@ -4,7 +4,7 @@ import 'package:waanaass/ui/Buttons/SmallButton.dart';
 import 'package:waanaass/ui/ChatPage/chatScreen.dart';
 import 'package:waanaass/ui/TalkToMePage/personsCard.dart';
 
-import '../Api/ChatsApi.dart';
+import '../Api/chats_api.dart';
 
 class startCard extends StatelessWidget {
 

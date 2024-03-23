@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:waanaass/ui/ChatPage/sendMessageField.dart';
-import '../Api/ChatApi.dart';
+import '../Api/chat_api.dart';
 import '../LocalDB/DBHelper.dart';
 import 'Message.dart';
 
@@ -58,10 +58,27 @@ class _chatScreenState extends State<chatScreen> {
   void sendMessagee(String message) {
     _addMessage(message, true);
     _databaseHelper.insertMessage(message, true, chatid, personaid);
-    sendMessage(message, personaid, chatid, context).then((response) {
+    sendMessage(message, personaid, chatid).then((response) {
       _addMessage(response, false);
       _databaseHelper.insertMessage(response, false, chatid, personaid);
     }).catchError((error) {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return AlertDialog(
+            title: Text("Error"),
+            content: Text("Failed to send message: $error"),
+            actions: [
+              TextButton(
+                child: Text("OK"),
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          );
+        },
+      );
       _addMessage("Error: $error", false);
     });
   }

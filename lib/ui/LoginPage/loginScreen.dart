@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:waanaass/ui/LoginPage/socialMediaCard.dart';
-import '../Api/LoginApi.dart';
+import '../Api/login_api.dart';
 import '../Buttons/PrimaryButton.dart';
 import '../SignupPage/signupScreen.dart';
 import 'package:waanaass/ui/LoginPage/loginTextField.dart';
+
+import '../TalkToMePage/talkToMeScreen.dart';
 
 class loginScreen extends StatelessWidget {
   final emailController = TextEditingController();
@@ -15,10 +17,15 @@ class loginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    void signUserIn() {
+    Future<void> signUserIn() async {
     if (formKey.currentState!.validate()) {
-      loginApi(emailController.text , passwordController.text, context);
-
+      String token = await loginApi(emailController.text , passwordController.text);
+      if(token !=""){
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => talkToMeScreen()),
+        );
+      }
     }
   }
     return Scaffold(

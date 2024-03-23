@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:waanaass/ui/chatsmenu/chat_card.dart';
-import '../Api/ChatsApi.dart';
+import '../Api/chats_api.dart';
 import 'menu_scaf.dart';
 
 class ChatsMain extends StatefulWidget {
@@ -95,7 +95,7 @@ class _Chatsliststate extends State<ListMaker> {
   }
 
   void addtochatlist() {
-    Chat c = Chat(chatid: chatslist.length + 1);
+    Chat c = Chat(chatId: chatslist.length + 1);
     setState(() {
       widget.chatslist.add(c);
     });

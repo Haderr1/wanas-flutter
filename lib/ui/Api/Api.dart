@@ -7,30 +7,30 @@ appConstants appConstant = appConstants();
 
 Future<Map<String, String>> makeHeader() async {
   try {
-    String eltoken =  await appConstant.tokenStorage.getToken() ;
-    Map<String, String> elheader = new Map();
-    elheader['Content-Type'] = 'application/json; charset=UTF-8';
-    elheader['x-jwt-token'] = eltoken;
-    return elheader;
+    String token =  await appConstant.tokenStorage.getToken() ;
+    Map<String, String> header = {};
+    header['Content-Type'] = 'application/json; charset=UTF-8';
+    header['x-jwt-token'] = token;
+    return header;
   } catch (e) {
     throw Exception('not authenticated because $e');
   }
 }
 
-authenttoken() async {
+authenticationToken() async {
   var url = Uri.http(appConstants.LOCAL_HOST, '/user');
   try {
     var response = await http.get(
       url,
       headers: await makeHeader(),
     );
-    authentresp(response);
+    authenticationResponse(response);
   } catch (e) {
     rethrow;
   }
 }
 
-authentresp(http.Response response) async {
+authenticationResponse(http.Response response) async {
   TokenStorage ts = TokenStorage();
   if (response.statusCode == 403) {
     ts.deletetoken();

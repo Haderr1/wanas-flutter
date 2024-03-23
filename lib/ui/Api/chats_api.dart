@@ -3,8 +3,8 @@ import 'package:http/http.dart' as http;
 import 'package:waanaass/ui/Constants/appConstants.dart';
 import 'Api.dart';
 
-Future<List<Chat>> getChatsOfPersonaId(int personaid) async {
-  var url = Uri.http(appConstants.LOCAL_HOST, '/persona/$personaid');
+Future<List<Chat>> getChatsOfPersonaId(int personaId) async {
+  var url = Uri.http(appConstants.LOCAL_HOST, '/persona/$personaId');
   try {
     var response = await http.get(
       url,
@@ -20,8 +20,8 @@ Future<List<Chat>> getChatsOfPersonaId(int personaid) async {
   }
 }
 
-addNewChat(int personaid) async {
-  var url = Uri.http(appConstants.LOCAL_HOST, '/persona/$personaid');
+addNewChat(int personaId) async {
+  var url = Uri.http(appConstants.LOCAL_HOST, '/persona/$personaId');
   try {
     var response = await http.put(
       url,
@@ -36,10 +36,10 @@ addNewChat(int personaid) async {
 }
 
 class Chat {
-  final int chatid;
+  final int chatId;
 
   const Chat({
-    required this.chatid,
+    required this.chatId,
   });
 
   factory Chat.fromJson(Map<String, dynamic> json) {
@@ -48,23 +48,24 @@ class Chat {
         'id': int chatid,
       } =>
         Chat(
-          chatid: chatid,
+          chatId: chatid,
         ),
       _ => throw const FormatException('failed to parse chats'),
     };
+
   }
 }
 
-Future<List<Chat>> makeChatList(String elbody) async {
+Future<List<Chat>> makeChatList(String body) async {
   try {
     List<Chat> chatList = [];
-    var parsed = json.decode(elbody);
+    var parsed = json.decode(body);
 
     if (parsed is List<dynamic>) {
-      chatList = (parsed as List).map((i) => Chat.fromJson(i)).toList();
-      print("hellofromheer");
+      chatList = (parsed).map((i) => Chat.fromJson(i)).toList();
+      print("hello from her");
     } else {
-      print("hhee");
+      print("thee");
       return chatList;
     }
 

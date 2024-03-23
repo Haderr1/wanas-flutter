@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:waanaass/ui/Buttons/PrimaryButton.dart';
 import 'package:waanaass/ui/LoginPage/loginScreen.dart';
 import 'package:waanaass/ui/SignupPage/signupTextField.dart';
-import '../Api/RegisterApi.dart';
+import '../Api/register_api.dart';
 import '../LoginPage/socialMediaCard.dart';
+import '../TalkToMePage/talkToMeScreen.dart';
 
 class signupScreen extends StatefulWidget {
   static const String routeName = 'signup';
@@ -20,11 +21,16 @@ class _signupScreenState extends State<signupScreen> {
   final formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    void signUserUp() {
+    Future<void> signUserUp() async {
       if (formKey.currentState!.validate()) {
-        signUpApi(fullNameController.text, emailController.text,
-            phoneNumberController.text, passwordController.text,
-            context);
+        String token = await signUpApi(fullNameController.text, emailController.text,
+            phoneNumberController.text, passwordController.text);
+        if(token !=""){
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => talkToMeScreen()),
+          );
+        }
 
       }
     }

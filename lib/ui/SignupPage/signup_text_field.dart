@@ -1,13 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class signupTextField extends StatelessWidget {
+class SignupTextField extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final bool obscureText;
   final GlobalKey<FormState> formKey;
 
-  const signupTextField({
+  const SignupTextField({
     Key? key,
     required this.controller,
     required this.hintText,
@@ -34,7 +33,7 @@ class signupTextField extends StatelessWidget {
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25.0),
-      child: Container(
+      child: SizedBox(
         height: 52.0,
         width: double.infinity,
         child: TextFormField(
@@ -43,7 +42,7 @@ class signupTextField extends StatelessWidget {
             decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(9.0),
-                borderSide: BorderSide(color: Colors.grey),
+                borderSide: const BorderSide(color: Colors.grey),
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(9.0),
@@ -62,7 +61,7 @@ class signupTextField extends StatelessWidget {
               if (hintText == 'Email') {
                 // Regular expression for validating email
                 // You can adjust this pattern as per your requirements
-                final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+                final emailRegex = RegExp(r'^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$');
                 if (!emailRegex.hasMatch(value)) {
                   return 'Please enter a valid email';
                 }

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:waanaass/ui/LoginPage/social_media_card.dart';
 import '../Api/login_api.dart';
 import '../Buttons/primary_button.dart';
-import '../SignupPage/signupScreen.dart';
+import '../SignupPage/signup_screen.dart';
 import 'package:waanaass/ui/LoginPage/login_text_field.dart';
 
 import '../TalkToMePage/talkToMeScreen.dart';
@@ -148,7 +148,7 @@ class LoginScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => signupScreen()),
+                                builder: (context) => SignupScreen()),
                           );
                         },
                         child: const Text(

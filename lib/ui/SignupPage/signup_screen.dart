@@ -1,19 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:waanaass/ui/Buttons/primary_button.dart';
 import 'package:waanaass/ui/LoginPage/login_screen.dart';
-import 'package:waanaass/ui/SignupPage/signupTextField.dart';
+import 'package:waanaass/ui/SignupPage/signup_text_field.dart';
 import '../Api/register_api.dart';
 import '../LoginPage/social_media_card.dart';
 import '../TalkToMePage/talkToMeScreen.dart';
 
-class signupScreen extends StatefulWidget {
+class SignupScreen extends StatefulWidget {
   static const String routeName = 'signup';
 
+  const SignupScreen({super.key});
+
   @override
-  State<signupScreen> createState() => _signupScreenState();
+  State<SignupScreen> createState() => _SignupScreenState();
 }
 
-class _signupScreenState extends State<signupScreen> {
+class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController fullNameController = TextEditingController();
   final TextEditingController emailController = TextEditingController();
   final TextEditingController phoneNumberController = TextEditingController();
@@ -28,7 +30,7 @@ class _signupScreenState extends State<signupScreen> {
         if(token !=""){
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => talkToMeScreen()),
+            MaterialPageRoute(builder: (context) => const talkToMeScreen()),
           );
         }
 
@@ -40,14 +42,14 @@ class _signupScreenState extends State<signupScreen> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
+          icon: const Icon(Icons.arrow_back_ios),
           color: Colors.black,
           onPressed: () {
             Navigator.of(context).pop();
           },
         ),
         automaticallyImplyLeading: false,
-        iconTheme: IconThemeData(color: Colors.black),
+        iconTheme: const IconThemeData(color: Colors.black),
       ),
       body: SafeArea(
         child: Form(
@@ -58,7 +60,7 @@ class _signupScreenState extends State<signupScreen> {
               children: [
                 Align(                alignment: Alignment.topCenter,
                   child: FractionallySizedBox(
-                    widthFactor: 0.4, // Adjust the width as needed
+                    widthFactor: 0.4,
                     child: Image.asset(
                       'assets/images/logo.png',
                       width: double.infinity,
@@ -74,36 +76,36 @@ class _signupScreenState extends State<signupScreen> {
                   ),
                 ),
                 const SizedBox(height: 25),
-                signupTextField(
+                SignupTextField(
                   controller: fullNameController,
                   hintText: 'Full Name',
                   obscureText: false,
                   formKey: formKey,
                 ),
                 const SizedBox(height: 10),
-                signupTextField(
+                SignupTextField(
                   controller: emailController,
                   hintText: 'Email',
                   obscureText: false,
                   formKey: formKey,
                 ),
                 const SizedBox(height: 10),
-                signupTextField(
+                SignupTextField(
                   controller: phoneNumberController,
                   hintText: 'Phone Number',
                   obscureText: false,
                   formKey: formKey,
                 ),
                 const SizedBox(height: 10),
-                signupTextField(
+                SignupTextField(
                   controller: passwordController,
                   hintText: 'Password',
                   obscureText: false,
                   formKey: formKey,
                 ),
                 const SizedBox(height: 10),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 25.0),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                   ),
@@ -114,8 +116,8 @@ class _signupScreenState extends State<signupScreen> {
                       signUserUp();
                     },
                     buttonText: "Sign Up"),
-                SizedBox(height: 10),
-                SizedBox(height: 15),
+                const SizedBox(height: 10),
+                const SizedBox(height: 15),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 25.0),
                   child: Row(
@@ -143,9 +145,9 @@ class _signupScreenState extends State<signupScreen> {
                   ),
                 ),
                 const SizedBox(height: 20),
-                Row(
+                const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
+                  children: [
                     // google button
                     SocialMediaCard(imagePath: 'assets/images/Google.png'),
                     SizedBox(width: 25),
@@ -160,7 +162,7 @@ class _signupScreenState extends State<signupScreen> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       'Already have an Account?',
                       style: TextStyle(color: Colors.black),
                     ),
@@ -172,7 +174,7 @@ class _signupScreenState extends State<signupScreen> {
                           MaterialPageRoute(builder: (context) => LoginScreen()),
                         );
                       },
-                      child: Text(
+                      child: const Text(
                         'Login in',
                         style: TextStyle(
                           color: Color(0xFF00966A),

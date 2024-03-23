@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:waanaass/ui/Authentication/AuthLogin.dart';
-import 'package:waanaass/ui/ChatPage/chatScreen.dart';
+import 'package:waanaass/ui/ChatPage/chat_screen.dart';
 import 'package:waanaass/ui/LoginPage/loginScreen.dart';
 import 'package:waanaass/ui/MoodTracker/moodTrackerScreen.dart';
 import 'package:waanaass/ui/SignupPage/signupScreen.dart';

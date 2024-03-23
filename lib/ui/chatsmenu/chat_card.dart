@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:waanaass/ui/ChatPage/chatScreen.dart';
+import 'package:waanaass/ui/ChatPage/chat_screen.dart';
 import '../Api/chats_api.dart';
 
 class ChatsCard extends StatelessWidget {
@@ -15,9 +15,9 @@ class ChatsCard extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => chatScreen(
-                    personaid: personaid,
-                    chatid: elchat.chatId,
+              builder: (context) => ChatScreen(
+                    personaId: personaid,
+                    chatId: elchat.chatId,
                     key: super.key,
                   )),
         );

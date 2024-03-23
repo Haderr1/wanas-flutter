@@ -1,50 +1,50 @@
 import 'package:flutter/material.dart';
-import 'package:waanaass/ui/ChatPage/sendMessageField.dart';
+import 'package:waanaass/ui/ChatPage/send_message_field.dart';
 import '../Api/chat_api.dart';
 import '../LocalDB/DBHelper.dart';
-import 'Message.dart';
+import 'message.dart';
 
 
-class chatScreen extends StatefulWidget {
-  final int personaid;
-  final int chatid;
+class ChatScreen extends StatefulWidget {
+  final int personaId;
+  final int chatId;
 
-  chatScreen({required this.personaid, required this.chatid, Key? key}) : super(key: key);
+  const ChatScreen({required this.personaId, required this.chatId, Key? key}) : super(key: key);
 
   @override
-  _chatScreenState createState() => _chatScreenState();
-  static const String routeName = 'chatscreen';
+  ChatScreenState createState() => ChatScreenState();
+  static const String routeName = 'chatScreen';
 
-  static _chatScreenState of(BuildContext context) {
-    final _chatScreenState? result =
-    context.findAncestorStateOfType<_chatScreenState>();
+  static ChatScreenState of(BuildContext context) {
+    final ChatScreenState? result =
+    context.findAncestorStateOfType<ChatScreenState>();
     assert(result != null, 'No ChatScreen found in context');
     return result!;
   }
 }
 
-class _chatScreenState extends State<chatScreen> {
+class ChatScreenState extends State<ChatScreen> {
   List<MessageModel> messages = [];
-  late int personaid;
-  late int chatid;
+  late int personaId;
+  late int chatId;
   late DatabaseHelper _databaseHelper;
 
   @override
   void initState() {
     super.initState();
-    personaid = widget.personaid;
-    chatid = widget.chatid;
+    personaId = widget.personaId;
+    chatId = widget.chatId;
     _databaseHelper = DatabaseHelper();
     _loadMessages();
   }
 
   void clearMessages() async {
-    await _databaseHelper.clearMessages(chatid,personaid);
-    _loadMessages(); // Reload messages after clearing the table
+    await _databaseHelper.clearMessages(chatId,personaId);
+    _loadMessages();
   }
 
   Future<void> _loadMessages() async {
-    final messagesFromDb = await _databaseHelper.getMessages(chatid, personaid);
+    final messagesFromDb = await _databaseHelper.getMessages(chatId, personaId);
     setState(() {
       messages = messagesFromDb
           .map((messageMap) => MessageModel(
@@ -55,22 +55,22 @@ class _chatScreenState extends State<chatScreen> {
     });
   }
 
-  void sendMessagee(String message) {
+  void sendUserMessage(String message) {
     _addMessage(message, true);
-    _databaseHelper.insertMessage(message, true, chatid, personaid);
-    sendMessage(message, personaid, chatid).then((response) {
+    _databaseHelper.insertMessage(message, true, chatId, personaId);
+    sendMessage(message, personaId, chatId).then((response) {
       _addMessage(response, false);
-      _databaseHelper.insertMessage(response, false, chatid, personaid);
+      _databaseHelper.insertMessage(response, false, chatId, personaId);
     }).catchError((error) {
       showDialog(
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text("Error"),
+            title: const Text("Error"),
             content: Text("Failed to send message: $error"),
             actions: [
               TextButton(
-                child: Text("OK"),
+                child: const Text("OK"),
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
@@ -93,11 +93,11 @@ class _chatScreenState extends State<chatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('wanas'),
-        backgroundColor: Color(0xFF00966A),
+        title: const Text('Wanas'),
+        backgroundColor: const Color(0xFF00966A),
         actions: [
           IconButton(
-            icon: Icon(Icons.delete),
+            icon: const Icon(Icons.delete),
             color: Colors.black,
             onPressed: clearMessages
           ),
@@ -112,7 +112,7 @@ class _chatScreenState extends State<chatScreen> {
               itemBuilder: (context, index) {
                 final message = messages[index];
                 return Message(
-                  imagePathAi: 'assets/images/logochat.png',
+                  imagePathAi: 'assets/images/logo chat.png',
                   imagePathUser: 'assets/images/happy.png',
                   text: message.text,
                   isUserMessage: message.isUserMessage,

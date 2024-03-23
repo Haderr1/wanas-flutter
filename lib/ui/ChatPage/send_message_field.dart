@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'chatScreen.dart';
+import 'chat_screen.dart';
 
 class SendMessageField extends StatelessWidget {
   final TextEditingController _controller = TextEditingController();
@@ -58,7 +58,7 @@ class SendMessageField extends StatelessWidget {
               icon: Icon(Icons.send_rounded, color: Color(0xff00966A)),
               onPressed: () {
                 if (_controller.text.isNotEmpty) {
-                  chatScreen.of(context).sendMessagee(_controller.text);
+                  ChatScreen.of(context).sendUserMessage(_controller.text);
                   _controller.clear();
                 }
               },

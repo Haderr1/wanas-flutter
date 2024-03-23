@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:waanaass/ui/Buttons/small_button.dart';
-import 'package:waanaass/ui/ChatPage/chatScreen.dart';
+import 'package:waanaass/ui/ChatPage/chat_screen.dart';
 import 'package:waanaass/ui/TalkToMePage/personsCard.dart';
 
 import '../Api/chats_api.dart';

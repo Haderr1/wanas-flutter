@@ -100,7 +100,7 @@ class _ChatsListState extends State<ListMaker> {
   }
 
   void addToChatList() {
-    Chat c = Chat(chatId: chatsList.length + 1);
+    Chat c = Chat(chatId: chatsList.length);
     setState(() {
       widget.chatsList.add(c);
     });

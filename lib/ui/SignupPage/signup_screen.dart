@@ -21,6 +21,7 @@ class _SignupScreenState extends State<SignupScreen> {
   final TextEditingController phoneNumberController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     Future<void> signUserUp() async {
@@ -36,6 +37,7 @@ class _SignupScreenState extends State<SignupScreen> {
 
       }
     }
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(

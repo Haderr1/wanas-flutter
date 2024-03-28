@@ -28,6 +28,8 @@ class ChatScreenState extends State<ChatScreen> {
   late int personaId;
   late int chatId;
   late DatabaseHelper _databaseHelper;
+  bool serverAvailable = true;
+
 
   @override
   void initState() {
@@ -36,6 +38,7 @@ class ChatScreenState extends State<ChatScreen> {
     chatId = widget.chatId;
     _databaseHelper = DatabaseHelper();
     _loadMessages();
+    _checkServerAvailability();
   }
 
   void clearMessages() async {
@@ -43,24 +46,64 @@ class ChatScreenState extends State<ChatScreen> {
     _loadMessages();
   }
 
+  Future<void> _checkServerAvailability() async {
+    try {
+      final available = await checkServerAvailability();
+      setState(() {
+        serverAvailable = available;
+      });
+    } catch (e) {
+      print("Error checking server availability: $e");
+      setState(() {
+        serverAvailable = false;
+      });
+    }
+  }
+  // Future<void> _loadMessages() async {
+  //   try {
+  //     List<MessageData> serverMessages = await getMessage(personaId, chatId);
+  //
+  //     setState(() {
+  //       messages = serverMessages
+  //           .map((messageData) => MessageModel(
+  //         text: messageData.message.trim(),
+  //         isUserMessage: messageData.isUserMessage,
+  //       ))
+  //           .toList();
+  //     });
+  //   } catch (e) {
+  //     print("Error retrieving messages from server: $e");
+  //
+  //     List<Map<String, dynamic>> messagesFromDb =
+  //     await _databaseHelper.getMessages(chatId, personaId);
+  //     List<MessageModel> localMessages = messagesFromDb
+  //         .map((messageMap) => MessageModel.fromJson(messageMap))
+  //         .toList();
+  //     setState(() {
+  //       messages = localMessages;
+  //     });
+  //   }
+  // }
+
   Future<void> _loadMessages() async {
-    final messagesFromDb = await _databaseHelper.getMessages(chatId, personaId);
+    List<MessageData> serverMessages = await getMessage(personaId, chatId);
+
     setState(() {
-      messages = messagesFromDb
-          .map((messageMap) => MessageModel(
-        text: messageMap['text'] as String,
-        isUserMessage: messageMap['isUserMessage'] == 1,
-      ))
+      messages = serverMessages
+          .map((messageData) =>
+          MessageModel(
+            text: messageData.message.trim(),
+            isUserMessage: messageData.isUserMessage,
+          ))
           .toList();
     });
   }
-
   void sendUserMessage(String message) {
     _addMessage(message, true);
-    _databaseHelper.insertMessage(message, true, chatId, personaId);
+   // _databaseHelper.insertMessage(message, true, chatId, personaId);
     sendMessage(message, personaId, chatId).then((response) {
       _addMessage(response, false);
-      _databaseHelper.insertMessage(response, false, chatId, personaId);
+     // _databaseHelper.insertMessage(response, false, chatId, personaId);
     }).catchError((error) {
       showDialog(
         context: context,
@@ -112,7 +155,7 @@ class ChatScreenState extends State<ChatScreen> {
               itemBuilder: (context, index) {
                 final message = messages[index];
                 return Message(
-                  imagePathAi: 'assets/images/logo chat.png',
+                  imagePathAi: 'assets/images/logochat.png',
                   imagePathUser: 'assets/images/happy.png',
                   text: message.text,
                   isUserMessage: message.isUserMessage,
@@ -127,9 +170,19 @@ class ChatScreenState extends State<ChatScreen> {
   }
 }
 
+
+
+
 class MessageModel {
   final String text;
   final bool isUserMessage;
 
   MessageModel({required this.text, required this.isUserMessage});
+
+  factory MessageModel.fromJson(Map<String, dynamic> json) {
+    return MessageModel(
+      text: json['text'],
+      isUserMessage: json['isUserMessage'] == 1,
+    );
+  }
 }

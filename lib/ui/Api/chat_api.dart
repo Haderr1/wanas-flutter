@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:waanaass/ui/Constants/app_constants.dart';
 import 'Api.dart';
@@ -67,12 +68,13 @@ Future<List<MessageData>> getMessage(int personaId, int chatId) async {
       headers: await makeHeader(),
     );
 
-    print('Response Body: ${response.body}');
+    if (kDebugMode) {
+      print('Response Body: ${response.body}');
+    }
 
     if (response.statusCode == 200) {
-     return makemessageList(response.body);
+     return makeMessageList(response.body);
     } else {
-      print('Response Body:333eeeeeeeeeee');
 
       throw Exception('Failed to get messages: ${response.statusCode}');
     }
@@ -81,16 +83,14 @@ Future<List<MessageData>> getMessage(int personaId, int chatId) async {
   }
 }
 
-Future<List<MessageData>> makemessageList(String body) async {
+Future<List<MessageData>> makeMessageList(String body) async {
   try {
     List<MessageData> messageList = [];
     var parsed = json.decode(body);
 
     if (parsed is List<dynamic>) {
       messageList = (parsed).map((i) => MessageData.fromJson(i)).toList();
-      print("hello from her");
     } else {
-      print("thee");
       return messageList;
     }
 

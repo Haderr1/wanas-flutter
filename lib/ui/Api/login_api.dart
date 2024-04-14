@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
 import 'package:waanaass/ui/Constants/app_constants.dart';
 
@@ -23,7 +24,9 @@ Future<String> loginApi(
     final Map<String, dynamic> responseData = jsonDecode(response.body);
     String token = responseData['token'];
     await appConstant.tokenStorage.saveToken(token);
-    print(token);
+    if (kDebugMode) {
+      print(token);
+    }
 
     return token;
   } else {

@@ -25,7 +25,7 @@ class LoginScreen extends StatelessWidget {
       if(token !=""){
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const talkToMeScreen()),
+          MaterialPageRoute(builder: (context) => const TalkToMeScreen()),
         );
       }
     }
@@ -148,7 +148,7 @@ class LoginScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => SignupScreen()),
+                                builder: (context) => const SignupScreen()),
                           );
                         },
                         child: const Text(

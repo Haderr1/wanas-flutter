@@ -7,16 +7,16 @@ import '../Api/chats_api.dart';
 import '../Api/persona_api.dart';
 import 'start_card.dart';
 
-class talkToMeScreen extends StatefulWidget {
+class TalkToMeScreen extends StatefulWidget {
 
-  const talkToMeScreen({ super.key});
+  const TalkToMeScreen({ super.key});
   static const String routeName = 'talketome';
 
   @override
-  State<talkToMeScreen> createState() => _talkToMeScreenState();
+  State<TalkToMeScreen> createState() => _TalkToMeScreenState();
 }
 
-class _talkToMeScreenState extends State<talkToMeScreen> {
+class _TalkToMeScreenState extends State<TalkToMeScreen> {
 
 
   Future<List<PersonaCard>> _futurePersonaCards = fetchPersonaCards();
@@ -36,7 +36,7 @@ class _talkToMeScreenState extends State<talkToMeScreen> {
                 onPressed: () {
                   Navigator.of(context).pop(name);
                 },
-                child: Text('OK'),
+                child: const Text('OK'),
               ),
             ],
           ),

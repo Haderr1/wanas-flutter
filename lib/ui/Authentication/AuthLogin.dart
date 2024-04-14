@@ -39,7 +39,7 @@ class AuthPageState extends State<AuthPage> {
   @override
   Widget build(BuildContext context) {
     if (token != null) {
-      return const talkToMeScreen();
+      return const TalkToMeScreen();
     } else {
       return LoginScreen();
     }

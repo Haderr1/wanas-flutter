@@ -63,9 +63,7 @@ Future<List<Chat>> makeChatList(String body) async {
 
     if (parsed is List<dynamic>) {
       chatList = (parsed).map((i) => Chat.fromJson(i)).toList();
-      print("hello from her");
     } else {
-      print("thee");
       return chatList;
     }
 

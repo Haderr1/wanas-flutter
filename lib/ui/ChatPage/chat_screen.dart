@@ -38,7 +38,7 @@ class ChatScreenState extends State<ChatScreen> {
     chatId = widget.chatId;
     _databaseHelper = DatabaseHelper();
     _loadMessages();
-    _checkServerAvailability();
+   // _checkServerAvailability();
   }
 
   void clearMessages() async {
@@ -46,19 +46,21 @@ class ChatScreenState extends State<ChatScreen> {
     _loadMessages();
   }
 
-  Future<void> _checkServerAvailability() async {
-    try {
-      final available = await checkServerAvailability();
-      setState(() {
-        serverAvailable = available;
-      });
-    } catch (e) {
-      print("Error checking server availability: $e");
-      setState(() {
-        serverAvailable = false;
-      });
-    }
-  }
+  // Future<void> _checkServerAvailability() async {
+  //   try {
+  //     final available = await checkServerAvailability();
+  //     setState(() {
+  //       serverAvailable = available;
+  //     });
+  //   } catch (e) {
+  //     if (kDebugMode) {
+  //       print("Error checking server availability: $e");
+  //     }
+  //     setState(() {
+  //       serverAvailable = false;
+  //     });
+  //   }
+  // }
   // Future<void> _loadMessages() async {
   //   try {
   //     List<MessageData> serverMessages = await getMessage(personaId, chatId);

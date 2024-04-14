@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
 
       ),
       routes:{
-        talkToMeScreen.routeName : (_)=> const talkToMeScreen(),
+        TalkToMeScreen.routeName : (_)=> const TalkToMeScreen(),
         MoodTrackerScreen.routeName : (_)=> const MoodTrackerScreen(),
         LoginScreen.routeName : (_)=> LoginScreen(),
         SignupScreen.routeName : (_)=> const SignupScreen(),

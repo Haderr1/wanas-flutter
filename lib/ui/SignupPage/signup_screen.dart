@@ -31,7 +31,7 @@ class _SignupScreenState extends State<SignupScreen> {
         if(token !=""){
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const talkToMeScreen()),
+            MaterialPageRoute(builder: (context) => const TalkToMeScreen()),
           );
         }
 

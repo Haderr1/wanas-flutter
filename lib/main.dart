@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
         AuthPage.routeName : (_)=> const AuthPage(),
         // chatScreen.routeName : (_)=> chatScreen()
       },
-      initialRoute: LoginScreen.routeName ,
+      initialRoute: AuthPage.routeName ,
     );
   }
 }

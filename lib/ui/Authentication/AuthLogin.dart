@@ -25,8 +25,7 @@ class AuthPageState extends State<AuthPage> {
 
   Future<void> getToken() async {
     try {
-      TokenStorage tokenStorage = TokenStorage();
-      token = await tokenStorage.getToken();
+      token = await appConstant.tokenStorage.getToken();
       authenticationToken();
     } catch (e) {
       rethrow;

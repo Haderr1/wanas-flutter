@@ -1,10 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:waanaass/ui/Buttons/add_persona_button.dart';
-import 'package:waanaass/ui/LoginPage/login_screen.dart';
 import 'package:waanaass/ui/TalkToMePage/persons_card.dart';
 import 'package:waanaass/ui/TalkToMePage/previous_conversations_details_card.dart';
 import '../Api/persona_api.dart';
+import 'drawer.dart';
 import 'start_card.dart';
 
 class TalkToMeScreen extends StatefulWidget {
@@ -56,68 +56,7 @@ class _TalkToMeScreenState extends State<TalkToMeScreen> {
         ),
         centerTitle: true,
       ),
-      drawer: Drawer(
-        child: ListView(padding: EdgeInsets.zero, children: <Widget>[
-          const DrawerHeader(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage('assets/images/drw.png'),
-                fit: BoxFit.cover,
-              ),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-
-                // Text(
-                //   'John Doe', // Replace with the username
-                //   style: TextStyle(
-                //     color: Colors.black,
-                //     fontSize: 20,
-                //   ),
-                // ),
-                Text(
-                  'Welcome To Wanas',
-                  style: TextStyle(
-                    color: Colors.black,
-                    fontSize: 24,
-                    fontWeight: FontWeight.w500,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          const SizedBox(
-            height: 430,
-          ),
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 16.0),
-            padding: const EdgeInsets.only(left: 8),
-            decoration: ShapeDecoration(
-              color: Colors.white,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16),
-                side: const BorderSide(
-                  color: Color(0xFF00966A),
-                  width: 2.0,
-                ),
-              ),
-            ),
-            child: ListTile(
-              leading: const Icon(Icons.exit_to_app_outlined), // Add an icon
-              title: const Text(
-                'Logout',
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                ),
-              ),
-              onTap: () {},
-            ),
-          ),
-        ]),
-      ),
+      drawer: Drawerr(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(

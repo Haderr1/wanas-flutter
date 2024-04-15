@@ -28,7 +28,6 @@ class AuthPageState extends State<AuthPage> {
       token = await appConstant.tokenStorage.getToken();
       authenticationToken();
     } catch (e) {
-      rethrow;
     }
     setState(() {
       const Text("loading authenticating");

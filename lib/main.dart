@@ -29,9 +29,10 @@ class MyApp extends StatelessWidget {
         LoginScreen.routeName : (_)=> LoginScreen(),
         SignupScreen.routeName : (_)=> const SignupScreen(),
         AuthPage.routeName : (_)=> const AuthPage(),
+
         // chatScreen.routeName : (_)=> chatScreen()
       },
-      initialRoute: AuthPage.routeName ,
+      initialRoute: MoodTrackerScreen.routeName ,
     );
   }
 }

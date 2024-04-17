@@ -1,15 +1,16 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import '../Api/quote_api.dart';
+import '../Buttons/small_button.dart';
 
-class EmojisCard extends StatefulWidget {
-  const EmojisCard({super.key});
+class GreenCard extends StatefulWidget {
+  const GreenCard({super.key});
 
   @override
-  EmojisCardState createState() => EmojisCardState();
+  GreenCardState createState() => GreenCardState();
 }
 
-class EmojisCardState extends State<EmojisCard> {
+class GreenCardState extends State<GreenCard> {
   bool cardVisible = true;
   String specificText = '';
   String quote = '';
@@ -48,9 +49,7 @@ class EmojisCardState extends State<EmojisCard> {
                     ],
                   ),
                   const Text(
-                    'Click on what you feel,'
-                        ' and be ready for the surprise '
-                        'the card holds just for you!',
+                    'Click on the card, and be ready for the surprise the card holds just for you!',
                     style: TextStyle(
                       color: Colors.black,
                       fontSize: 14.0,
@@ -63,45 +62,12 @@ class EmojisCardState extends State<EmojisCard> {
 
 
                   const SizedBox(height: 10.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      ClickableImage(
-                        'assets/images/normal.png',
-                        'normal',
-                        onTap: () {
-                          generateQuoteAndHandleImageClick();
-                        },
-                      ),
-                      ClickableImage(
-                        'assets/images/happy.png',
-                        'happy',
-                        onTap: () {
-                          generateQuoteAndHandleImageClick();
-                        },
-                      ),
-                      ClickableImage(
-                        'assets/images/sad.png',
-                        'sad',
-                        onTap: () {
-                          generateQuoteAndHandleImageClick();
-                        },
-                      ),
-                      ClickableImage(
-                        'assets/images/tense.png',
-                        'tense',
-                        onTap: () {
-                          generateQuoteAndHandleImageClick();
-                        },
-                      ),
-                      ClickableImage(
-                        'assets/images/angry.png',
-                        'angry',
-                        onTap: () {
-                          generateQuoteAndHandleImageClick();
-                        },
-                      ),
-                    ],
+                  Center(
+                    child: SmallButton(onPressed: () {
+                      generateQuoteAndHandleImageClick();
+
+                    }, buttonText: 'Click',
+                    ),
                   ),
                 ],
               ),

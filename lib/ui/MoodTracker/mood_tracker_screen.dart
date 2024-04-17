@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:waanaass/ui/MoodTracker/mood_chart.dart';
 import 'calendar.dart';
 import 'emojis_card.dart';
+import 'green_card.dart';
 
 class MoodTrackerScreen extends StatefulWidget {
   const MoodTrackerScreen({super.key});
@@ -25,6 +26,7 @@ class _MoodTrackerScreenState extends State<MoodTrackerScreen> {
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               const Calendar(),
+              const GreenCard(),
               const EmojisCard(),
               const SizedBox(
                 height: 16,

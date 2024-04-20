@@ -5,12 +5,15 @@ class SignupTextField extends StatelessWidget {
   final String hintText;
   final bool obscureText;
   final GlobalKey<FormState> formKey;
+  final void Function(String)? onChanged; // Define onChanged parameter
 
   const SignupTextField({
     Key? key,
     required this.controller,
     required this.hintText,
-    required this.obscureText,  required this.formKey,
+    required this.obscureText,
+    required this.formKey,
+    this.onChanged, // Make onChanged parameter nullable
   }) : super(key: key);
 
   @override
@@ -37,37 +40,36 @@ class SignupTextField extends StatelessWidget {
         height: 52.0,
         width: double.infinity,
         child: TextFormField(
-            controller: controller,
-            obscureText: obscureText,
-            decoration: InputDecoration(
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(9.0),
-                borderSide: const BorderSide(color: Colors.grey),
-              ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(9.0),
-                borderSide: BorderSide(color: Colors.grey.shade400),
-              ),
-              fillColor: Colors.white,
-              filled: true,
-              hintText: hintText,
-              hintStyle: TextStyle(color: Colors.grey[500]),
-              prefixIcon: prefixIcon,
+          controller: controller,
+          obscureText: obscureText,
+          decoration: InputDecoration(
+            enabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(9.0),
+              borderSide: const BorderSide(color: Colors.grey),
             ),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return 'Please enter a value';
-              }
-              if (hintText == 'Email') {
-                // Regular expression for validating email
-                // You can adjust this pattern as per your requirements
-                final emailRegex = RegExp(r'^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$');
-                if (!emailRegex.hasMatch(value)) {
-                  return 'Please enter a valid email';
-                }
-              }
-              return null;
+            focusedBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(9.0),
+              borderSide: BorderSide(color: Colors.grey.shade400),
+            ),
+            fillColor: Colors.white,
+            filled: true,
+            hintText: hintText,
+            hintStyle: TextStyle(color: Colors.grey[500]),
+            prefixIcon: prefixIcon,
+          ),
+          onChanged: onChanged, // Use onChanged parameter
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Please enter a value';
             }
+            if (hintText == 'Email') {
+              final emailRegex = RegExp(r'^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$');
+              if (!emailRegex.hasMatch(value)) {
+                return 'Please enter a valid email';
+              }
+            }
+            return null;
+          },
         ),
       ),
     );

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:waanaass/ui/Authentication/AuthLogin.dart';
+import 'package:waanaass/ui/HomePage/home_screen.dart';
 import 'package:waanaass/ui/LoginPage/login_screen.dart';
 import 'package:waanaass/ui/MoodTracker/mood_tracker_screen.dart';
 import 'package:waanaass/ui/SignupPage/signup_screen.dart';
@@ -27,12 +28,13 @@ class MyApp extends StatelessWidget {
         TalkToMeScreen.routeName : (_)=> const TalkToMeScreen(),
         MoodTrackerScreen.routeName : (_)=> const MoodTrackerScreen(),
         LoginScreen.routeName : (_)=> LoginScreen(),
-        SignupScreen.routeName : (_)=> const SignupScreen(),
+        SignupScreen.routeName : (_)=>   SignupScreen(),
         AuthPage.routeName : (_)=> const AuthPage(),
+        HomeScreen.routeName : (_)=> const HomeScreen(),
 
-        // chatScreen.routeName : (_)=> chatScreen()
+
       },
-      initialRoute: MoodTrackerScreen.routeName ,
+      initialRoute: AuthPage.routeName ,
     );
   }
 }

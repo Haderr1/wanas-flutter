@@ -32,90 +32,92 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: Drawerr(),
-      body: Stack(
-        children: [
-          // Background Container with Image
-          Container(
-            height: MediaQuery.of(context).size.height /
-                2, // Half of the screen height
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(
-                    'assets/images/drw.png'), // Replace 'assets/background.jpg' with your image path
-                fit: BoxFit.cover,
+      body: SingleChildScrollView(
+        child: Stack(
+          children: [
+            // Background Container with Image
+            Container(
+              height: MediaQuery.of(context).size.height /
+                  2, // Half of the screen height
+              decoration: const BoxDecoration(
+                image: DecorationImage(
+                  image: AssetImage(
+                      'assets/images/drw.png'), // Replace 'assets/background.jpg' with your image path
+                  fit: BoxFit.cover,
+                ),
               ),
             ),
-          ),
-          // Content Container
-          Container(
-            height: MediaQuery.of(context).size.height, // Full screen height
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 48),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Builder(
-                  builder: (context) => Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      // Drawer Icon
+            // Content Container
+            Container(
+              height: MediaQuery.of(context).size.height, // Full screen height
+              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 48),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Builder(
+                    builder: (context) => Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Drawer Icon
 
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Text(
-                            'Hi, ',
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Text(
+                              'Hi, ',
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
                             ),
-                          ),
-                          SizedBox(
-                            width: 8,
-                          ),
-                          Text(
-                            '${globalUsername ?? ""}!',
-                            style: const TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.black,
+                            const SizedBox(
+                              width: 8,
                             ),
-                          ),
-                        ],
-                      ),
-                      IconButton(
-                        onPressed: () {
-                          Scaffold.of(context).openDrawer();
-                        },
-                        icon: const Icon(
-                          Icons.menu,
-                          color: Colors.black,
+                            Text(
+                              '${globalUsername ?? ""}!',
+                              style: const TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.black,
+                              ),
+                            ),
+                          ],
                         ),
-                        iconSize: 26,
-                      ),
+                        IconButton(
+                          onPressed: () {
+                            Scaffold.of(context).openDrawer();
+                          },
+                          icon: const Icon(
+                            Icons.menu,
+                            color: Colors.black,
+                          ),
+                          iconSize: 26,
+                        ),
 
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-                SizedBox(
-                  height: 24,
-                ),
-                const Text(
-                  'We Wish You Are Happy today',
-                  style: TextStyle(
-                    fontSize: 24,
-                    color: Color(0xFF00966A),
-                    fontWeight: FontWeight.bold,
+                  const SizedBox(
+                    height: 24,
                   ),
-                ),
-                const GreenCard(),
-                const ShowChatsHomeCard()
+                  const Text(
+                    'We Wish You Are Happy today',
+                    style: TextStyle(
+                      fontSize: 24,
+                      color: Color(0xFF00966A),
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const GreenCard(),
+                  const ShowChatsHomeCard()
 
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

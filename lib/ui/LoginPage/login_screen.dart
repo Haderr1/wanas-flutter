@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:waanaass/ui/HomePage/home_screen.dart';
 import 'package:waanaass/ui/LoginPage/social_media_card.dart';
 import '../Api/login_api.dart';
 import '../Buttons/primary_button.dart';
@@ -25,7 +26,7 @@ class LoginScreen extends StatelessWidget {
       if(token !=""){
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const TalkToMeScreen()),
+          MaterialPageRoute(builder: (context) =>  HomeScreen()),
         );
       }
     }

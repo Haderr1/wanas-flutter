@@ -143,7 +143,7 @@ class EmojisCardState extends State<EmojisCard> {
   }
 
   Future<void> generateQuoteAndHandleImageClick() async {
-    String quote = await QuoteUtility.generateQuote();
+    String quote = await QuoteUtility.getRandomQuote();
     handleImageClick(message: quote);
   }
 }

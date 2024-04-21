@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import '../Api/quote_api.dart';
 import '../Buttons/small_button.dart';
@@ -109,7 +108,7 @@ class GreenCardState extends State<GreenCard> {
   }
 
   Future<void> generateQuoteAndHandleImageClick() async {
-    String quote = await QuoteUtility.generateQuote();
+    String quote = await QuoteUtility.getRandomQuote();
     handleImageClick(message: quote);
   }
 }

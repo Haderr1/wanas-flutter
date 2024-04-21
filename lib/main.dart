@@ -28,14 +28,14 @@ class MyApp extends StatelessWidget {
         TalkToMeScreen.routeName : (_)=> const TalkToMeScreen(),
         MoodTrackerScreen.routeName : (_)=> const MoodTrackerScreen(),
         LoginScreen.routeName : (_)=> LoginScreen(),
-        SignupScreen.routeName : (_)=>   SignupScreen(),
+        SignupScreen.routeName : (_)=>   const SignupScreen(),
         AuthPage.routeName : (_)=> const AuthPage(),
         HomeScreen.routeName : (_)=>  HomeScreen(),
 
 
 
       },
-      initialRoute: HomeScreen.routeName ,
+      initialRoute: AuthPage.routeName ,
     );
   }
 }

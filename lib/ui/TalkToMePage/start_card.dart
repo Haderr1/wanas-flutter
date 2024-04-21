@@ -17,21 +17,21 @@ class StartCard extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Column(
+            const Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                Text(
                   'Talk to Wanas to',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
                 ),
-                const Text(
+                Text(
                   'start check-in',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
                 ),
-                const SizedBox(height: 16),
-                SmallButton(onPressed: () {
-                }, buttonText: "Start")
+                SizedBox(height: 16),
+                // SmallButton(onPressed: () {
+                // }, buttonText: "Start")
               ],
             ),
             const SizedBox(width: 24),

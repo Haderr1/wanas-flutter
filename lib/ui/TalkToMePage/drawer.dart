@@ -6,21 +6,31 @@ import '../LoginPage/login_screen.dart';
 
 
 
-class Drawerr extends StatelessWidget {
+class Drawerr extends StatefulWidget {
    Drawerr({super.key});
-    String? globalUsername;
 
+  @override
+  State<Drawerr> createState() => _DrawerrState();
+}
+
+class _DrawerrState extends State<Drawerr> {
+  String? globalUsername;
+
+  Future<void> _getUsername() async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      globalUsername = prefs.getString('username');
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _getUsername();
+  }
    @override
    Widget build(BuildContext context) {
-     return FutureBuilder(
-       future: SharedPreferences.getInstance(),
-       builder: (context, snapshot) {
-         if (snapshot.hasData) {
-           final prefs = snapshot.data;
-           if (prefs != null) {
-             globalUsername = prefs.getString('username');
-           }
-           return Drawer(
+     return Drawer(
              child: ListView(padding: EdgeInsets.zero, children: <Widget>[
                DrawerHeader(
                  decoration: const BoxDecoration(
@@ -90,10 +100,5 @@ class Drawerr extends StatelessWidget {
                ),
              ]),
            );
-         } else {
-           return const CircularProgressIndicator();
          }
-       },
-     );
-   }
 }

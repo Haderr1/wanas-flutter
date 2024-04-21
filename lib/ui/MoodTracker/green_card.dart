@@ -25,12 +25,13 @@ class GreenCardState extends State<GreenCard> {
             visible: cardVisible,
             child: Container(
               decoration: BoxDecoration(
-                  border: Border.all(
-                    color: const Color(0xFF66C0A6),
-                    width: 1.0,
-
-                  ),
-                  borderRadius: BorderRadius.circular(14)),
+                border: Border.all(
+                  color: const Color(0xFF66C0A6),
+                  width: 1.0,
+                ),
+                borderRadius: BorderRadius.circular(14),
+                color: Colors.white.withOpacity(0.7),
+              ),
               padding: const EdgeInsets.all(16.0),
               child: Column(
                 children: [
@@ -45,7 +46,6 @@ class GreenCardState extends State<GreenCard> {
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-
                     ],
                   ),
                   const Text(
@@ -56,17 +56,14 @@ class GreenCardState extends State<GreenCard> {
                       fontWeight: FontWeight.w400,
                     ),
                     textAlign: TextAlign.center,
-
                   ),
-
-
-
                   const SizedBox(height: 10.0),
                   Center(
-                    child: SmallButton(onPressed: () {
-                      generateQuoteAndHandleImageClick();
-
-                    }, buttonText: 'Click',
+                    child: SmallButton(
+                      onPressed: () {
+                        generateQuoteAndHandleImageClick();
+                      },
+                      buttonText: 'Click',
                     ),
                   ),
                 ],
@@ -78,11 +75,13 @@ class GreenCardState extends State<GreenCard> {
             child: Center(
               child: Container(
                 decoration: BoxDecoration(
-                    border: Border.all(
-                      color: const Color(0xFF66C0A6),
-                      width: 1.0,
-                    ),
-                    borderRadius: BorderRadius.circular(14)),
+                  border: Border.all(
+                    color: const Color(0xFF66C0A6),
+                    width: 1.0,
+                  ),
+                  borderRadius: BorderRadius.circular(14),
+                  color: Colors.white.withOpacity(0.7),
+                ),
                 padding: const EdgeInsets.all(16.0),
                 child: Text(
                   specificText,
@@ -101,6 +100,7 @@ class GreenCardState extends State<GreenCard> {
       ),
     );
   }
+
   void handleImageClick({String? message}) {
     setState(() {
       cardVisible = false;
@@ -119,8 +119,7 @@ class ClickableImage extends StatelessWidget {
   final String grayText;
   final VoidCallback onTap;
 
-  const ClickableImage(
-      this.imagePath, this.grayText,
+  const ClickableImage(this.imagePath, this.grayText,
       {required this.onTap, Key? key})
       : super(key: key);
 

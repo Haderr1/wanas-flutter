@@ -57,7 +57,7 @@ class _TalkToMeScreenState extends State<TalkToMeScreen> {
         ),
         centerTitle: true,
       ),
-      drawer: Drawerr(),
+     // drawer: Drawerr(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(

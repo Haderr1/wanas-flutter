@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:waanaass/ui/LoginPage/login_screen.dart';
-import 'package:waanaass/ui/TalkToMePage/talk_to_me_screen.dart';
 import '../Api/Api.dart';
-import '../Storage/storage.dart';
+import '../HomePage/home_screen.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({Key? key}) : super(key: key);
@@ -37,7 +36,7 @@ class AuthPageState extends State<AuthPage> {
   @override
   Widget build(BuildContext context) {
     if (token != null) {
-      return const TalkToMeScreen();
+      return  HomeScreen();
     } else {
       return LoginScreen();
     }

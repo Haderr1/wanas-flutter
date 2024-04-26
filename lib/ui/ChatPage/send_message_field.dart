@@ -1,6 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'chatScreen.dart';
+import 'chat_screen.dart';
 
 class SendMessageField extends StatelessWidget {
   final TextEditingController _controller = TextEditingController();
@@ -10,8 +9,8 @@ class SendMessageField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(16),
-      decoration: BoxDecoration(
+      padding: const EdgeInsets.all(16),
+      decoration: const BoxDecoration(
         border: Border(
           top: BorderSide(color: Colors.transparent),
         ),
@@ -21,23 +20,23 @@ class SendMessageField extends StatelessWidget {
           Expanded(
             child: TextField(
               controller: _controller,
-              style: TextStyle(color: Colors.black),
+              style: const TextStyle(color: Colors.black),
               decoration: InputDecoration(
                 hintText: 'Type here..',
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Color(0xff00966A), width: 2.0),
+                  borderSide: const BorderSide(color: Color(0xff00966A), width: 2.0),
                   borderRadius: BorderRadius.circular(15.0),
                 ),
                 focusedBorder: OutlineInputBorder(
-                  borderSide: BorderSide(color: Color(0xff00966A), width: 2.0),
+                  borderSide: const BorderSide(color: Color(0xff00966A), width: 2.0),
                   borderRadius: BorderRadius.circular(15),
                 ),
-                contentPadding: EdgeInsets.symmetric(
+                contentPadding: const EdgeInsets.symmetric(
                   vertical: 15.0,
                   horizontal: 15.0,
                 ),
                 suffixIcon: IconButton(
-                  icon: Icon(Icons.mic_rounded, color: Color(0xFFE0F8E9)),
+                  icon: const Icon(Icons.mic_rounded, color: Color(0xFFE0F8E9)),
                   onPressed: () {
                     // Handle microphone icon press
                   },
@@ -45,20 +44,20 @@ class SendMessageField extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(width: 15),
+          const SizedBox(width: 15),
           Container(
             padding: const EdgeInsets.all(2),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15.0),
               color: Colors.white,
               shape: BoxShape.rectangle,
-              border: Border.all(color: Color(0xff00966A), width: 2.0),
+              border: Border.all(color: const Color(0xff00966A), width: 2.0),
             ),
             child: IconButton(
-              icon: Icon(Icons.send_rounded, color: Color(0xff00966A)),
+              icon: const Icon(Icons.send_rounded, color: Color(0xff00966A)),
               onPressed: () {
                 if (_controller.text.isNotEmpty) {
-                  chatScreen.of(context).sendMessagee(_controller.text);
+                  ChatScreen.of(context).sendUserMessage(_controller.text);
                   _controller.clear();
                 }
               },

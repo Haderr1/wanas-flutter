@@ -1,16 +1,13 @@
 import 'dart:convert';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart';
 import 'package:http/http.dart' as http;
-import 'package:waanaass/ui/Constants/appConstants.dart';
-import '../TalkToMePage/talkToMeScreen.dart';
+import 'package:waanaass/ui/Constants/app_constants.dart';
 
-appConstants appConstant = appConstants();
+AppConstants appConstant = AppConstants();
 
-
-Future<String> signUpApi(String username, String email, String phoneNumber,
-    String password, BuildContext context) async {
-  var url = Uri.http(appConstants.LOCAL_HOST, '/register');
+Future<String> signUpApi(
+    String username, String email, String phoneNumber, String password) async {
+  var url = Uri.http(AppConstants.localHost, '/register');
   var response = await http.post(
     url,
     headers: <String, String>{
@@ -23,22 +20,19 @@ Future<String> signUpApi(String username, String email, String phoneNumber,
       'password': password,
     }),
   );
-  print(response.body);
+  if (kDebugMode) {
+    print(response.body);
+  }
 
   if (response.statusCode == 200) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => talkToMeScreen()),
-    );
-    print('Signed up successfully');
+    if (kDebugMode) {
+      print('Signed up successfully');
+    }
     final Map<String, dynamic> responseData = jsonDecode(response.body);
     String token = responseData['token'];
     await appConstant.tokenStorage.saveToken(token);
     return token;
-
   } else {
-// Handle error
     throw Exception('Failed to signup');
-
   }
 }

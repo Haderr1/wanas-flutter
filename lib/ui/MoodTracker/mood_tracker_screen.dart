@@ -1,23 +1,23 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:waanaass/ui/MoodTracker/moodChart.dart';
+import 'package:waanaass/ui/MoodTracker/mood_chart.dart';
 import 'calendar.dart';
-import 'emojisCard.dart';
+import 'emojis_card.dart';
+import 'green_card.dart';
 
-class moodTrackerScreen extends StatefulWidget {
-  const moodTrackerScreen({super.key});
+class MoodTrackerScreen extends StatefulWidget {
+  const MoodTrackerScreen({super.key});
   static const String routeName = 'moodTrackerScreen';
 
   @override
-  State<moodTrackerScreen> createState() => _moodTrackerScreenState();
+  State<MoodTrackerScreen> createState() => _MoodTrackerScreenState();
 }
 
-class _moodTrackerScreenState extends State<moodTrackerScreen> {
+class _MoodTrackerScreenState extends State<MoodTrackerScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text('Mode Tracker'),
+          title: const Text('Mode Tracker'),
           centerTitle: true,
         ),
         body: Padding(
@@ -25,19 +25,20 @@ class _moodTrackerScreenState extends State<moodTrackerScreen> {
           child: SingleChildScrollView(
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              calendar(),
-              emjscard(),
-              SizedBox(
+              const Calendar(),
+              const GreenCard(),
+              const EmojisCard(),
+              const SizedBox(
                 height: 16,
               ),
-              Text(
+              const Text(
                 'Mode Chart',
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              Text(
+              const Text(
                 'How your mood changes over time',
                 style: TextStyle(
                   color: Colors.grey,
@@ -47,14 +48,14 @@ class _moodTrackerScreenState extends State<moodTrackerScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  buildSquareWithText('Normal', Color(0xFF66C0A6)),
-                  buildSquareWithText('Tense', Color(0xFFFFE86D)),
-                  buildSquareWithText('Angry', Color(0xFFFF4B4B)),
-                  buildSquareWithText('Sad', Color(0xFF79AEFC)),
-                  buildSquareWithText('Happy', Color(0xFFFBADEE)),
+                  buildSquareWithText('Normal', const Color(0xFF66C0A6)),
+                  buildSquareWithText('Tense', const Color(0xFFFFE86D)),
+                  buildSquareWithText('Angry', const Color(0xFFFF4B4B)),
+                  buildSquareWithText('Sad', const Color(0xFF79AEFC)),
+                  buildSquareWithText('Happy', const Color(0xFFFBADEE)),
                 ],
               ),
-              moodChart(),
+              const MoodChart(),
             ]),
           ),
         ));
@@ -70,10 +71,10 @@ class _moodTrackerScreenState extends State<moodTrackerScreen> {
             height: 6,
             color: color,
           ),
-          SizedBox(width: 5),
+          const SizedBox(width: 5),
           Text(
             text,
-            style: TextStyle(
+            style: const TextStyle(
                 color: Color(0xFFB6B6BE),
                 fontSize: 10,
                 fontWeight: FontWeight.w500),

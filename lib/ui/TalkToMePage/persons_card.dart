@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
 import '../chatsmenu/chats_main.dart';
 
 class PersonaCard {
@@ -17,11 +15,10 @@ class PersonaCard {
   }
 }
 
-class personsCard extends StatelessWidget {
-  //String name;
+class PersonsCard extends StatelessWidget {
   final PersonaCard personaCard;
 
-  const personsCard({required this.personaCard, super.key});
+  const PersonsCard({required this.personaCard, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +28,7 @@ class personsCard extends StatelessWidget {
           context,
           MaterialPageRoute(
               builder: (context) =>
-                  ChatsMain(personaid: personaCard.id, key: super.key)),
+                  ChatsMain(personaId: personaCard.id, key: super.key)),
         );
       },
       child: Column(
@@ -49,7 +46,7 @@ class personsCard extends StatelessWidget {
             ),
             child: Center(
               child: Text(
-                "id:${personaCard.id} name: ${personaCard.name.trim()}",
+                personaCard.name.trim(),
                 textAlign: TextAlign.center,
                 style: const TextStyle(
                   color: Color(0xFF00966A),

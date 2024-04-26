@@ -2,8 +2,8 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class moodChart extends StatelessWidget {
-  const moodChart({super.key});
+class MoodChart extends StatelessWidget {
+  const MoodChart({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,16 +15,16 @@ class moodChart extends StatelessWidget {
           BarChartData(
             barGroups: [
               BarChartGroupData(x: 0, barRods: [
-                BarChartRodData(y: 57, colors: [Color(0xFF79AEFC)])
+                BarChartRodData(y: 57, colors: [const Color(0xFF79AEFC)])
               ]),
               BarChartGroupData(x: 1, barRods: [
-                BarChartRodData(y: 100, colors: [Color(0xFF66C0A6)])
+                BarChartRodData(y: 100, colors: [const Color(0xFF66C0A6)])
               ]),
               BarChartGroupData(x: 2, barRods: [
-                BarChartRodData(y: 77, colors: [Color(0xFFFBADEE)])
+                BarChartRodData(y: 77, colors: [const Color(0xFFFBADEE)])
               ]),
               BarChartGroupData(x: 3, barRods: [
-                BarChartRodData(y: 30, colors: [Color(0xFFFF4B4B)])
+                BarChartRodData(y: 30, colors: [const Color(0xFFFF4B4B)])
               ]),
             ],
             titlesData: FlTitlesData(

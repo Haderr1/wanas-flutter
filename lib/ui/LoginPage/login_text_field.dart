@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class loginTextField extends StatelessWidget {
-  final controller;
+class LoginTextField extends StatelessWidget {
+  final TextEditingController  controller;
   final String hintText;
   final bool obscureText;
   final GlobalKey<FormState> formKey;
 
 
-  const loginTextField({
+  const LoginTextField({
     super.key,
     required this.controller,
     required this.hintText,
@@ -20,15 +20,15 @@ class loginTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 25.0),
-      child: Container(
-        width: double.infinity, // Set width to match the parent width
+      child: SizedBox(
+        width: double.infinity,
         child: TextFormField(
             controller: controller,
             obscureText: obscureText,
             decoration: InputDecoration(
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(9.0),
-                borderSide: BorderSide(color: Colors.grey),
+                borderSide: const BorderSide(color: Colors.grey),
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(9.0),
@@ -37,7 +37,7 @@ class loginTextField extends StatelessWidget {
               errorBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(9.0),
                 borderSide:
-                BorderSide(color: Colors.red), // Change the color to red
+                const BorderSide(color: Colors.red),
               ),
               fillColor: Colors.white,
               filled: true,
@@ -54,7 +54,7 @@ class loginTextField extends StatelessWidget {
               if (hintText == 'Email') {
                 // Regular expression for validating email
                 // You can adjust this pattern as per your requirements
-                final emailRegex = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
+                final emailRegex = RegExp(r'^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$');
                 if (!emailRegex.hasMatch(value)) {
                   return 'Please enter a valid email';
                 }

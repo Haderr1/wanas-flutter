@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class previousConversationsDetailsCard extends StatelessWidget {
+class PreviousConversationsDetailsCard extends StatelessWidget {
   String namedata;
   String timedata;
   String datedata;
 
-  previousConversationsDetailsCard(
+  PreviousConversationsDetailsCard(
       {required this.namedata,
       required this.timedata,
       required this.datedata,
@@ -17,32 +17,32 @@ class previousConversationsDetailsCard extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(
-          color: Color(0xFF00966A),
+          color: const Color(0xFF00966A),
           width: 2,
         ),
         borderRadius: BorderRadius.circular(8),
       ),
-      margin: EdgeInsets.only(top: 16),
-      padding: EdgeInsets.symmetric(vertical: 8),
+      margin: const EdgeInsets.only(top: 16),
+      padding: const EdgeInsets.symmetric(vertical: 8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Column(
             children: [
-              Text(
+              const Text(
                 'Name',
                 style: TextStyle(
                   color: Color(0xFF00966A),
                   fontSize: 14,
                   fontWeight: FontWeight
-                      .w500, // Set text color for the first row to white
+                      .w500,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 4,
               ),
               Text(namedata,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
                   )),
@@ -50,20 +50,20 @@ class previousConversationsDetailsCard extends StatelessWidget {
           ),
           Column(
             children: [
-              Text(
+              const Text(
                 'Time',
                 style: TextStyle(
                   color: Color(0xFF00966A),
                   fontSize: 14,
                   fontWeight: FontWeight
-                      .w500, // Set text color for the first row to white
+                      .w500,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 4,
               ),
               Text(timedata,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
                   )),
@@ -71,20 +71,20 @@ class previousConversationsDetailsCard extends StatelessWidget {
           ),
           Column(
             children: [
-              Text(
+              const Text(
                 'Date',
                 style: TextStyle(
                   color: Color(0xFF00966A),
                   fontSize: 14,
                   fontWeight: FontWeight
-                      .w500, // Set text color for the first row to white
+                      .w500,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 4,
               ),
               Text(datedata,
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
                   )),

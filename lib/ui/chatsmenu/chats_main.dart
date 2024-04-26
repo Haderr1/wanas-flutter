@@ -1,11 +1,12 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:waanaass/ui/chatsmenu/chat_card.dart';
-import '../Api/ChatsApi.dart';
+import '../Api/chats_api.dart';
 import 'menu_scaf.dart';
 
 class ChatsMain extends StatefulWidget {
-  final int personaid;
-  ChatsMain({required this.personaid, super.key});
+  final int personaId;
+  const ChatsMain({required this.personaId, super.key});
   static const String routeName = 'ChatsMenu';
   @override
   State<ChatsMain> createState() => _ChatsMainState();
@@ -13,15 +14,17 @@ class ChatsMain extends StatefulWidget {
 
 class _ChatsMainState extends State<ChatsMain> {
   _ChatsMainState();
-  late int personaid;
-  late Future<List<Chat>> futurechatlist;
-  late List<Chat> chatslist;
+  late int personaId;
+  late Future<List<Chat>> futureChatList;
+  late List<Chat> chatsList;
   @override
   void initState() {
     super.initState();
-    personaid = widget.personaid;
-    print("personaid: $personaid");
-    futurechatlist = getChatsOfPersonaId(personaid);
+    personaId = widget.personaId;
+    if (kDebugMode) {
+      print("personaId: $personaId");
+    }
+    futureChatList = getChatsOfPersonaId(personaId);
   }
 
   @override
@@ -29,7 +32,7 @@ class _ChatsMainState extends State<ChatsMain> {
     return MenuScaf(
         title: "ChatsMenu",
         body: FutureBuilder<List<Chat>>(
-            future: futurechatlist,
+            future: futureChatList,
             builder: (context, snapshot) {
               switch (snapshot.connectionState) {
                 case ConnectionState.waiting:
@@ -39,8 +42,8 @@ class _ChatsMainState extends State<ChatsMain> {
                     return Text('Error: ${snapshot.error}');
                   } else {
                     if (snapshot.hasData) {
-                      chatslist = snapshot.data!;
-                      return ListMaker(chatslist, personaid,widget.key);
+                      chatsList = snapshot.data!;
+                      return ListMaker(chatsList, personaId,widget.key);
                     } else {
                       return const Text('empty');
                     }
@@ -51,57 +54,55 @@ class _ChatsMainState extends State<ChatsMain> {
 }
 
 class ListMaker extends StatefulWidget {
-  final List<Chat> chatslist;
-  final int personaid;
+  final List<Chat> chatsList;
+  final int personaId;
 
-  const ListMaker( this.chatslist,  this.personaid, Key?key): super(key: key);
+  const ListMaker( this.chatsList,  this.personaId, Key?key): super(key: key);
 
   @override
-  State<ListMaker> createState() => _Chatsliststate();
+  State<ListMaker> createState() => _ChatsListState();
 }
 
-class _Chatsliststate extends State<ListMaker> {
-  late List<Chat> chatslist;
-  late final int personaid;
+class _ChatsListState extends State<ListMaker> {
+  late List<Chat> chatsList;
+  late final int personaId;
 
 
   @override
   void initState() {
     super.initState();
-    chatslist = widget.chatslist;
-    personaid = widget.personaid;
-    print("eelpersonaaid: $personaid");
+    chatsList = widget.chatsList;
+    personaId = widget.personaId;
+    if (kDebugMode) {
+      print("eelpersonaaid: $personaId");
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      itemCount: chatslist.length + 1,
-      itemBuilder: (BuildContext context, int index) {
-        if (index == chatslist.length) {
-          return AddChatButton(onpressed: () {
-            addNewChat(personaid);
-            addtochatlist();
-          });
-        }
-        return ChatsCard(elchat: chatslist[index],personaid: personaid,key: widget.key,);
-      },
-      separatorBuilder: (context, index) {
-        return const Divider(
-          height: 2,
-          thickness: 2,
-          indent: 0,
-          endIndent: 0,
-          color: Color(0xffB6B6BE),
-        );
-      },
+    return Padding(
+      padding: const EdgeInsets.only(left: 24, right: 24,top: 24),
+      child: ListView.separated(
+        itemCount: chatsList.length + 1,
+        itemBuilder: (BuildContext context, int index) {
+          if (index == chatsList.length) {
+            return AddChatButton(onPressed: () {
+              addNewChat(personaId);
+              addToChatList();
+            });
+          }
+          return ChatsCard(chat: chatsList[index],personaId: personaId,key: widget.key,);
+        }, separatorBuilder: (BuildContext context, int index) { return const SizedBox(height: 16,) ; },
+
+
+      ),
     );
   }
 
-  void addtochatlist() {
-    Chat c = Chat(chatid: chatslist.length + 1);
+  void addToChatList() {
+    Chat c = Chat(chatId: chatsList.length);
     setState(() {
-      widget.chatslist.add(c);
+      widget.chatsList.add(c);
     });
   }
 }

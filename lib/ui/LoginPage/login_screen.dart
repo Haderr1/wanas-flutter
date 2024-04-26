@@ -1,24 +1,34 @@
 import 'package:flutter/material.dart';
-import 'package:waanaass/ui/LoginPage/socialMediaCard.dart';
-import '../Api/LoginApi.dart';
-import '../Buttons/PrimaryButton.dart';
-import '../SignupPage/signupScreen.dart';
-import 'package:waanaass/ui/LoginPage/loginTextField.dart';
+import 'package:waanaass/ui/HomePage/home_screen.dart';
+import 'package:waanaass/ui/LoginPage/social_media_card.dart';
+import '../Api/login_api.dart';
+import '../Buttons/primary_button.dart';
+import '../SignupPage/signup_screen.dart';
+import 'package:waanaass/ui/LoginPage/login_text_field.dart';
 
-class loginScreen extends StatelessWidget {
+import '../TalkToMePage/talk_to_me_screen.dart';
+
+class LoginScreen extends StatelessWidget {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   static const String routeName = 'login';
   final formKey = GlobalKey<FormState>();
 
+  LoginScreen({super.key});
+
 
 
   @override
   Widget build(BuildContext context) {
-    void signUserIn() {
+    Future<void> signUserIn() async {
     if (formKey.currentState!.validate()) {
-      loginApi(emailController.text , passwordController.text, context);
-
+      String token = await loginApi(emailController.text , passwordController.text);
+      if(token !=""){
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) =>  HomeScreen()),
+        );
+      }
     }
   }
     return Scaffold(
@@ -47,14 +57,14 @@ class loginScreen extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 25),
-                  loginTextField(
+                  LoginTextField(
                     controller: emailController,
                     hintText: 'Email',
                     obscureText: false,
                     formKey: formKey,
                   ),
                   const SizedBox(height: 10),
-                  loginTextField(
+                  LoginTextField(
                     controller: passwordController,
                     hintText: 'Password',
                     obscureText: false,
@@ -62,8 +72,8 @@ class loginScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
                   // forgot password?
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 25.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
@@ -80,7 +90,7 @@ class loginScreen extends StatelessWidget {
                     onTap: () {
                       signUserIn();
                     },
-                    ButtonText: "Log In",
+                    buttonText: "Log In",
                   ),
                   const SizedBox(height: 50),
                   Padding(
@@ -111,17 +121,17 @@ class loginScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 30),
                   // google + apple +  facebook sign in buttons
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
+                    children: [
                       // google button
-                      socialMediaCard(imagePath: 'assets/images/Google.png'),
+                      SocialMediaCard(imagePath: 'assets/images/Google.png'),
                       SizedBox(width: 25),
                       // apple button
-                      socialMediaCard(imagePath: 'assets/images/Vector.png'),
+                      SocialMediaCard(imagePath: 'assets/images/Vector.png'),
                       SizedBox(width: 25),
                       // apple button
-                      socialMediaCard(imagePath: 'assets/images/Facebook.png'),
+                      SocialMediaCard(imagePath: 'assets/images/Facebook.png'),
                     ],
                   ),
                   const SizedBox(height: 20),
@@ -129,7 +139,7 @@ class loginScreen extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
+                      const Text(
                         'Don\'t have an Account?',
                         style: TextStyle(color: Colors.black),
                       ),
@@ -139,10 +149,10 @@ class loginScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => signupScreen()),
+                                builder: (context) =>  SignupScreen()),
                           );
                         },
-                        child: Text(
+                        child: const Text(
                           'Sign Up',
                           style: TextStyle(
                             color: Color(0xFF00966A),

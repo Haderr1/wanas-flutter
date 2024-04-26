@@ -5,9 +5,9 @@ class Message extends StatelessWidget {
   final String imagePathUser;
 
   final String text;
-  final bool isUserMessage; // to determine if the message is sent by the user
+  final bool isUserMessage;
 
-  Message({
+  const Message({
     Key? key,
     required this.imagePathAi,
     required this.imagePathUser,
@@ -38,12 +38,12 @@ class Message extends StatelessWidget {
               padding:
               const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
               decoration: BoxDecoration(
-                color: isUserMessage ? Color(0xFFE0F8E9) : Colors.grey[300],
+                color: isUserMessage ? const Color(0xFFE0F8E9) : Colors.grey[300],
                 borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(isUserMessage ? 16 : 0),
                   topRight: Radius.circular(isUserMessage ? 0 : 16),
-                  bottomLeft: Radius.circular(16),
-                  bottomRight: Radius.circular(16),
+                  bottomLeft: const Radius.circular(16),
+                  bottomRight: const Radius.circular(16),
                 ),
               ),
               child: Text(

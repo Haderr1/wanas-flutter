@@ -1,30 +1,50 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:waanaass/ui/Buttons/AddPersonaButton.dart';
-import 'package:waanaass/ui/TalkToMePage/personsCard.dart';
-import 'package:waanaass/ui/TalkToMePage/previousConversationsDetailsCard.dart';
-import '../Api/ChatsApi.dart';
-import '../Api/PersonaApi.dart';
-import 'startCard.dart';
+import 'package:waanaass/ui/Buttons/add_persona_button.dart';
+import 'package:waanaass/ui/TalkToMePage/persons_card.dart';
+import 'package:waanaass/ui/TalkToMePage/previous_conversations_details_card.dart';
+import '../Api/persona_api.dart';
+import 'drawer.dart';
+import 'start_card.dart';
 
-class talkToMeScreen extends StatefulWidget {
 
-  const talkToMeScreen({ super.key});
+class TalkToMeScreen extends StatefulWidget {
+  const TalkToMeScreen({super.key});
   static const String routeName = 'talketome';
 
   @override
-  State<talkToMeScreen> createState() => _talkToMeScreenState();
+  State<TalkToMeScreen> createState() => _TalkToMeScreenState();
 }
 
-class _talkToMeScreenState extends State<talkToMeScreen> {
-
-
+class _TalkToMeScreenState extends State<TalkToMeScreen> {
   Future<List<PersonaCard>> _futurePersonaCards = fetchPersonaCards();
   void _createAndFetchPersona(BuildContext context) async {
-    await createPersona(context);
-    setState(() {
-      _futurePersonaCards = fetchPersonaCards();
-    });
+    String? name;
+    name = await showDialog<String>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Enter Name'),
+        content: TextField(
+          onChanged: (value) => name = value,
+          decoration: const InputDecoration(hintText: 'Name'),
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop(name);
+            },
+            child: const Text('OK'),
+          ),
+        ],
+      ),
+    );
+
+    if (name != null) {
+      await createPersona(name!);
+      setState(() {
+        _futurePersonaCards = fetchPersonaCards();
+      });
+    }
   }
 
   @override
@@ -37,13 +57,14 @@ class _talkToMeScreenState extends State<talkToMeScreen> {
         ),
         centerTitle: true,
       ),
+     // drawer: Drawerr(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-               startCard(),
+              const StartCard(),
               const SizedBox(height: 24),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -83,7 +104,7 @@ class _talkToMeScreenState extends State<talkToMeScreen> {
                               _createAndFetchPersona(context);
                             });
                           } else {
-                            return personsCard(
+                            return PersonsCard(
                                 personaCard: snapshot.data![index]);
                           }
                         },
@@ -103,9 +124,9 @@ class _talkToMeScreenState extends State<talkToMeScreen> {
                   fontWeight: FontWeight.w500,
                 ),
               ),
-              previousConversationsDetailsCard(
+              PreviousConversationsDetailsCard(
                   namedata: 'Wanas', timedata: '44:00m', datedata: '15-6-2023'),
-              previousConversationsDetailsCard(
+              PreviousConversationsDetailsCard(
                   namedata: 'Mona', timedata: '55:00m', datedata: '9-6-2023'),
             ],
           ),

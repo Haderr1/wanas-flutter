@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
 import '../Buttons/small_button.dart';
-import '../TalkToMePage/talk_to_me_screen.dart';
 
 class ShowChatsHomeCard extends StatelessWidget {
-  const ShowChatsHomeCard({Key? key}) : super(key: key);
+  final String imagePath;
+  final String cardText;
+  final String buttonText;
+  final BorderRadiusGeometry borderRadius;
+  Function()? onPressed;
+
+  ShowChatsHomeCard({
+    Key? key,
+    required this.imagePath,
+    required this.cardText,
+    required this.buttonText,
+    required this.borderRadius,
+    required this.onPressed,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +27,7 @@ class ShowChatsHomeCard extends StatelessWidget {
             color: const Color(0xFF66C0A6),
             width: 1.0,
           ),
-          borderRadius: BorderRadius.circular(14),
+          borderRadius: borderRadius,
           color: Colors.white.withOpacity(0.7),
         ),
         padding: const EdgeInsets.all(16.0),
@@ -27,9 +39,9 @@ class ShowChatsHomeCard extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
-                    'Show previous conversation',
-                    style: TextStyle(
+                  Text(
+                    cardText,
+                    style: const TextStyle(
                       color: Colors.black,
                       fontSize: 20,
                       fontWeight: FontWeight.w400,
@@ -38,21 +50,21 @@ class ShowChatsHomeCard extends StatelessWidget {
                   ),
                   const SizedBox(height: 8.0),
                   SmallButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const TalkToMeScreen()),
-                      );                    },
-                    buttonText: 'Show',
+                    onPressed: onPressed,
+                    buttonText: buttonText,
                   ),
                 ],
               ),
             ),
             const SizedBox(width: 16.0), // Spacer
             // Second Column
-            Image.asset(
-              'assets/images/showcardimg.png', // Provide your image path here
-              fit: BoxFit.cover,
+            SizedBox(
+              width: 85,
+              height: 100,
+              child: Image.asset(
+                imagePath,
+                fit: BoxFit.cover,
+              ),
             ),
           ],
         ),

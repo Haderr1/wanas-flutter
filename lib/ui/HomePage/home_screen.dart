@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:waanaass/ui/MoodTracker/green_card.dart';
+import 'package:waanaass/ui/MoodTracker/mood_tracker_screen.dart';
 import 'package:waanaass/ui/TalkToMePage/drawer.dart';
 
+import '../TalkToMePage/talk_to_me_screen.dart';
 import 'Show_chats_home.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -95,7 +97,6 @@ class _HomeScreenState extends State<HomeScreen> {
                           ),
                           iconSize: 26,
                         ),
-
                       ],
                     ),
                   ),
@@ -111,8 +112,34 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   const GreenCard(),
-                  const ShowChatsHomeCard()
-
+                  ShowChatsHomeCard(
+                    imagePath: 'assets/images/showcardimg.png',
+                    cardText: 'Show previous conversation',
+                    buttonText: 'Show',
+                    borderRadius:
+                        const BorderRadius.only(topRight: Radius.elliptical(32, 32)),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const TalkToMeScreen()),
+                      );
+                    },
+                  ),
+                  ShowChatsHomeCard(
+                    imagePath: 'assets/images/trackmoodcard.png',
+                    cardText: 'Track Your Mode!',
+                    buttonText: 'Ckeck',
+                    borderRadius: const BorderRadius.only(
+                        bottomLeft: Radius.elliptical(32, 32)),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const MoodTrackerScreen()),
+                      );
+                    },
+                  ),
                 ],
               ),
             ),

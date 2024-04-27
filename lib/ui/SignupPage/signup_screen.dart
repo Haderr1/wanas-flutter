@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:waanaass/ui/Buttons/primary_button.dart';
+import 'package:waanaass/ui/HomePage/home_screen.dart';
 import 'package:waanaass/ui/LoginPage/login_screen.dart';
 import 'package:waanaass/ui/SignupPage/signup_text_field.dart';
 import '../Api/register_api.dart';
@@ -36,7 +37,7 @@ class _SignupScreenState extends State<SignupScreen> {
           prefs.setString('username', fullNameController.text);
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => const TalkToMeScreen()),
+            MaterialPageRoute(builder: (context) =>  HomeScreen()),
           );
         }
 

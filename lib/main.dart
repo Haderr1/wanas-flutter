@@ -3,10 +3,13 @@ import 'package:waanaass/ui/Authentication/AuthLogin.dart';
 import 'package:waanaass/ui/HomePage/home_screen.dart';
 import 'package:waanaass/ui/LoginPage/login_screen.dart';
 import 'package:waanaass/ui/MoodTracker/mood_tracker_screen.dart';
+import 'package:waanaass/ui/SharedPref/shared_pref.dart';
 import 'package:waanaass/ui/SignupPage/signup_screen.dart';
 import 'package:waanaass/ui/TalkToMePage/talk_to_me_screen.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await SharedPreferencesManager.instance.init();
   runApp(const MyApp());
 }
 

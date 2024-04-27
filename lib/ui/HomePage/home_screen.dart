@@ -1,57 +1,45 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:waanaass/ui/MoodTracker/green_card.dart';
 import 'package:waanaass/ui/MoodTracker/mood_tracker_screen.dart';
 import 'package:waanaass/ui/TalkToMePage/drawer.dart';
-
+import '../SharedPref/shared_pref.dart';
 import '../TalkToMePage/talk_to_me_screen.dart';
 import 'Show_chats_home.dart';
 
 class HomeScreen extends StatefulWidget {
   static const String routeName = 'home';
 
+  const HomeScreen({super.key});
+
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  String? globalUsername;
-
-  Future<void> _getUsername() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      globalUsername = prefs.getString('username');
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _getUsername();
-  }
-
   @override
   Widget build(BuildContext context) {
+    SharedPreferencesManager manager = SharedPreferencesManager.instance;
+    String globalUsername=manager.getUserName();
+
     return Scaffold(
       drawer: Drawerr(),
       body: SingleChildScrollView(
         child: Stack(
           children: [
-            // Background Container with Image
             Container(
               height: MediaQuery.of(context).size.height /
-                  2, // Half of the screen height
+                  2,
               decoration: const BoxDecoration(
                 image: DecorationImage(
                   image: AssetImage(
-                      'assets/images/drw.png'), // Replace 'assets/background.jpg' with your image path
+                      'assets/images/drw.png'),
                   fit: BoxFit.cover,
                 ),
               ),
             ),
             // Content Container
             Container(
-              height: MediaQuery.of(context).size.height, // Full screen height
+              height: MediaQuery.of(context).size.height,
               padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 48),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -61,8 +49,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Drawer Icon
-
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [

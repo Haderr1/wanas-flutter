@@ -1,35 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../Api/Api.dart';
 import '../LoginPage/login_screen.dart';
+import '../SharedPref/shared_pref.dart';
 
 
 
 
 class Drawerr extends StatefulWidget {
-   Drawerr({super.key});
+   const Drawerr({super.key});
 
   @override
   State<Drawerr> createState() => _DrawerrState();
 }
 
 class _DrawerrState extends State<Drawerr> {
-  String? globalUsername;
-
-  Future<void> _getUsername() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    setState(() {
-      globalUsername = prefs.getString('username');
-    });
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    _getUsername();
-  }
    @override
    Widget build(BuildContext context) {
+
+     SharedPreferencesManager manager = SharedPreferencesManager.instance;
+     String globalUsername=manager.getUserName();
+
      return Drawer(
              child: ListView(padding: EdgeInsets.zero, children: <Widget>[
                DrawerHeader(

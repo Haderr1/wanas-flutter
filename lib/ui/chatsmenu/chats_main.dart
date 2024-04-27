@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:waanaass/ui/chatsmenu/chat_card.dart';
 import '../Api/chats_api.dart';
+import '../SharedPref/shared_pref.dart';
 import 'menu_scaf.dart';
 
 class ChatsMain extends StatefulWidget {
@@ -14,10 +15,14 @@ class ChatsMain extends StatefulWidget {
 
 class _ChatsMainState extends State<ChatsMain> {
   _ChatsMainState();
+  String? name;
   late int personaId;
   late Future<List<Chat>> futureChatList;
   late List<Chat> chatsList;
   @override
+
+
+
   void initState() {
     super.initState();
     personaId = widget.personaId;
@@ -29,8 +34,11 @@ class _ChatsMainState extends State<ChatsMain> {
 
   @override
   Widget build(BuildContext context) {
+    SharedPreferencesManager manager = SharedPreferencesManager.instance;
+    String name = manager.getPersonaName();
+
     return MenuScaf(
-        title: "ChatsMenu",
+        title: "$name's Chats",
         body: FutureBuilder<List<Chat>>(
             future: futureChatList,
             builder: (context, snapshot) {

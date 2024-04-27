@@ -5,8 +5,7 @@ import 'package:waanaass/ui/LoginPage/login_screen.dart';
 import 'package:waanaass/ui/SignupPage/signup_text_field.dart';
 import '../Api/register_api.dart';
 import '../LoginPage/social_media_card.dart';
-import '../TalkToMePage/talk_to_me_screen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import '../SharedPref/shared_pref.dart';
 
 
 class SignupScreen extends StatefulWidget {
@@ -28,13 +27,14 @@ class _SignupScreenState extends State<SignupScreen> {
 
   @override
   Widget build(BuildContext context) {
+    SharedPreferencesManager manager = SharedPreferencesManager.instance;
+
     Future<void> signUserUp() async {
       if (formKey.currentState!.validate()) {
         String token = await signUpApi(fullNameController.text, emailController.text,
             phoneNumberController.text, passwordController.text);
         if(token !=""){
-          final prefs = await SharedPreferences.getInstance();
-          prefs.setString('username', fullNameController.text);
+          manager.saveUserName(fullNameController.text);
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) =>  HomeScreen()),

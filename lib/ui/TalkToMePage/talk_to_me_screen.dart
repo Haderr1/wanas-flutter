@@ -1,10 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:waanaass/ui/Buttons/add_persona_button.dart';
 import 'package:waanaass/ui/TalkToMePage/persons_card.dart';
 import 'package:waanaass/ui/TalkToMePage/previous_conversations_details_card.dart';
 import '../Api/persona_api.dart';
-import 'drawer.dart';
+import '../SharedPref/shared_pref.dart';
 import 'start_card.dart';
 
 
@@ -18,8 +17,12 @@ class TalkToMeScreen extends StatefulWidget {
 
 class _TalkToMeScreenState extends State<TalkToMeScreen> {
   Future<List<PersonaCard>> _futurePersonaCards = fetchPersonaCards();
+
+
   void _createAndFetchPersona(BuildContext context) async {
     String? name;
+    SharedPreferencesManager manager = SharedPreferencesManager.instance;
+
     name = await showDialog<String>(
       context: context,
       builder: (context) => AlertDialog(
@@ -40,6 +43,7 @@ class _TalkToMeScreenState extends State<TalkToMeScreen> {
     );
 
     if (name != null) {
+      manager.savePersonaName(name!);
       await createPersona(name!);
       setState(() {
         _futurePersonaCards = fetchPersonaCards();
@@ -57,7 +61,6 @@ class _TalkToMeScreenState extends State<TalkToMeScreen> {
         ),
         centerTitle: true,
       ),
-     // drawer: Drawerr(),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(

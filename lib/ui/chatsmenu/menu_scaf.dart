@@ -32,13 +32,6 @@ class MenuScaf extends StatelessWidget {
           ),
         ),
         backgroundColor: const Color(0xff00966A),
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios),
-          color: Colors.black,
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(5),

@@ -36,7 +36,7 @@ class SendMessageField extends StatelessWidget {
                   horizontal: 15.0,
                 ),
                 suffixIcon: IconButton(
-                  icon: const Icon(Icons.mic_rounded, color: Color(0xFFE0F8E9)),
+                  icon: const Icon(Icons.mic_rounded, color: Color(0xff00966A)),
                   onPressed: () {
                     // Handle microphone icon press
                   },

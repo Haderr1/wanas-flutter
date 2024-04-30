@@ -18,7 +18,7 @@ class MoodChart extends StatelessWidget {
                 BarChartRodData(y: 57, colors: [const Color(0xFF79AEFC)])
               ]),
               BarChartGroupData(x: 1, barRods: [
-                BarChartRodData(y: 100, colors: [const Color(0xFF66C0A6)])
+                BarChartRodData(y: 90, colors: [const Color(0xFF66C0A6)])
               ]),
               BarChartGroupData(x: 2, barRods: [
                 BarChartRodData(y: 77, colors: [const Color(0xFFFBADEE)])

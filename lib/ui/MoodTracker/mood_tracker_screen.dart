@@ -17,7 +17,10 @@ class _MoodTrackerScreenState extends State<MoodTrackerScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text('Mode Tracker'),
+          title: const Text(
+            "Mode Tracker",
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
           centerTitle: true,
         ),
         body: Padding(
@@ -26,7 +29,6 @@ class _MoodTrackerScreenState extends State<MoodTrackerScreen> {
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
               const Calendar(),
-              const GreenCard(),
               const EmojisCard(),
               const SizedBox(
                 height: 16,
@@ -41,12 +43,12 @@ class _MoodTrackerScreenState extends State<MoodTrackerScreen> {
               const Text(
                 'How your mood changes over time',
                 style: TextStyle(
-                  color: Colors.grey,
+                  color: Colors.blueGrey,
                   fontSize: 12.0,
                 ),
               ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   buildSquareWithText('Normal', const Color(0xFF66C0A6)),
                   buildSquareWithText('Tense', const Color(0xFFFFE86D)),

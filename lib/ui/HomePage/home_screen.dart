@@ -114,7 +114,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   ShowChatsHomeCard(
                     imagePath: 'assets/images/trackmoodcard.png',
-                    cardText: 'Track Your Mode!',
+                    cardText: 'Track Your Mood!',
                     buttonText: 'Ckeck',
                     borderRadius: const BorderRadius.only(
                         bottomLeft: Radius.elliptical(32, 32)),

@@ -41,14 +41,10 @@ class LoginScreen extends StatelessWidget {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(height: 10),
-                  // logo
                   Image.asset(
-                    'assets/images/logo.png',
-                    width: 200,
-                    height: 200,
+                    'assets/images/WAnas.png',
+                    width: 400,
                   ),
-                  const SizedBox(height: 40),
                   Text(
                     'Welcome back you\'ve been missed!',
                     style: TextStyle(
@@ -56,14 +52,14 @@ class LoginScreen extends StatelessWidget {
                       fontSize: 16,
                     ),
                   ),
-                  const SizedBox(height: 25),
+                  const SizedBox(height: 24),
                   LoginTextField(
                     controller: emailController,
                     hintText: 'Email',
                     obscureText: false,
                     formKey: formKey,
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 8),
                   LoginTextField(
                     controller: passwordController,
                     hintText: 'Password',
@@ -92,7 +88,7 @@ class LoginScreen extends StatelessWidget {
                     },
                     buttonText: "Log In",
                   ),
-                  const SizedBox(height: 50),
+                  const SizedBox(height: 24),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 25.0),
                     child: Row(

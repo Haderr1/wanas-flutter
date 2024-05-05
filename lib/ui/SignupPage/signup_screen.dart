@@ -48,7 +48,7 @@ class _SignupScreenState extends State<SignupScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        surfaceTintColor: Colors.transparent,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios),
@@ -67,14 +67,9 @@ class _SignupScreenState extends State<SignupScreen> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Align(                alignment: Alignment.topCenter,
-                  child: FractionallySizedBox(
-                    widthFactor: 0.4,
-                    child: Image.asset(
-                      'assets/images/logo.png',
-                      width: double.infinity,
-                    ),
-                  ),
+                Image.asset(
+                  'assets/images/WAnas.png',
+                  width: 200,
                 ),
                 const SizedBox(height: 15),
                 Text(

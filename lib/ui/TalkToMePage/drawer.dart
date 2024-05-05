@@ -3,92 +3,120 @@ import '../Api/Api.dart';
 import '../LoginPage/login_screen.dart';
 import '../SharedPref/shared_pref.dart';
 
-
-
-
-class Drawerr extends StatefulWidget {
-   const Drawerr({super.key});
+class DrawerPage extends StatefulWidget {
+  const DrawerPage({super.key});
 
   @override
-  State<Drawerr> createState() => _DrawerrState();
+  State<DrawerPage> createState() => _DrawerPageState();
 }
 
-class _DrawerrState extends State<Drawerr> {
-   @override
-   Widget build(BuildContext context) {
-
-     SharedPreferencesManager manager = SharedPreferencesManager.instance;
-     String globalUsername=manager.getUserName();
-
-     return Drawer(
-             child: ListView(padding: EdgeInsets.zero, children: <Widget>[
-               DrawerHeader(
-                 decoration: const BoxDecoration(
-                   image: DecorationImage(
-                     image: AssetImage('assets/images/drw.png'),
-                     fit: BoxFit.cover,
-                   ),
-                 ),
-                 child: Column(
-                   mainAxisAlignment: MainAxisAlignment.center,
-                   crossAxisAlignment: CrossAxisAlignment.start,
-                   children: [
-                     const Text(
-                       'Wanas',
-                       style: TextStyle(
-                         color: Colors.black,
-                         fontSize: 24,
-                         fontWeight: FontWeight.w700,
-                       ),
-                     ),
-                     const SizedBox(height: 8),
-                     if (globalUsername != null)
-                       Text(
-                         'Welcome ${globalUsername!} !',
-                         style: const TextStyle(
-                           color: Colors.black,
-                           fontSize: 20,
-                         ),
-                       ),
-
-                   ],
-                 ),
-               ),
-               const SizedBox(
-                 height: 430,
-               ),
-               Container(
-                 margin: const EdgeInsets.symmetric(horizontal: 16.0),
-                 padding: const EdgeInsets.only(left: 8),
-                 decoration: ShapeDecoration(
-                   color: Colors.white,
-                   shape: RoundedRectangleBorder(
-                     borderRadius: BorderRadius.circular(16),
-                     side: const BorderSide(
-                       color: Color(0xFF00966A),
-                       width: 2.0,
-                     ),
-                   ),
-                 ),
-                 child: ListTile(
-                   leading: const Icon(Icons.exit_to_app_outlined), // Add an icon
-                   title: const Text(
-                     'Logout',
-                     style: TextStyle(
-                       fontWeight: FontWeight.bold,
-                       fontSize: 16,
-                     ),
-                   ),
-                   onTap: () {
-                     appConstant.tokenStorage.deleteToken();
-                     Navigator.pushReplacement(
-                       context,
-                       MaterialPageRoute(builder: (context) => LoginScreen()),
-                     );
-                   },
-                 ),
-               ),
-             ]),
-           );
-         }
+class _DrawerPageState extends State<DrawerPage> {
+  @override
+  Widget build(BuildContext context) {
+    SharedPreferencesManager manager = SharedPreferencesManager.instance;
+    String globalUsername = manager.getUserName();
+    String globalEmail = manager.getEmail();
+    return Drawer(
+      child: Container(
+        color:  const Color(0xFFF9FDFA),
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              child: ListView(
+                padding: EdgeInsets.zero,
+                children: <Widget>[
+                  UserAccountsDrawerHeader(
+                    currentAccountPicture: const CircleAvatar(
+                      backgroundImage: AssetImage("assets/images/greennn.jpg"),
+                    ),
+                    decoration: const BoxDecoration(
+                      color:  Color(0xFFF9FDFA),
+                      // image: DecorationImage(
+                        //     fit: BoxFit.fill,
+                        //     image: AssetImage("assets/images/drw.png"))
+                          ),
+                    accountName: Text(
+                      ' $globalUsername ',
+                      style: const TextStyle(
+                        color: Colors.black,
+                         fontSize: 17,
+                      ),
+                    ),
+                    accountEmail: Text(
+                      ' $globalEmail ',
+                      style: const TextStyle(
+                        color: Colors.black,
+                         fontSize: 14,
+                      ),
+                    ),
+                  ),
+                  ListTile(
+                    leading: const Icon(Icons.person, color: Color(0xFF00966A)),
+                    title: const Text(
+                      'Profile',
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+                    ),
+                    onTap: () {
+                      // Handle profile tab tap
+                    },
+                  ),
+                  const SizedBox(height: 8),
+                  ListTile(
+                    leading: const Icon(Icons.settings, color: Color(0xFF00966A)),
+                    title: const Text(
+                      'Settings',
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+                    ),
+                    onTap: () {
+                      // Handle settings tab tap
+                    },
+                  ),
+                  const SizedBox(height: 8),
+                  ListTile(
+                    leading: const Icon(Icons.info, color: Color(0xFF00966A)),
+                    title: const Text(
+                      'About',
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+                    ),
+                    onTap: () {
+                      // Handle about tab tap
+                    },
+                  ),
+                  const SizedBox(height: 8),
+                  ListTile(
+                    leading: const Icon(Icons.help, color: Color(0xFF00966A)),
+                    title: const Text(
+                      'Help',
+                      style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+                    ),
+                    onTap: () {
+                      // Handle help tab tap
+                    },
+                  ),
+                ],
+              ),
+            ),
+            const Divider(
+              color: Color(0xFF66CC99),
+              thickness: 1.0,
+            ),
+            ListTile(
+              leading: const Icon(Icons.logout, color: Color(0xFF00966A)),
+              title: const Text(
+                'Logout',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+              ),
+              onTap: () {
+                appConstant.tokenStorage.deleteToken();
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginScreen()),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }

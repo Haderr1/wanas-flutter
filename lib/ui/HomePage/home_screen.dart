@@ -22,7 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
     String globalUsername=manager.getUserName();
 
     return Scaffold(
-      drawer: Drawerr(),
+      drawer: DrawerPage(),
       body: SingleChildScrollView(
         child: Stack(
           children: [

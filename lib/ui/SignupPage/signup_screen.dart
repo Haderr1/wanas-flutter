@@ -35,6 +35,7 @@ class _SignupScreenState extends State<SignupScreen> {
             phoneNumberController.text, passwordController.text);
         if(token !=""){
           manager.saveUserName(fullNameController.text);
+          manager.saveEmail(emailController.text);
           Navigator.push(
             context,
             MaterialPageRoute(builder: (context) =>  HomeScreen()),

@@ -18,7 +18,7 @@ class SharedPreferencesManager {
     _prefs = await SharedPreferences.getInstance();
   }
 
-  // Get the saved name
+
   String getPersonaName() {
     return _prefs.getString('personaname') ?? '';
   }
@@ -27,14 +27,23 @@ class SharedPreferencesManager {
     return _prefs.getString('username') ?? '';
   }
 
-  // Save the name
-  Future<void> savePersonaName(String name) async {
-    await _prefs.setString('personaname', name);
+  Future<void> savePersonaName(String Pname) async {
+    await _prefs.setString('personaname', Pname);
   }
 
   Future<void> saveUserName(String name) async {
     await _prefs.setString('username', name);
   }
+
+  Future<void> saveEmail(String email) async {
+    await _prefs.setString('email', email);
+  }
+
+  String getEmail() {
+    return _prefs.getString('email') ?? '';
+  }
+
+
 
 }
 

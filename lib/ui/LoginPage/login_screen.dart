@@ -3,10 +3,10 @@ import 'package:waanaass/ui/HomePage/home_screen.dart';
 import 'package:waanaass/ui/LoginPage/social_media_card.dart';
 import '../Api/login_api.dart';
 import '../Buttons/primary_button.dart';
+import '../ForgotPass/forgot_password.dart';
 import '../SignupPage/signup_screen.dart';
 import 'package:waanaass/ui/LoginPage/login_text_field.dart';
 
-import '../TalkToMePage/talk_to_me_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   final emailController = TextEditingController();
@@ -68,15 +68,25 @@ class LoginScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 10),
                   // forgot password?
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 25.0),
+                   Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Text(
-                          'Forgot Password?',
-                          style: TextStyle(color: Color(0xFF00966A)),
-                        ),
+                        GestureDetector(
+                          onTap: () {
+                            // Navigate to another screen
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) =>  const PasswordResetPage(title: '',)),
+                            );
+                          },
+                          child: const Text(
+                            'Forgot Password?',
+                            style: TextStyle(color: Color(0xFF00966A)),
+                          ),
+                        )
+
                       ],
                     ),
                   ),
@@ -145,7 +155,7 @@ class LoginScreen extends StatelessWidget {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) =>  SignupScreen()),
+                                builder: (context) =>  const SignupScreen()),
                           );
                         },
                         child: const Text(

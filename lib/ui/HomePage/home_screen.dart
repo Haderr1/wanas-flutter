@@ -100,7 +100,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   const GreenCard(),
                   ShowChatsHomeCard(
                     imagePath: 'assets/images/showcardimg.png',
-                    cardText: 'Show previous conversation',
+                    cardText: 'Start your conversation',
                     buttonText: 'Show',
                     borderRadius:
                         const BorderRadius.only(topRight: Radius.elliptical(32, 32)),

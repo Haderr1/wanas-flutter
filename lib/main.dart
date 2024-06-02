@@ -33,12 +33,12 @@ class MyApp extends StatelessWidget {
         LoginScreen.routeName : (_)=> LoginScreen(),
         SignupScreen.routeName : (_)=>   const SignupScreen(),
         AuthPage.routeName : (_)=> const AuthPage(),
-        HomeScreen.routeName : (_)=>  HomeScreen(),
+        HomeScreen.routeName : (_)=>  const HomeScreen(),
 
 
 
       },
-      initialRoute: AuthPage.routeName ,
+      initialRoute: LoginScreen.routeName ,
     );
   }
 }

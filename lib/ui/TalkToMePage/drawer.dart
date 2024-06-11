@@ -2,6 +2,11 @@ import 'package:flutter/material.dart';
 import '../Api/Api.dart';
 import '../LoginPage/login_screen.dart';
 import '../SharedPref/shared_pref.dart';
+import '../newPages/about_page.dart';
+import '../newPages/help_page.dart';
+import '../newPages/profile_page.dart';
+import '../newPages/setting_page.dart';
+
 
 class DrawerPage extends StatefulWidget {
   const DrawerPage({super.key});
@@ -18,7 +23,7 @@ class _DrawerPageState extends State<DrawerPage> {
     String globalEmail = manager.getEmail();
     return Drawer(
       child: Container(
-        color:  const Color(0xFFF9FDFA),
+        color: const Color(0xFFF9FDFA),
         child: Column(
           children: <Widget>[
             Expanded(
@@ -30,23 +35,20 @@ class _DrawerPageState extends State<DrawerPage> {
                       backgroundImage: AssetImage("assets/images/greennn.jpg"),
                     ),
                     decoration: const BoxDecoration(
-                      color:  Color(0xFFF9FDFA),
-                      // image: DecorationImage(
-                        //     fit: BoxFit.fill,
-                        //     image: AssetImage("assets/images/drw.png"))
-                          ),
+                      color: Color(0xFFF9FDFA),
+                    ),
                     accountName: Text(
                       ' $globalUsername ',
                       style: const TextStyle(
                         color: Colors.black,
-                         fontSize: 17,
+                        fontSize: 17,
                       ),
                     ),
                     accountEmail: Text(
                       ' $globalEmail ',
                       style: const TextStyle(
                         color: Colors.black,
-                         fontSize: 14,
+                        fontSize: 14,
                       ),
                     ),
                   ),
@@ -57,7 +59,10 @@ class _DrawerPageState extends State<DrawerPage> {
                       style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
                     ),
                     onTap: () {
-                      // Handle profile tab tap
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const EditAccountScreen()),
+                      );
                     },
                   ),
                   const SizedBox(height: 8),
@@ -68,7 +73,10 @@ class _DrawerPageState extends State<DrawerPage> {
                       style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
                     ),
                     onTap: () {
-                      // Handle settings tab tap
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => SettingsPage()),
+                      );
                     },
                   ),
                   const SizedBox(height: 8),
@@ -79,8 +87,12 @@ class _DrawerPageState extends State<DrawerPage> {
                       style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
                     ),
                     onTap: () {
-                      // Handle about tab tap
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => AboutPage()),
+                      );
                     },
+
                   ),
                   const SizedBox(height: 8),
                   ListTile(
@@ -90,7 +102,10 @@ class _DrawerPageState extends State<DrawerPage> {
                       style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
                     ),
                     onTap: () {
-                      // Handle help tab tap
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const HelpPage()),
+                      );
                     },
                   ),
                 ],

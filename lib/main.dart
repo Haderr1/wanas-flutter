@@ -6,6 +6,7 @@ import 'package:waanaass/ui/MoodTracker/mood_tracker_screen.dart';
 import 'package:waanaass/ui/SharedPref/shared_pref.dart';
 import 'package:waanaass/ui/SignupPage/signup_screen.dart';
 import 'package:waanaass/ui/TalkToMePage/talk_to_me_screen.dart';
+import 'package:waanaass/ui/newPages/splash_screen.dart';
 
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
@@ -34,11 +35,12 @@ class MyApp extends StatelessWidget {
         SignupScreen.routeName : (_)=>   const SignupScreen(),
         AuthPage.routeName : (_)=> const AuthPage(),
         HomeScreen.routeName : (_)=>  const HomeScreen(),
+        Splash.routeName : (_)=>  const Splash(),
 
 
 
       },
-      initialRoute: LoginScreen.routeName ,
+      initialRoute: Splash.routeName ,
     );
   }
 }
